@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - ASP.NET Uygulamam</title>
 </head>
@@ -24,18 +24,42 @@
                     <li>Html.ActionLink("Giriş Sayfası", "Index", "Home")</li>
                     <li>Html.ActionLink("Hakkında", "About", "Home")</li>
                     <li>Html.ActionLink("Kişi", "Contact", "Home")</li>
-                </ul>
+                </ul>   
             </div>
         </div>
     </div>
      -->
-    <div id="navbar">navbar</div>
-    <div style="clear:both;"></div>
-    <div id="main">
-        <div id="sidebar">sidebar</div>
-        <div id="content">@RenderBody()</div>
+    <div id="navbar">
+        <div id="navbar-left">
+            icon
+        </div>
+        <div id="navbar-right">
+            <ul>
+                <li>Index</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </div>
     </div>
-    <div id="footer">footer</div>
+    <div id="main">
+        <div id="sidebar">
+            <div id="sidebar-wrapper">
+                <div id="sidebar-content">
+                    sidebar
+                </div>
+            </div> 
+        </div>
+        <div id="content">
+            <div id="content-content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-content">
+            footer
+        </div> 
+    </div>
 
 
 
