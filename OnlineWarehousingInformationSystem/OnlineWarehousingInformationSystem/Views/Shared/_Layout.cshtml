@@ -4,8 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <link href="~/Content/main.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/ico" href="~/Content/images/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - ASP.NET Uygulamam</title>
+    <title>OWIS - @ViewBag.title</title>
+
 </head>
 <body>
     <!--
@@ -24,20 +26,22 @@
                     <li>Html.ActionLink("Giriş Sayfası", "Index", "Home")</li>
                     <li>Html.ActionLink("Hakkında", "About", "Home")</li>
                     <li>Html.ActionLink("Kişi", "Contact", "Home")</li>
-                </ul>   
+                </ul>
             </div>
         </div>
     </div>
      -->
     <div id="navbar">
         <div id="navbar-left">
-            icon
+            <div id="navbar-left-logo"> <img src="~/Content/images/logo.png" alt="Alternate Text" /></div>
         </div>
         <div id="navbar-right">
             <ul>
-                <li>Index</li>
-                <li>About</li>
-                <li>Contact</li>
+                <li>@Html.ActionLink("Giriş Sayfası", "Index", "Home")</li>
+                <li>@Html.ActionLink("Hakkında", "About", "Home")</li>
+                <li>@Html.ActionLink("İletişim", "Contact", "Home")</li>
+                <li><a>Profile </a></li>
+                <li><a>Log Out</a></li>
             </ul>
         </div>
     </div>
@@ -45,9 +49,16 @@
         <div id="sidebar">
             <div id="sidebar-wrapper">
                 <div id="sidebar-content">
-                    sidebar
+                    <ul>
+                        <li>@Html.ActionLink("Products", "About", "Home")</li>
+                        <li>@Html.ActionLink("Warehouses", "Contact", "Home")</li>
+                        <li><a>Shipments</a></li>
+                        <li><a>Suppliers</a></li>
+                        <li><a>Users</a></li>
+                        <li><a>Staff</a></li>
+                    </ul>
                 </div>
-            </div> 
+            </div>
         </div>
         <div id="content">
             <div id="content-content">
@@ -57,8 +68,11 @@
     </div>
     <div id="footer">
         <div id="footer-content">
-            footer
-        </div> 
+            <div id="footer-left">
+                @DateTime.Now.ToString("dd/MM/yyyy")
+            </div>
+            @DateTime.Now.Year - Owis Solution Systems - All Rights Reserved
+        </div>
     </div>
 
 

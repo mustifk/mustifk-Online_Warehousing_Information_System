@@ -1,57 +1,88 @@
 ﻿html, body {
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #navbar {
     position: fixed;
-    top:0;
+    top: 0;
     display: block;
     width: 100%;
     height: 70px;
-    background-color: gray;
-    vertical-align:middle;
+    background-color: #1c2b46;
     z-index: 506;
 }
 
 #navbar-left {
-    margin:25px;
-    margin-left:7%;
-    display: inline-block;
-    background-color: aquamarine;
+    width:15%;
+    position:absolute;
     z-index: 507;
+}
+
+#navbar-left-logo {
+    height: 70px;
+    margin:5px 0 0 20%;
+}
+
+#navbar-left-logo img{
+    margin:auto;
+    width:70%;
+    min-width:150px;
+    max-width:165px;
 }
 
 #navbar-right {
-    margin: 10px;
-    display: inline-block;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 30px;
     float: right;
-    background-color: purple;
-    z-index: 507;
 }
 
     #navbar-right ul {
-        background-color: mediumpurple
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        height: 70px;
     }
 
-#navbar-right li{
-    display:inline-block;
-    margin: auto 5px;
-}
+        #navbar-right ul li {
+            display: inline-block;
+            vertical-align: middle;
+            color: white;
+            font-size: 11pt;
+            font-weight: 600;
+            background-color: #1c2b46;
+        }
+
+            #navbar-right ul li a {
+                padding: 25px 15px;
+                color: white;
+                display: block;
+                text-decoration: none;
+                transition:0.2s ease-in-out;
+            }
+
+                #navbar-right ul li a:hover {
+                    background-color:#151e45;
+                }
+       
 
 #main {
-    margin-top:70px;
-    position:relative;
+    margin-top: 70px;
+    position: relative;
     width: 100%;
     height: 100%;
-    z-index:400;
+    z-index: 400;
 }
 
 #sidebar {
+    color:white;
     position: absolute;
-    height:100%;
+    height: 100%;
     width: 15%;
-    background-color: deeppink;
+    background-color: #1d3258;
     z-index: 504;
 }
 
@@ -60,49 +91,81 @@
     position: fixed;
     height: 100%;
     width: 15%;
-    background-color: red;
+    background-color: #1d3258;
     z-index: 507;
 }
 
 #sidebar-content {
     height: 100%;
-    margin:auto;
+    margin: auto;
     width: 80%;
-    padding:20px;
-    background-color: cadetblue;
-    text-align:center;
+    padding: 20px;
+    background-color: #1d3258;
+    text-align: left;
 }
 
+    #sidebar-content ul {
+        padding: 0;
+        margin: 0;
+        height: 70px;
+    }
+
+        #sidebar-content ul li {
+            display: block;
+            vertical-align: middle;
+            color: white;
+            font-size: 11pt;
+            font-weight: 600;
+        }
+
+            #sidebar-content ul li a {
+                padding: 25px 15px;
+                color: white;
+                display: block;
+                text-decoration: none;
+                transition: 0.2s ease-in-out;
+            }
+
+                #sidebar-content ul li a:hover {
+                    background-color: #434b6f;
+                }
+       
+
 #content {
-    padding-top:5px;
-    padding-bottom:50px;    
-    margin-left:15%;
-    position:relative;
+    padding-top: 5px;
+    padding-bottom: 50px;
+    margin-left: 15%;
+    position: relative;
     width: 85%;
-    height:inherit;
+    height: inherit;
     background-color: blue;
     z-index: 400;
 }
 
 #content-content {
-    padding:10px 30px;
-    margin:20px;
+    padding: 10px 30px;
+    margin: 20px;
     background-color: darkseagreen;
     z-index: 506;
 }
 
 #footer {
+    color:white;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 25px;
     position: fixed;
-    background-color: yellow;
+    background-color: #2e2e2e;
     z-index: 507;
 }
 
 #footer-content {
-    padding:15px;
-    margin:auto;
-    text-align:center;
-    width:30%;
+    margin: auto;
+    text-align: center;
+}
+
+#footer-left{
+    float:left;
+    margin: auto;
+    
 }
