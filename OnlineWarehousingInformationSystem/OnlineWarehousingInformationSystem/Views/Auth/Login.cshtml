@@ -21,7 +21,7 @@
             <img src="~/Content/images/logo.png" alt="Alternate Text" />
             <p>Online Warehouse Information System</p>
         </center>
-        
+
         @using (Html.BeginForm())
         {
             <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
@@ -69,6 +69,16 @@
             </div>
         }
     </div>
+    <div id="footer">
+        <div id="footer-content">
+            <div id="footer-left">
+                @DateTime.Now.ToString("dd/MM/yyyy")
+            </div>
+            @DateTime.Now.Year - Owis&reg; - All Rights Reserved
+        </div>
+    </div>
+
+
 </body>
 <</html>
 

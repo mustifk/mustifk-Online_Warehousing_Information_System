@@ -1,2 +1,32 @@
-﻿body {
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+
+
+
+#footer {
+    color: white;
+    bottom: 0;
+    width: 100%;
+    min-height: 5px;
+    height: 3%;
+    font-size: 0.9vw;
+    position: fixed;
+    background-color: #2e2e2e;
+    z-index: 507;
+}
+
+#footer-content {
+    margin: auto;
+    text-align: center;
+}
+
+#footer-left {
+    float: left;
+    margin: auto;
 }

@@ -1,20 +1,12 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <title>Index</title>
-</head>
-<body>
+
     <div>
-        
+
         <table class="table table-bordered table-responsive table-hover">
             <tr>
                 <td class="col-lg-1">Student ID</td>
@@ -31,17 +23,10 @@
                     <td>@item.userName</td>
                     <td>@item.email</td>
 
-                    @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
-                    {
-                        <td>@Html.ActionLink("Update", "Updateuser", "Auth", new { id = item.userID }, null)</td>
-                    }
-
                 </tr>
             }
         </table>
 
     </div>
-</body>
-</html>
 
 
