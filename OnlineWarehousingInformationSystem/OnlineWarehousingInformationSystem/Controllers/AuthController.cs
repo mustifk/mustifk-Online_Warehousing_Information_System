@@ -45,7 +45,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid login credentials.");
+                    ModelState.AddModelError(string.Empty, "The user name or password is incorrect");
                 }
             }
             return View(login);
@@ -63,6 +63,13 @@ namespace OnlineWarehousingInformationSystem.Controllers
             updateduser.userName = user.userName;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Logout()
+        {
+
+            Session.Remove("UserName");
+            return View("Loginp");
         }
     }
 }

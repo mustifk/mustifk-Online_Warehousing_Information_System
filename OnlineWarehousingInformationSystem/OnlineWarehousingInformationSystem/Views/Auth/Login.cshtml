@@ -8,96 +8,66 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
     <link rel="shortcut icon" type="image/ico" href="~/Content/images/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 <body>
 
-    <div id="navbar">
-        <div id="navbar-left">
-            <div id="navbar-left-logo"> <img src="~/Content/images/logo.png" alt="Alternate Text" /></div>
-        </div>
-        <div id="navbar-right">
-            <ul>
-                <li>@Html.ActionLink("Giriş Sayfası", "Index", "Home")</li>
-                <li>@Html.ActionLink("Hakkında", "About", "Home")</li>
-                <li>@Html.ActionLink("İletişim", "Contact", "Home")</li>
-                <li><a>Profile </a></li>
-                <li><a>Log Out</a></li>
-            </ul>
-        </div>
-    </div>
     <div id="main">
-        <div id="sidebar">
-            <div id="sidebar-wrapper">
-                <div id="sidebar-content">
-                    <ul>
-                        <li>@Html.ActionLink("Products", "About", "Home")</li>
-                        <li>@Html.ActionLink("Warehouses", "Contact", "Home")</li>
-                        <li><a>Shipments</a></li>
-                        <li><a>Suppliers</a></li>
-                        <li><a>Users</a></li>
-                        <li><a>Staff</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div id="content">
-            <div id="content-content">
-                @using (Html.BeginForm())
-                {
 
-                    @Html.ValidationSummary(true)
-
-                    <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
+        <center style="background-color:lightgray">
+            <img src="~/Content/images/logo.png" alt="Alternate Text" />
+            <p>Online Warehouse Information System</p>
+        </center>
+        
+        @using (Html.BeginForm())
+        {
+            <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
             width: 325px; margin: auto; display: table;">
-                        <table>
-                            <tr>
-                                <td valign="top">
-                                    <!--   @Html.LabelFor(model => model.UserName)  -->
-                                    <label>Username </label>
-                                </td>
-                                <td>
-                                    @Html.EditorFor(model => model.UserName)
-                                    <div style="height: 20px;">
-                                        @Html.ValidationMessageFor(model => model.UserName)
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td valign="top">
-                                    @Html.LabelFor(model => model.Password)
-                                </td>
-                                <td>
-                                    @Html.EditorFor(model => model.Password)
-                                    <div style="height: 20px;">
-                                        @Html.ValidationMessageFor(model => model.Password)
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                    <input type="submit" value="Login" />
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                }
+                <table>
+                    <tr>
+                        <td valign="top">
+                            @Html.LabelFor(model => model.UserName)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.UserName)
+                            <div style="height: 20px;">
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "error" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            @Html.LabelFor(model => model.Password)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Password)
+                            <div style="height: 20px;">
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "error" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <input type="submit" value="Login" />
+                        </td>
+                    </tr>
+                    <tr class="checkbox icheck">
+                        <td>
+                            <input type="checkbox" asp-for="Remember Me">  @Html.DisplayNameFor(m => m.remember)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.ValidationSummary(true)</td>
+                    </tr>
+                </table>
             </div>
-        </div>
-    </div>
-    <div id="footer">
-        <div id="footer-content">
-            <div id="footer-left">
-                @DateTime.Now.ToString("dd/MM/yyyy")
-            </div>
-            @DateTime.Now.Year - Owis Solution Systems - All Rights Reserved
-        </div>
+        }
     </div>
 </body>
 <</html>

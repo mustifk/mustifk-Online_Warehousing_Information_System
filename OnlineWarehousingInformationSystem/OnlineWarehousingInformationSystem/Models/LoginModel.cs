@@ -11,7 +11,7 @@ namespace OnlineWarehousingInformationSystem.Models
     {
         [Required(ErrorMessage = "Please enter user name.")]
         [DataType(DataType.Text)]
-        [Display(Name = "User Name")]
+        [Display(Name = "Username")]
         [StringLength(20)]
         public string UserName { get; set; }
 
@@ -20,6 +20,9 @@ namespace OnlineWarehousingInformationSystem.Models
         [Display(Name = "Password")]
         [StringLength(20)]
         public string Password { get; set; }
+
+        [Display(Name = "Remember Me")]
+        public bool remember { get; set; }
 
         [Table("tblUser")]
         public class tblUser
