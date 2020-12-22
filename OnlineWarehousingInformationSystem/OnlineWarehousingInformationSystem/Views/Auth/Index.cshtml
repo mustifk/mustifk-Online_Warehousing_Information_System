@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        
+        <table class="table table-bordered table-responsive table-hover">
+            <tr>
+                <td class="col-lg-1">Student ID</td>
+                <td class="col-lg-1">Student Name</td>
+                <td class="col-lg-1">Student Email</td>
+                <td class="col-lg-3">Operation</td>
+            </tr>
+            <tr>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.userID</td>
+                    <td>@item.userName</td>
+                    <td>@item.email</td>
+
+                    @if (HttpContext.Current.Session["UserType"].ToString().Equals("0"))
+                    {
+                        <td>@Html.ActionLink("Update", "Updateuser", "Auth", new { id = item.userID }, null)</td>
+                    }
+
+                </tr>
+            }
+        </table>
+
+    </div>
+</body>
+</html>
+
+
