@@ -31,7 +31,7 @@
                     <td>@item.userName</td>
                     <td>@item.email</td>
 
-                    @if (HttpContext.Current.Session["UserType"].ToString().Equals("0"))
+                    @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
                     {
                         <td>@Html.ActionLink("Update", "Updateuser", "Auth", new { id = item.userID }, null)</td>
                     }
