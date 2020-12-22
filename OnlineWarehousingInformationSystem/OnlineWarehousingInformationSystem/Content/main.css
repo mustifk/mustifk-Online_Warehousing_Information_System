@@ -22,15 +22,26 @@
 
 #navbar-left-logo {
     height: 70px;
+    min-height :40px;
     margin:5px 0 0 20%;
 }
 
 #navbar-left-logo img{
     margin:auto;
     width:70%;
+    min-height:40px;
     min-width:150px;
     max-width:165px;
+    transition:ease-in-out 0.5s ;
 }
+
+
+    #navbar-left-logo img:hover {
+        box-shadow: rgba(69, 93, 111, 0.74) 3px 3px;
+        margin: auto;
+        box-shadow: rgba(69, 93, 111, 0.74) 2px 2px 2px 2px;
+        width: 75%;
+    }
 
 #navbar-right {
     padding: 0;
@@ -49,11 +60,10 @@
 
         #navbar-right ul li {
             display: inline-block;
-            vertical-align: middle;
             color: white;
-            font-size: 11pt;
+            font-size: 0.9vw;
             font-weight: 600;
-            background-color: #1c2b46;
+            vertical-align:middle;
         }
 
             #navbar-right ul li a {
@@ -98,7 +108,7 @@
 #sidebar-content {
     height: 100%;
     margin: auto;
-    width: 80%;
+    width: 98%;
     padding: 20px;
     background-color: #1d3258;
     text-align: left;
@@ -114,22 +124,33 @@
             display: block;
             vertical-align: middle;
             color: white;
-            font-size: 11pt;
-            font-weight: 600;
+            transition: 0.2s ease-in-out;
+        }
+        
+        #sidebar-content ul li:hover {
+            background-color: #434b6f;
         }
 
             #sidebar-content ul li a {
-                padding: 25px 15px 25px 5px;
+                padding: 8px 0;
+                font-size: 1vw;
+                font-weight: 600;
                 color: white;
-                display: block;
+                vertical-align:middle;
+                display: inline-block;
                 text-decoration: none;
-                transition: 0.2s ease-in-out;
             }
 
-                #sidebar-content ul li a:hover {
-                    background-color: #434b6f;
-                }
-       
+
+            #sidebar-content ul li svg{
+                width:24px;
+                height:24px;
+                max-width:15%;
+                display: inline-block;
+                margin-right:15px;
+                vertical-align: middle;
+                color: white;
+            }
 
 #content {
     padding-top: 5px;
@@ -153,7 +174,9 @@
     color:white;
     bottom: 0;
     width: 100%;
-    height: 25px;
+    min-height:5px;
+    height: 3%;
+    font-size:0.9vw;
     position: fixed;
     background-color: #2e2e2e;
     z-index: 507;
