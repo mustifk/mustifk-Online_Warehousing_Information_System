@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "DetailProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail Product</h2>
+
+<table class="table table-bordered table-responsive table-hover">
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td class="col-lg-2">Product Image</td>
+        </tr>
+
+        <tr>
+            <td class="col-lg-2">Product name</td>
+            <td>@item.productName</td>
+        </tr>
+
+        <tr>
+            <td class="col-lg-2">Manufacturer</td>
+            <td>@item.manufacturer</td>
+        </tr>
+
+        <tr>
+            <td class="col-lg-2">Product Weight</td>
+            <td>@item.productWeight</td>
+        </tr>
+
+        <tr>
+            <td class="col-lg-2">Stock</td>
+            @if (item.inStock.Equals("0"))
+            {
+                <td>Not stock</td>
+            }
+            @if (item.inStock.Equals("1"))
+            {
+                <td>In stock</td>
+            }
+        </tr>
+
+        <tr>
+            <td class="col-lg-2">Total Quantity</td>
+            <td>@item.totalQuantity</td>
+        </tr>
+
+        <tr>
+            <td class="col-lg-2">Description</td>
+            <td>@item.productDescription</td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "EditProduct", "Products", new { id = @item.productID }, null) |
+                @Html.ActionLink("Delete", "DeleteFromProducts", "Products", new { id = @item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+<input type="button" class="btn btn-info" value="Back" onclick="location.href='@Url.Action("Index", "Products")'" />
+
+
