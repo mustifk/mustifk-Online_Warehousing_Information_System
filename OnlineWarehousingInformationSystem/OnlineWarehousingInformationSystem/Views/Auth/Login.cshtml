@@ -1,84 +1,82 @@
 ﻿@model OnlineWarehousingInformationSystem.Models.LoginModel
 @{
-    ViewBag.Title = "Login";
     Layout = null;
 }
+
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/login.css" rel="stylesheet" />
-    <link rel="shortcut icon" type="image/ico" href="~/Content/images/icon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <link rel="icon" href="~/Content/images/icon.png" />
+    <title>Owis - Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
-    <div id="main">
-
-        <center style="background-color:lightgray">
+    <div class="main-agileits">
+        <center>
             <img src="~/Content/images/logo.png" alt="Alternate Text" />
-            <p>Online Warehouse Information System</p>
+            <h1>Online Warehouse Information System</h1>
         </center>
+        <div class="mainw3-agileinfo form">
+            <div id="login">
+                <form action="#" method="post">
+                    <div class="field-wrap">
+                        <input type="text" name="UserName" required autocomplete="off" placeholder="User Name" style="width:97%"/>
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "error" })
+                    </div>
+                    <div class="field-wrap">
+                        <br />
+                        <input type="password" name="Password" required autocomplete="off" placeholder="Password" style="width:97%"/>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" })
+                    </div>
+                    <div style="margin:auto !important;display:inline;">
+                        <div style="width:30%;float:left;margin-left:19%;color:dimgray">Remember Me</div>
+                        <div style="width:5%;float:right;margin-right:40%">@Html.CheckBoxFor(model => model.remember)</div>
+                    </div>
+                    <br />
+                    <button class="button button-block">Sign In</button>
 
-        @using (Html.BeginForm())
-        {
-            <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
-            width: 325px; margin: auto; display: table;">
-                <table>
-                    <tr>
-                        <td valign="top">
-                            @Html.LabelFor(model => model.UserName)
-                        </td>
-                        <td>
-                            @Html.EditorFor(model => model.UserName)
-                            <div style="height: 20px;">
-                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "error" })
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign="top">
-                            @Html.LabelFor(model => model.Password)
-                        </td>
-                        <td>
-                            @Html.EditorFor(model => model.Password)
-                            <div style="height: 20px;">
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "error" })
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <input type="submit" value="Login" />
-                        </td>
-                    </tr>
-                    <tr class="checkbox icheck">
-                        <td>
-                            <input type="checkbox" asp-for="Remember Me">  @Html.DisplayNameFor(m => m.remember)
-                        </td>
-                    </tr>
+                    <div style="color:white;font-size:20px;font-style:italic;margin-top:20px">@Html.ValidationSummary(true)</div>
+                </form>
+            </div>
 
-                    <tr>
-                        <td>@Html.ValidationSummary(true)</td>
-                    </tr>
-                </table>
-            </div>
-        }
-    </div>
-    <div id="footer">
-        <div id="footer-content">
-            <div id="footer-left">
-                @DateTime.Now.ToString("dd/MM/yyyy")
-            </div>
-            @DateTime.Now.Year - Owis&reg; - All Rights Reserved
         </div>
     </div>
 
 
-</body>
-<</html>
+    <script>
+        $('.form').find('input, textarea').on('keyup blur focus', function (e) {
+            var $this = $(this),
+                label = $this.prev('label');
 
+            if (e.type === 'keyup') {
+                if ($this.val() === '') {
+                    label.removeClass('active highlight');
+                } else {
+                    label.addClass('active highlight');
+                }
+            } else if (e.type === 'blur') {
+                if ($this.val() === '') {
+                    label.removeClass('active highlight');
+                } else {
+                    label.removeClass('highlight');
+                }
+            } else if (e.type === 'focus') {
+
+                if ($this.val() === '') {
+                    label.removeClass('highlight');
+                }
+                else if ($this.val() !== '') {
+                    label.addClass('highlight');
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>
