@@ -346,6 +346,8 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\DetailUser.cshtml" />
     <Content Include="Views\Users\EditUser.cshtml" />
+    <Content Include="Views\Users\AddUser.cshtml" />
+    <Content Include="Views\Users\DeleteUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

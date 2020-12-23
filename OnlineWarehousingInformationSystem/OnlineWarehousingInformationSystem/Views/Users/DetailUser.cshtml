@@ -40,9 +40,18 @@
 
         <tr>
             <td>User type</td>
-            @if(item.userType.Equals("0")){<td>User</td>}
-            @if(item.userType.Equals("1")){<td>Staff</td>}
-            @if(item.userType.Equals("2")){<td>Admin</td>}
+            @if (item.userType.Equals("0"))
+            {
+                <td>User</td>
+            }
+            @if (item.userType.Equals("1"))
+            {
+                <td>Staff</td>
+            }
+            @if (item.userType.Equals("2"))
+            {
+                <td>Admin</td>
+            }
         </tr>
 
         <tr>
@@ -55,7 +64,20 @@
             <td>@item.phoneNumber</td>
         </tr>
 
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "EditUser", "Users", new { id = @item.userID }, null) |
+                @Html.ActionLink("Delete", "DeleteFromUsers", "Users", new { id = @item.userID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
+            </td>
+        </tr>
+
     }
+
+    <tr>
+        <td>
+            <input type="button" class="btn btn-info" value="Back" onclick="location.href='@Url.Action("Index", "Users")'" />
+        </td>
+    </tr>
 
 
 </table>

@@ -6,6 +6,8 @@
 
 <h2>Users</h2>
 
+<input type="button" class="btn btn-info" value="Add a user" onclick="location.href='@Url.Action("AddUser", "Users")'" />
+
 <table>
     <tr>
         <td>User ID</td>
@@ -33,7 +35,7 @@
        
             <td>@Html.ActionLink("Detail", "DetailUser", "Users", new { id=item.userID},null) |
             @Html.ActionLink("Edit", "EditUser", "Users", new { id=item.userID},null) |
-            @Html.ActionLink("Delete", "DeleteUser", "Users", new { id=item.userID}, new { onclick = "return confirm('Are you sure you wish to delete this record?'); "})
+            @Html.ActionLink("Delete", "DeleteFromUsers", "Users", new { id=item.userID}, new { onclick = "return confirm('Are you sure you wish to delete this record?'); "})
             </td>
 
         </tr>

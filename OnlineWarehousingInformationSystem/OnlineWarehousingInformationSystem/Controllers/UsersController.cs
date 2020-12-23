@@ -16,6 +16,20 @@ namespace OnlineWarehousingInformationSystem.Controllers
             var user = db.Users.Where(s => s.userID > 0).Select(s => s);
             return View(user);
         }
+
+        public ActionResult AddUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddUser(Users user)
+        {
+            db.Users.Add(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult DetailUser(int id)
         {
             var query = db.Users.Where(s => s.userID == id).Select(s => s);
@@ -40,6 +54,13 @@ namespace OnlineWarehousingInformationSystem.Controllers
             u_user.userAddress = user.userAddress;
             u_user.userAge = user.userAge;
             u_user.userGender = user.userGender;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
+        public RedirectToRouteResult DeleteFromUsers(int id)
+        {
+            db.Users.RemoveRange(db.Users.Where(u => u.userID == id));
             db.SaveChanges();
             return RedirectToAction("Index");
         }
