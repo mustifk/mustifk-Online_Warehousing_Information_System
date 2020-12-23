@@ -17,5 +17,9 @@ namespace OnlineWarehousingInformationSystem.Controllers
             var userId = (int)Session["UserId"];
             return View(db.Users.Where(s => s.userID == userId).ToList());
         }
+        public ActionResult Contact()
+        {
+            return View();
+        }
     }
 }

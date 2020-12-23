@@ -16,3 +16,6 @@ OnlineWarehousingInformationSystem/OnlineWarehousingInformationSystem/obj/Debug/
 OnlineWarehousingInformationSystem/OnlineWarehousingInformationSystem/obj/Debug/OnlineWarehousingInformationSystem.csprojAssemblyReference.cache
 *.dll
 *.pdb
+*.dll
+*.pdb
+*.cache

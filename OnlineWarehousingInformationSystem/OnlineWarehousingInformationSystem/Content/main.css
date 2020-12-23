@@ -159,14 +159,12 @@
     position: relative;
     width: 85%;
     height: inherit;
-    background-color: blue;
     z-index: 400;
 }
 
 #lay-content-content {
     padding: 10px 30px;
     margin: 20px;
-    background-color: darkseagreen;
     z-index: 506;
 }
 

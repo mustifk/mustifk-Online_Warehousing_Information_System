@@ -26,8 +26,6 @@ body {
     font-family: 'Open Sans', sans-serif;
     background-color:#354665;
     background-attachment: fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover; 
 	background-size: cover;
 }
 center img{
@@ -54,7 +52,6 @@ h1 {
   -webkit-transition: .5s ease;
   -moz-transition: .5s ease;
   -o-transition: .5s ease;
-  -ms-transition: .5s ease;
   transition: .5s ease;
 }
 .form a:hover {
@@ -140,7 +137,6 @@ textarea {
     -webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
-	-ms-transition: all 0.5s ease;
     transition: all 0.5s ease;
     -webkit-appearance: none;
     margin-top:2.2em;
@@ -179,7 +175,6 @@ textarea {
 	-webkit-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 	-o-transition: 0.5s all;
-	-ms-transition: 0.5s all;
 	transition: 0.5s all;
 }
 .w3copyright-agile p a:hover{

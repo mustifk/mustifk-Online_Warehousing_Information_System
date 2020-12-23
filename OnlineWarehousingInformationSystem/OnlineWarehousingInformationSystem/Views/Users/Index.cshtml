@@ -3,42 +3,65 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="row">
+    <div class="row align-items-center">
+        <div class="col-md-10">
+            <h3>Users</h3>
+        </div>
+        <div class="col-md-2">
+            <input type="button" class="btn btn-primary" value="Add a user" onclick="location.href='@Url.Action("AddUser", "Users")'" />
+        </div>
 
-<h2>Users</h2>
+    </div>
+</div>
 
-<input type="button" class="btn btn-info" value="Add a user" onclick="location.href='@Url.Action("AddUser", "Users")'" />
 
-<table>
-    <tr>
-        <td>User ID</td>
-        <td>User Image</td>
-        <td>Username</td>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>User Type</td>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-hover ">
+        <thead style="font-weight:700;font-size:110%;">
+            <tr>
+                <td>ID</td>
+                <td>Image</td>
+                <td>Username</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>User Type</td>
+            </tr>
+        </thead>
+        <hr />
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
+                    <td scope="row">@item.userID</td>
+                    <td>@item.userImage</td>
+                    <td>@item.userName</td>
+                    <td>@item.firstName</td>
+                    <td>@item.lastName</td>
 
-            <td>@item.userID</td>
-            <td>@item.userImage</td>
-            <td>@item.userName</td>
-            <td>@item.firstName</td>
-            <td>@item.lastName</td>
-            
-            @if(item.userType.Equals("0")){<td>User</td>}
-            @if(item.userType.Equals("1")){<td>Staff</td>}
-            @if(item.userType.Equals("2")){<td>Admin</td>}
+                    @if (item.userType.Equals("0"))
+                    {
+                        <td>User</td>
+                    }
+                    @if (item.userType.Equals("1"))
+                    {
+                        <td>Staff</td>
+                    }
+                    @if (item.userType.Equals("2"))
+                    {
+                        <td>Admin</td>
+                    }
 
-       
-            <td>@Html.ActionLink("Detail", "DetailUser", "Users", new { id=item.userID},null) |
-            @Html.ActionLink("Edit", "EditUser", "Users", new { id=item.userID},null) |
-            @Html.ActionLink("Delete", "DeleteFromUsers", "Users", new { id=item.userID}, new { onclick = "return confirm('Are you sure you wish to delete this record?'); "})
-            </td>
 
-        </tr>
-    }
+                    <td>
+                        @Html.ActionLink("Detail", "DetailUser", "Users", new { id = item.userID }, null) |
+                        @Html.ActionLink("Edit", "EditUser", "Users", new { id = item.userID }, null) |
+                        @Html.ActionLink("Delete", "DeleteFromUsers", "Users", new { id = item.userID }, new { onclick = "return confirm('Are you sure you wish to delete this user?'); " })
+                    </td>
 
-</table>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

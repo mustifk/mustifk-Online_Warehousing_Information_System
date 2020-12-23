@@ -29,10 +29,14 @@ namespace OnlineWarehousingInformationSystem.Controllers
                             {
                                 userlist.userID,
                                 userlist.userName,
+                                userlist.firstName,
+                                userlist.lastName,
                                 userlist.userType
                             }).ToList();
                 if (user.FirstOrDefault() != null)
                 {
+                    Session["Name"] = user.FirstOrDefault().firstName;
+                    Session["Surname"] = user.FirstOrDefault().lastName;
                     Session["UserName"] = user.FirstOrDefault().userName;
                     Session["UserID"] = user.FirstOrDefault().userID;
                     Session["UserType"] = user.FirstOrDefault().userType;

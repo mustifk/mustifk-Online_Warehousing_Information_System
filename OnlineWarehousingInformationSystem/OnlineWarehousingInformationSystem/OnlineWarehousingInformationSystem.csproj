@@ -349,10 +349,14 @@
     <Content Include="Views\Users\EditUser.cshtml" />
     <Content Include="Views\Users\AddUser.cshtml" />
     <Content Include="Views\Users\DeleteUser.cshtml" />
+<<<<<<< Updated upstream
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\AddProduct.cshtml" />
     <Content Include="Views\Products\DetailProduct.cshtml" />
     <Content Include="Views\Products\EditProduct.cshtml" />
+=======
+    <Content Include="Views\Main\Contact.cshtml" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
