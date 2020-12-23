@@ -11,8 +11,6 @@ namespace OnlineWarehousingInformationSystem.Controllers
     public class MainController : Controller
     {
         OWISDBEntities db = new OWISDBEntities();
-
-
         public ActionResult Index()
         {
             var rec = new List<Tuple<int,string,string>>
@@ -24,10 +22,8 @@ namespace OnlineWarehousingInformationSystem.Controllers
                 new Tuple<int,string,string>(db.Packages.Count(),"Package" , "Packages"),
                 new Tuple<int,string,string>(db.Shipping.Count(),"Shipping" , "Shippings"),
             };
-
             ViewData["rec"] = rec;
-
-            return View();
+            return View(ViewData);
         }
         public ActionResult Contact()
         {
