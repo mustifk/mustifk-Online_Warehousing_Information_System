@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+
+<table>
+    <tr>
+        <td>User ID</td>
+        <td>User Image</td>
+        <td>Username</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>User Type</td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.userID</td>
+            <td>@item.userImage</td>
+            <td>@item.userName</td>
+            <td>@item.firstName</td>
+            <td>@item.lastName</td>
+            
+            @if(item.userType.Equals("0")){<td>User</td>}
+            @if(item.userType.Equals("1")){<td>Staff</td>}
+            @if(item.userType.Equals("2")){<td>Admin</td>}
+
+       
+            <td>@Html.ActionLink("Detail", "DetailUser", "Users", new { id=item.userID},null) |
+            @Html.ActionLink("Edit", "EditUser", "Users", new { id=item.userID},null) |
+            @Html.ActionLink("Delete", "DeleteUser", "Users", new { id=item.userID}, new { onclick = "return confirm('Are you sure you wish to delete this record?'); "})
+            </td>
+
+        </tr>
+    }
+
+</table>

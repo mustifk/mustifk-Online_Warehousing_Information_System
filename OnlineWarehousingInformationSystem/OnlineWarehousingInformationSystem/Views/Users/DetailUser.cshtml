@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "DetailUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>UserImage</td>
+        </tr>
+
+        <tr>
+            <td>Username</td>
+            <td>@item.userName</td>
+        </tr>
+
+        <tr>
+            <td>Name</td>
+            <td>@item.firstName @item.lastName</td>
+        </tr>
+
+        <tr>
+            <td>Gender</td>
+            <td>@item.userGender</td>
+        </tr>
+
+        <tr>
+            <td>Age</td>
+            <td>@item.userAge</td>
+        </tr>
+
+        <tr>
+            <td>E-mail</td>
+            <td>@item.email</td>
+        </tr>
+
+        <tr>
+            <td>User type</td>
+            @if(item.userType.Equals("0")){<td>User</td>}
+            @if(item.userType.Equals("1")){<td>Staff</td>}
+            @if(item.userType.Equals("2")){<td>Admin</td>}
+        </tr>
+
+        <tr>
+            <td>Adress</td>
+            <td>@item.userAddress</td>
+        </tr>
+
+        <tr>
+            <td>Phone Number</td>
+            <td>@item.phoneNumber</td>
+        </tr>
+
+    }
+
+
+</table>
+
