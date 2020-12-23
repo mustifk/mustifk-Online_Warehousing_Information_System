@@ -35,7 +35,7 @@
                     <td scope="row">@item.productID</td>
                     <td>@item.productName</td>
                     <td>@item.productDescription</td>
-
+                    <td>@item.totalQuantity</td>
                     <td>
                         @Html.ActionLink("Detail", "DetailProduct", "Products", new { id = item.productID }, null) |
                         @Html.ActionLink("Edit", "EditProduct", "Products", new { id = item.productID }, null) |

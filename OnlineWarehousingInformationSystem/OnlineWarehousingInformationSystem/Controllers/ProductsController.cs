@@ -46,10 +46,10 @@ namespace OnlineWarehousingInformationSystem.Controllers
         public ActionResult EditProduct(Products product)
         {
             Products u_product = db.Products.Where(p => p.productID == product.productID).FirstOrDefault();
-            u_product.productName = u_product.productName;
-            u_product.manufacturer = u_product.manufacturer;
-            u_product.productWeight = u_product.productWeight;
-            u_product.productDescription = u_product.productDescription;
+            u_product.productName = product.productName;
+            u_product.manufacturer = product.manufacturer;
+            u_product.productWeight = product.productWeight;
+            u_product.productDescription = product.productDescription;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
