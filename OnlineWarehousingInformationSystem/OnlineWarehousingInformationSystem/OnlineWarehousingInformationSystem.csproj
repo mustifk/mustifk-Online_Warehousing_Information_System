@@ -130,7 +130,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\MainController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -349,6 +348,7 @@
     <Content Include="Views\Users\EditUser.cshtml" />
     <Content Include="Views\Users\AddUser.cshtml" />
     <Content Include="Views\Users\DeleteUser.cshtml" />
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\AddProduct.cshtml" />
@@ -357,6 +357,8 @@
 =======
     <Content Include="Views\Main\Contact.cshtml" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 2404005... Product
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
