@@ -1,40 +1,49 @@
-﻿@{ ViewBag.Title = "Index";
-                Layout = "~/Views/Shared/_Layout.cshtml"; }
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="row align-items-center">
+        <div class="col-md-10">
+            <h3>Products</h3>
+        </div>
+        <div class="col-md-2">
+            <input type="button" class="btn btn-primary" value="Add a product" onclick="location.href='@Url.Action("AddProduct", "Products")'" />
+        </div>
 
-<h2>Products</h2>
+    </div>
+</div>
 
-<input type="button" class="btn btn-info" value="Add a product" onclick="location.href='@Url.Action("AddProduct", "Products")'" />
 
-<table class="table table-bordered table-responsive table-hover">
-    <tr>
-        <td class="col-lg-1">Product ID</td>
-        <td class="col-lg-1">Product Name</td>
-        <td class="col-lg-1">Product Image</td>
-        <td class="col-lg-1">Total Quantity</td>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-hover ">
+        <thead style="font-weight:700;font-size:110%;">
+            <tr>
+                <td>Product ID</td>
+                <td>Product Name</td>
+                <td>Description</td>
+                <td>Total Quantity</td>
+            </tr>
+        </thead>
+        <hr />
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
 
-    @foreach (var item in Model)
-    {
-<tr>
+                    <td scope="row">@item.productID</td>
+                    <td>@item.productName</td>
+                    <td>@item.productDescription</td>
 
-    <td>@item.productID</td>
-    <td>@item.productName</td>
-    <td>@item.productImage</td>
+                    <td>
+                        @Html.ActionLink("Detail", "DetailProduct", "Products", new { id = item.productID }, null) |
+                        @Html.ActionLink("Edit", "EditProduct", "Products", new { id = item.productID }, null) |
+                        @Html.ActionLink("Delete", "DeleteFromProducts", "Products", new { id = item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
+                    </td>
 
-    @if (item.inStock.Equals("0"))
-    {
-<td>In stock</td>}
-    @if (item.inStock.Equals("1"))
-    {
-<td>Not stock</td>}
-
-    <td>@item.totalQuantity</td>
-    <td>
-        @Html.ActionLink("Detail", "DetailProduct", "Products", new { id = item.productID }, null) |
-        @Html.ActionLink("Edit", "EditProduct", "Products", new { id = item.productID }, null) |
-        @Html.ActionLink("Delete", "DeleteFromProducts", "Products", new { id = item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
-    </td>
-
-</tr>}
-
-</table>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

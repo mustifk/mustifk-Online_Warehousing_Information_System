@@ -1,64 +1,104 @@
-﻿﻿
-@{ ViewBag.Title = "DetailProduct";
-    Layout = "~/Views/Shared/_Layout.cshtml"; }
+﻿
+@{ 
+    ViewBag.Title = "DetailProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
 
-<h2>Detail Product</h2>
 
-<table class="table table-bordered table-responsive table-hover">
+<table>
 
     @foreach (var item in Model)
     {
+        <div class="row gutters-sm">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="col-md-10">
+                        <h3>Product Details</h3>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Products")'" />
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<tr>
-    <td class="col-lg-2">Product Image</td>
-</tr>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <div class="mt-3">
+                            <h4>@item.productName</h4>
+                            @Html.ActionLink("Edit", "EditProduct", "Products", new { id = @item.productID }, null) |
+                            @Html.ActionLink("Delete", "DeleteFromProducts", "Products", new { id = @item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this user?'); " })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
 
-                <tr>
-                    <td class="col-lg-2">Product name</td>
-                    <td>@item.productName</td>
-                </tr>
-               
-                                <tr>
-                                    <td class="col-lg-2">Manufacturer</td>
-                                    <td>@item.manufacturer</td>
-                                </tr>
-
-                                                <tr>
-                                                    <td class="col-lg-2">Product Weight</td>
-                                                    <td>@item.productWeight</td>
-                                                </tr>
-
-                                                                <tr>
-                                                                    <td class="col-lg-2">Stock</td>
-                                                                    @if (item.inStock.Equals("0"))
-                                                                    {
-                                                    <td>Not stock</td>
-}
-                                                                    @if (item.inStock.Equals("1"))
-                                                                    {
-                                                    <td>In stock</td>
-}
-                                                                </tr>
-
-                                                                                <tr>
-                                                                                    <td class="col-lg-2">Total Quantity</td>
-                                                                                    <td>@item.totalQuantity</td>
-                                                                                </tr>
-
-                                                                                                <tr>
-                                                                                                    <td class="col-lg-2">Description</td>
-                                                                                                    <td>@item.productDescription</td>
-                                                                                                </tr>
-
-                                                                                                                <tr>
-                                                                                                                    <td>
-                                                                                                                        @Html.ActionLink("Edit", "EditProduct", "Products", new { id = @item.productID }, null) |
-                                                                                                                        @Html.ActionLink("Delete", "DeleteFromProducts", "Products", new { id = @item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
-                                                                                                                    </td>
-                                                                                                                </tr>
-}
-
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Product ID</h6>
+                        </div>
+                        <div class="col-sm-9 text-primary">
+                            @item.productID
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Product Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @item.productName
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Manufacturer</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @item.manufacturer
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Product Weight</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @item.productWeight
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Total Quantity</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @item.totalQuantity
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Description</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @item.productDescription
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </table>
 
-<input type="button" class="btn btn-info" value="Back" onclick="location.href='@Url.Action("Index", "Products")'" />
+        
 
+       
