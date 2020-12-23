@@ -17,7 +17,7 @@
         <div id="lay-navbar-right">
             <ul>
                 <li>@Html.ActionLink("Need Help?", "Contact", "Main")</li>
-                <li>@Html.ActionLink(@HttpContext.Current.Session["Surname"].ToString() + " " + @HttpContext.Current.Session["Name"].ToString() , "DetailUser", "Users", new { id = HttpContext.Current.Session["UserID"].ToString() }, null)</li>
+                <li>@Html.ActionLink(@HttpContext.Current.Session["Name"].ToString() + " " + @HttpContext.Current.Session["Surname"].ToString() , "DetailUser", "Users", new { id = HttpContext.Current.Session["UserID"].ToString() }, null)</li>
                 <li>@Html.ActionLink("Log Out", "Logout","Auth")</li>
             </ul>
         </div>
