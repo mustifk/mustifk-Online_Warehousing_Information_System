@@ -68,16 +68,6 @@ namespace OnlineWarehousingInformationSystem.Models
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<checkWarehousesWithProductQuantity_Result>("[OWISDBEntities].[checkWarehousesWithProductQuantity](@productID, @quantity)", productIDParameter, quantityParameter);
         }
     
-        [DbFunction("OWISDBEntities", "getStaffActions")]
-        public virtual IQueryable<getStaffActions_Result> getStaffActions(Nullable<int> staffID)
-        {
-            var staffIDParameter = staffID.HasValue ?
-                new ObjectParameter("staffID", staffID) :
-                new ObjectParameter("staffID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<getStaffActions_Result>("[OWISDBEntities].[getStaffActions](@staffID)", staffIDParameter);
-        }
-    
         public virtual ObjectResult<findWarehouseWithZip_Result> findWarehouseWithZip(string zipCode)
         {
             var zipCodeParameter = zipCode != null ?

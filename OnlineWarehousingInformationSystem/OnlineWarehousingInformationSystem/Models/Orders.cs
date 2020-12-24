@@ -22,12 +22,10 @@ namespace OnlineWarehousingInformationSystem.Models
         }
     
         public int orderID { get; set; }
-        public int staffID { get; set; }
         public int warehouseID { get; set; }
         public string orderDescription { get; set; }
         public System.DateTime orderDate { get; set; }
     
-        public virtual Staff Staff { get; set; }
         public virtual Warehouses Warehouses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Packages> Packages { get; set; }

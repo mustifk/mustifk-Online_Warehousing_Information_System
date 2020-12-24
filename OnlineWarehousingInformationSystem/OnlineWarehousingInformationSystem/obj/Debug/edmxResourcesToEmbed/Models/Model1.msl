@@ -5,7 +5,6 @@
       <EntityTypeMapping TypeName="OWISDBModel.Orders">
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="orderID" ColumnName="orderID" />
-          <ScalarProperty Name="staffID" ColumnName="staffID" />
           <ScalarProperty Name="warehouseID" ColumnName="warehouseID" />
           <ScalarProperty Name="orderDescription" ColumnName="orderDescription" />
           <ScalarProperty Name="orderDate" ColumnName="orderDate" />
@@ -44,7 +43,6 @@
       <EntityTypeMapping TypeName="OWISDBModel.Shipments">
         <MappingFragment StoreEntitySet="Shipments">
           <ScalarProperty Name="shipmentID" ColumnName="shipmentID" />
-          <ScalarProperty Name="staffID" ColumnName="staffID" />
           <ScalarProperty Name="warehouseID" ColumnName="warehouseID" />
           <ScalarProperty Name="shipmentDescription" ColumnName="shipmentDescription" />
           <ScalarProperty Name="shipmentDate" ColumnName="shipmentDate" />
@@ -341,22 +339,6 @@
           <ScalarProperty Name="currentCapacity" ColumnName="currentCapacity" />
           <ScalarProperty Name="warehouseStatus" ColumnName="warehouseStatus" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionName="OWISDBModel.Store.getStaffActions" FunctionImportName="getStaffActions">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="OWISDBModel.getStaffActions_Result">
-          <ScalarProperty Name="firstName" ColumnName="firstName" />
-          <ScalarProperty Name="lastName" ColumnName="lastName" />
-          <ScalarProperty Name="title" ColumnName="title" />
-          <ScalarProperty Name="staffWarehouse" ColumnName="staffWarehouse" />
-          <ScalarProperty Name="orderID" ColumnName="orderID" />
-          <ScalarProperty Name="orderDate" ColumnName="orderDate" />
-          <ScalarProperty Name="orderToWarehouse" ColumnName="orderToWarehouse" />
-          <ScalarProperty Name="shipmentID" ColumnName="shipmentID" />
-          <ScalarProperty Name="shipmentDate" ColumnName="shipmentDate" />
-          <ScalarProperty Name="shipmentToWarehouse" ColumnName="shipmentToWarehouse" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

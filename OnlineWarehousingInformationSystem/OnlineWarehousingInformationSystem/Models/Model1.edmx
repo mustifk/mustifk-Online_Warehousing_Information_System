@@ -38,7 +38,6 @@ warning 6002: The table/view 'OWISDB.owis.Inventory' does not have a primary key
             <PropertyRef Name="orderID" />
           </Key>
           <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="staffID" Type="int" Nullable="false" />
           <Property Name="warehouseID" Type="int" Nullable="false" />
           <Property Name="orderDescription" Type="nvarchar" MaxLength="100" />
           <Property Name="orderDate" Type="datetime" Nullable="false" />
@@ -102,7 +101,6 @@ warning 6002: The table/view 'OWISDB.owis.Payments' does not have a primary key 
             <PropertyRef Name="shipmentID" />
           </Key>
           <Property Name="shipmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="staffID" Type="int" Nullable="false" />
           <Property Name="warehouseID" Type="int" Nullable="false" />
           <Property Name="shipmentDescription" Type="nvarchar" MaxLength="100" />
           <Property Name="shipmentDate" Type="datetime" Nullable="false" />
@@ -426,7 +424,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="city" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="staffCount" Type="int" />
         </EntityType>
-        <Association Name="FK__Bills__shipmentI__4F7CD00D">
+        <Association Name="FK__Bills__shipmentI__4D94879B">
           <End Role="Shipments" Type="Self.Shipments" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -440,7 +438,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inventory__produ__6754599E">
+        <Association Name="FK__Inventory__produ__656C112C">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -452,20 +450,10 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__staffID__4222D4EF">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="staffID" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="staffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Orders__warehous__4316F928">
-          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+        <Association Name="FK__Orders__warehous__4222D4EF">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Warehouses">
@@ -476,7 +464,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PackageCo__packa__5EBF139D">
+        <Association Name="FK__PackageCo__packa__5CD6CB2B">
           <End Role="Packages" Type="Self.Packages" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -490,7 +478,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PackageCo__produ__5DCAEF64">
+        <Association Name="FK__PackageCo__produ__5BE2A6F2">
           <End Role="Products" Type="Self.Products" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -504,7 +492,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Packages__orderI__59063A47">
+        <Association Name="FK__Packages__orderI__571DF1D5">
           <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
           <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
           <ReferentialConstraint>
@@ -516,7 +504,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Packages__shipme__59FA5E80">
+        <Association Name="FK__Packages__shipme__5812160E">
           <End Role="Shipments" Type="Self.Shipments" Multiplicity="0..1" />
           <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
           <ReferentialConstraint>
@@ -528,7 +516,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Packages__suppli__5AEE82B9">
+        <Association Name="FK__Packages__suppli__59063A47">
           <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -542,7 +530,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payments__orderI__4BAC3F29">
+        <Association Name="FK__Payments__orderI__49C3F6B7">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -556,20 +544,10 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shipments__staff__46E78A0C">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
-          <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="staffID" />
-            </Principal>
-            <Dependent Role="Shipments">
-              <PropertyRef Name="staffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Shipments__wareh__47DBAE45">
-          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+        <Association Name="FK__Shipments__wareh__45F365D3">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Warehouses">
@@ -580,7 +558,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shipping__packag__628FA481">
+        <Association Name="FK__Shipping__packag__60A75C0F">
           <End Role="Packages" Type="Self.Packages" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -609,9 +587,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Staff__warehouse__3E52440B">
-          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Warehouses">
@@ -682,25 +658,6 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
         </Function>
         <Function Name="getShippingDetailOfPackage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="owis">
           <Parameter Name="packageID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="getStaffActions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="owis">
-          <Parameter Name="staffID" Type="int" Mode="In" />
-          <ReturnType>
-            <CollectionType>
-              <RowType>
-                <Property Name="firstName" Type="varchar" MaxLength="30" Nullable="false" />
-                <Property Name="lastName" Type="varchar" MaxLength="20" Nullable="false" />
-                <Property Name="title" Type="varchar" MaxLength="20" />
-                <Property Name="staffWarehouse" Type="int" Nullable="false" />
-                <Property Name="orderID" Type="int" />
-                <Property Name="orderDate" Type="datetime" />
-                <Property Name="orderToWarehouse" Type="int" />
-                <Property Name="shipmentID" Type="int" />
-                <Property Name="shipmentDate" Type="datetime" />
-                <Property Name="shipmentToWarehouse" Type="int" />
-              </RowType>
-            </CollectionType>
-          </ReturnType>
         </Function>
         <Function Name="getStockFromWarehouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="owis" ReturnType="int">
           <Parameter Name="productID" Type="int" Mode="In" />
@@ -930,55 +887,47 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
     [warehouseStaffCount].[staffCount] AS [staffCount]
     FROM [owis].[warehouseStaffCount] AS [warehouseStaffCount]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__Bills__shipmentI__4F7CD00D" Association="Self.FK__Bills__shipmentI__4F7CD00D">
+          <AssociationSet Name="FK__Bills__shipmentI__4D94879B" Association="Self.FK__Bills__shipmentI__4D94879B">
             <End Role="Shipments" EntitySet="Shipments" />
             <End Role="Bills" EntitySet="Bills" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inventory__produ__6754599E" Association="Self.FK__Inventory__produ__6754599E">
+          <AssociationSet Name="FK__Inventory__produ__656C112C" Association="Self.FK__Inventory__produ__656C112C">
             <End Role="Products" EntitySet="Products" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__staffID__4222D4EF" Association="Self.FK__Orders__staffID__4222D4EF">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Orders__warehous__4316F928" Association="Self.FK__Orders__warehous__4316F928">
+          <AssociationSet Name="FK__Orders__warehous__4222D4EF" Association="Self.FK__Orders__warehous__4222D4EF">
             <End Role="Warehouses" EntitySet="Warehouses" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__PackageCo__packa__5EBF139D" Association="Self.FK__PackageCo__packa__5EBF139D">
+          <AssociationSet Name="FK__PackageCo__packa__5CD6CB2B" Association="Self.FK__PackageCo__packa__5CD6CB2B">
             <End Role="Packages" EntitySet="Packages" />
             <End Role="PackageContents" EntitySet="PackageContents" />
           </AssociationSet>
-          <AssociationSet Name="FK__PackageCo__produ__5DCAEF64" Association="Self.FK__PackageCo__produ__5DCAEF64">
+          <AssociationSet Name="FK__PackageCo__produ__5BE2A6F2" Association="Self.FK__PackageCo__produ__5BE2A6F2">
             <End Role="Products" EntitySet="Products" />
             <End Role="PackageContents" EntitySet="PackageContents" />
           </AssociationSet>
-          <AssociationSet Name="FK__Packages__orderI__59063A47" Association="Self.FK__Packages__orderI__59063A47">
+          <AssociationSet Name="FK__Packages__orderI__571DF1D5" Association="Self.FK__Packages__orderI__571DF1D5">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Packages" EntitySet="Packages" />
           </AssociationSet>
-          <AssociationSet Name="FK__Packages__shipme__59FA5E80" Association="Self.FK__Packages__shipme__59FA5E80">
+          <AssociationSet Name="FK__Packages__shipme__5812160E" Association="Self.FK__Packages__shipme__5812160E">
             <End Role="Shipments" EntitySet="Shipments" />
             <End Role="Packages" EntitySet="Packages" />
           </AssociationSet>
-          <AssociationSet Name="FK__Packages__suppli__5AEE82B9" Association="Self.FK__Packages__suppli__5AEE82B9">
+          <AssociationSet Name="FK__Packages__suppli__59063A47" Association="Self.FK__Packages__suppli__59063A47">
             <End Role="Suppliers" EntitySet="Suppliers" />
             <End Role="Packages" EntitySet="Packages" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payments__orderI__4BAC3F29" Association="Self.FK__Payments__orderI__4BAC3F29">
+          <AssociationSet Name="FK__Payments__orderI__49C3F6B7" Association="Self.FK__Payments__orderI__49C3F6B7">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Payments" EntitySet="Payments" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shipments__staff__46E78A0C" Association="Self.FK__Shipments__staff__46E78A0C">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="Shipments" EntitySet="Shipments" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Shipments__wareh__47DBAE45" Association="Self.FK__Shipments__wareh__47DBAE45">
+          <AssociationSet Name="FK__Shipments__wareh__45F365D3" Association="Self.FK__Shipments__wareh__45F365D3">
             <End Role="Warehouses" EntitySet="Warehouses" />
             <End Role="Shipments" EntitySet="Shipments" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shipping__packag__628FA481" Association="Self.FK__Shipping__packag__628FA481">
+          <AssociationSet Name="FK__Shipping__packag__60A75C0F" Association="Self.FK__Shipping__packag__60A75C0F">
             <End Role="Packages" EntitySet="Packages" />
             <End Role="Shipping" EntitySet="Shipping" />
           </AssociationSet>
@@ -1013,31 +962,17 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="warehouseStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="getStaffActions_Result">
-          <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="lastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="staffWarehouse" Type="Int32" Nullable="false" />
-          <Property Name="orderID" Type="Int32" />
-          <Property Name="orderDate" Type="DateTime" />
-          <Property Name="orderToWarehouse" Type="Int32" />
-          <Property Name="shipmentID" Type="Int32" />
-          <Property Name="shipmentDate" Type="DateTime" />
-          <Property Name="shipmentToWarehouse" Type="Int32" />
-        </ComplexType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="orderID" />
           </Key>
           <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="staffID" Type="Int32" Nullable="false" />
           <Property Name="warehouseID" Type="Int32" Nullable="false" />
           <Property Name="orderDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Staff" Relationship="Self.FK__Orders__staffID__4222D4EF" FromRole="Orders" ToRole="Staff" />
-          <NavigationProperty Name="Warehouses" Relationship="Self.FK__Orders__warehous__4316F928" FromRole="Orders" ToRole="Warehouses" />
-          <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__orderI__59063A47" FromRole="Orders" ToRole="Packages" />
-          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__orderI__4BAC3F29" FromRole="Orders" ToRole="Payments" />
+          <NavigationProperty Name="Warehouses" Relationship="Self.FK__Orders__warehous__4222D4EF" FromRole="Orders" ToRole="Warehouses" />
+          <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__orderI__571DF1D5" FromRole="Orders" ToRole="Packages" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__orderI__49C3F6B7" FromRole="Orders" ToRole="Payments" />
         </EntityType>
         <EntityType Name="Packages">
           <Key>
@@ -1051,11 +986,11 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="createdTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="packageStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="notes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Packages__orderI__59063A47" FromRole="Packages" ToRole="Orders" />
-          <NavigationProperty Name="PackageContents" Relationship="Self.FK__PackageCo__packa__5EBF139D" FromRole="Packages" ToRole="PackageContents" />
-          <NavigationProperty Name="Shipments" Relationship="Self.FK__Packages__shipme__59FA5E80" FromRole="Packages" ToRole="Shipments" />
-          <NavigationProperty Name="Suppliers" Relationship="Self.FK__Packages__suppli__5AEE82B9" FromRole="Packages" ToRole="Suppliers" />
-          <NavigationProperty Name="Shipping" Relationship="Self.FK__Shipping__packag__628FA481" FromRole="Packages" ToRole="Shipping" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Packages__orderI__571DF1D5" FromRole="Packages" ToRole="Orders" />
+          <NavigationProperty Name="PackageContents" Relationship="Self.FK__PackageCo__packa__5CD6CB2B" FromRole="Packages" ToRole="PackageContents" />
+          <NavigationProperty Name="Shipments" Relationship="Self.FK__Packages__shipme__5812160E" FromRole="Packages" ToRole="Shipments" />
+          <NavigationProperty Name="Suppliers" Relationship="Self.FK__Packages__suppli__59063A47" FromRole="Packages" ToRole="Suppliers" />
+          <NavigationProperty Name="Shipping" Relationship="Self.FK__Shipping__packag__60A75C0F" FromRole="Packages" ToRole="Shipping" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -1069,8 +1004,8 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="productWeight" Type="Double" Nullable="false" />
           <Property Name="inStock" Type="Boolean" Nullable="false" />
           <Property Name="totalQuantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Inventory" Relationship="Self.FK__Inventory__produ__6754599E" FromRole="Products" ToRole="Inventory" />
-          <NavigationProperty Name="PackageContents" Relationship="Self.FK__PackageCo__produ__5DCAEF64" FromRole="Products" ToRole="PackageContents" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK__Inventory__produ__656C112C" FromRole="Products" ToRole="Inventory" />
+          <NavigationProperty Name="PackageContents" Relationship="Self.FK__PackageCo__produ__5BE2A6F2" FromRole="Products" ToRole="PackageContents" />
           <NavigationProperty Name="WarehouseContents" Relationship="Self.FK__Warehouse__produ__33D4B598" FromRole="Products" ToRole="WarehouseContents" />
         </EntityType>
         <EntityType Name="Shipments">
@@ -1078,14 +1013,12 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             <PropertyRef Name="shipmentID" />
           </Key>
           <Property Name="shipmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="staffID" Type="Int32" Nullable="false" />
           <Property Name="warehouseID" Type="Int32" Nullable="false" />
           <Property Name="shipmentDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="shipmentDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__shipme__59FA5E80" FromRole="Shipments" ToRole="Packages" />
-          <NavigationProperty Name="Bills" Relationship="Self.FK__Bills__shipmentI__4F7CD00D" FromRole="Shipments" ToRole="Bills" />
-          <NavigationProperty Name="Staff" Relationship="Self.FK__Shipments__staff__46E78A0C" FromRole="Shipments" ToRole="Staff" />
-          <NavigationProperty Name="Warehouses" Relationship="Self.FK__Shipments__wareh__47DBAE45" FromRole="Shipments" ToRole="Warehouses" />
+          <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__shipme__5812160E" FromRole="Shipments" ToRole="Packages" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK__Bills__shipmentI__4D94879B" FromRole="Shipments" ToRole="Bills" />
+          <NavigationProperty Name="Warehouses" Relationship="Self.FK__Shipments__wareh__45F365D3" FromRole="Shipments" ToRole="Warehouses" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -1095,8 +1028,6 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="userID" Type="Int32" Nullable="false" />
           <Property Name="warehouseID" Type="Int32" Nullable="false" />
           <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__staffID__4222D4EF" FromRole="Staff" ToRole="Orders" />
-          <NavigationProperty Name="Shipments" Relationship="Self.FK__Shipments__staff__46E78A0C" FromRole="Staff" ToRole="Shipments" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Staff__userID__3D5E1FD2" FromRole="Staff" ToRole="Users" />
           <NavigationProperty Name="Warehouses" Relationship="Self.FK__Staff__warehouse__3E52440B" FromRole="Staff" ToRole="Warehouses" />
         </EntityType>
@@ -1111,7 +1042,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="supplierAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="phoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__suppli__5AEE82B9" FromRole="Suppliers" ToRole="Packages" />
+          <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__suppli__59063A47" FromRole="Suppliers" ToRole="Packages" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1146,8 +1077,8 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="maxCapacity" Type="Int32" Nullable="false" />
           <Property Name="currentCapacity" Type="Int32" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__warehous__4316F928" FromRole="Warehouses" ToRole="Orders" />
-          <NavigationProperty Name="Shipments" Relationship="Self.FK__Shipments__wareh__47DBAE45" FromRole="Warehouses" ToRole="Shipments" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__warehous__4222D4EF" FromRole="Warehouses" ToRole="Orders" />
+          <NavigationProperty Name="Shipments" Relationship="Self.FK__Shipments__wareh__45F365D3" FromRole="Warehouses" ToRole="Shipments" />
           <NavigationProperty Name="Staff" Relationship="Self.FK__Staff__warehouse__3E52440B" FromRole="Warehouses" ToRole="Staff" />
           <NavigationProperty Name="WarehouseContents" Relationship="Self.FK__Warehouse__wareh__32E0915F" FromRole="Warehouses" ToRole="WarehouseContents" />
         </EntityType>
@@ -1164,7 +1095,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="paymentType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
           <Property Name="operationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Shipments" Relationship="Self.FK__Bills__shipmentI__4F7CD00D" FromRole="Bills" ToRole="Shipments" />
+          <NavigationProperty Name="Shipments" Relationship="Self.FK__Bills__shipmentI__4D94879B" FromRole="Bills" ToRole="Shipments" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -1175,7 +1106,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="productID" Type="Int32" Nullable="false" />
           <Property Name="totalQuantity" Type="Int32" Nullable="false" />
           <Property Name="updateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Inventory__produ__6754599E" FromRole="Inventory" ToRole="Products" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Inventory__produ__656C112C" FromRole="Inventory" ToRole="Products" />
         </EntityType>
         <EntityType Name="PackageContents">
           <Key>
@@ -1186,8 +1117,8 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="packageID" Type="Int32" Nullable="false" />
           <Property Name="productID" Type="Int32" Nullable="false" />
           <Property Name="productQuantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Packages" Relationship="Self.FK__PackageCo__packa__5EBF139D" FromRole="PackageContents" ToRole="Packages" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__PackageCo__produ__5DCAEF64" FromRole="PackageContents" ToRole="Products" />
+          <NavigationProperty Name="Packages" Relationship="Self.FK__PackageCo__packa__5CD6CB2B" FromRole="PackageContents" ToRole="Packages" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__PackageCo__produ__5BE2A6F2" FromRole="PackageContents" ToRole="Products" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -1202,7 +1133,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="paymentType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
           <Property Name="operationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Payments__orderI__4BAC3F29" FromRole="Payments" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Payments__orderI__49C3F6B7" FromRole="Payments" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Shipping">
           <Key>
@@ -1218,7 +1149,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="currentLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="currentStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="shippingNote" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Packages" Relationship="Self.FK__Shipping__packag__628FA481" FromRole="Shipping" ToRole="Packages" />
+          <NavigationProperty Name="Packages" Relationship="Self.FK__Shipping__packag__60A75C0F" FromRole="Shipping" ToRole="Packages" />
         </EntityType>
         <EntityType Name="WarehouseContents">
           <Key>
@@ -1434,20 +1365,10 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="staffCount" Type="Int32" />
         </EntityType>
-        <Association Name="FK__Orders__staffID__4222D4EF">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="staffID" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="staffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Orders__warehous__4316F928">
-          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+        <Association Name="FK__Orders__warehous__4222D4EF">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Warehouses">
@@ -1458,7 +1379,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Packages__orderI__59063A47">
+        <Association Name="FK__Packages__orderI__571DF1D5">
           <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
           <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1470,7 +1391,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payments__orderI__4BAC3F29">
+        <Association Name="FK__Payments__orderI__49C3F6B7">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1484,7 +1405,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PackageCo__packa__5EBF139D">
+        <Association Name="FK__PackageCo__packa__5CD6CB2B">
           <End Role="Packages" Type="Self.Packages" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1498,7 +1419,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Packages__shipme__59FA5E80">
+        <Association Name="FK__Packages__shipme__5812160E">
           <End Role="Shipments" Type="Self.Shipments" Multiplicity="0..1" />
           <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1510,7 +1431,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Packages__suppli__5AEE82B9">
+        <Association Name="FK__Packages__suppli__59063A47">
           <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1524,7 +1445,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shipping__packag__628FA481">
+        <Association Name="FK__Shipping__packag__60A75C0F">
           <End Role="Packages" Type="Self.Packages" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1538,7 +1459,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inventory__produ__6754599E">
+        <Association Name="FK__Inventory__produ__656C112C">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1550,7 +1471,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PackageCo__produ__5DCAEF64">
+        <Association Name="FK__PackageCo__produ__5BE2A6F2">
           <End Role="Products" Type="Self.Products" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1578,7 +1499,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bills__shipmentI__4F7CD00D">
+        <Association Name="FK__Bills__shipmentI__4D94879B">
           <End Role="Shipments" Type="Self.Shipments" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1592,20 +1513,10 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shipments__staff__46E78A0C">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
-          <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="staffID" />
-            </Principal>
-            <Dependent Role="Shipments">
-              <PropertyRef Name="staffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Shipments__wareh__47DBAE45">
-          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+        <Association Name="FK__Shipments__wareh__45F365D3">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Warehouses">
@@ -1631,9 +1542,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Staff__warehouse__3E52440B">
-          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Warehouses">
@@ -1685,43 +1594,39 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <EntitySet Name="userTypeStaff" EntityType="Self.userTypeStaff" />
           <EntitySet Name="warehouseStaff" EntityType="Self.warehouseStaff" />
           <EntitySet Name="warehouseStaffCount" EntityType="Self.warehouseStaffCount" />
-          <AssociationSet Name="FK__Orders__staffID__4222D4EF" Association="Self.FK__Orders__staffID__4222D4EF">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Orders__warehous__4316F928" Association="Self.FK__Orders__warehous__4316F928">
+          <AssociationSet Name="FK__Orders__warehous__4222D4EF" Association="Self.FK__Orders__warehous__4222D4EF">
             <End Role="Warehouses" EntitySet="Warehouses" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Packages__orderI__59063A47" Association="Self.FK__Packages__orderI__59063A47">
+          <AssociationSet Name="FK__Packages__orderI__571DF1D5" Association="Self.FK__Packages__orderI__571DF1D5">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Packages" EntitySet="Packages" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payments__orderI__4BAC3F29" Association="Self.FK__Payments__orderI__4BAC3F29">
+          <AssociationSet Name="FK__Payments__orderI__49C3F6B7" Association="Self.FK__Payments__orderI__49C3F6B7">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Payments" EntitySet="Payments" />
           </AssociationSet>
-          <AssociationSet Name="FK__PackageCo__packa__5EBF139D" Association="Self.FK__PackageCo__packa__5EBF139D">
+          <AssociationSet Name="FK__PackageCo__packa__5CD6CB2B" Association="Self.FK__PackageCo__packa__5CD6CB2B">
             <End Role="Packages" EntitySet="Packages" />
             <End Role="PackageContents" EntitySet="PackageContents" />
           </AssociationSet>
-          <AssociationSet Name="FK__Packages__shipme__59FA5E80" Association="Self.FK__Packages__shipme__59FA5E80">
+          <AssociationSet Name="FK__Packages__shipme__5812160E" Association="Self.FK__Packages__shipme__5812160E">
             <End Role="Shipments" EntitySet="Shipments" />
             <End Role="Packages" EntitySet="Packages" />
           </AssociationSet>
-          <AssociationSet Name="FK__Packages__suppli__5AEE82B9" Association="Self.FK__Packages__suppli__5AEE82B9">
+          <AssociationSet Name="FK__Packages__suppli__59063A47" Association="Self.FK__Packages__suppli__59063A47">
             <End Role="Suppliers" EntitySet="Suppliers" />
             <End Role="Packages" EntitySet="Packages" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shipping__packag__628FA481" Association="Self.FK__Shipping__packag__628FA481">
+          <AssociationSet Name="FK__Shipping__packag__60A75C0F" Association="Self.FK__Shipping__packag__60A75C0F">
             <End Role="Packages" EntitySet="Packages" />
             <End Role="Shipping" EntitySet="Shipping" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inventory__produ__6754599E" Association="Self.FK__Inventory__produ__6754599E">
+          <AssociationSet Name="FK__Inventory__produ__656C112C" Association="Self.FK__Inventory__produ__656C112C">
             <End Role="Products" EntitySet="Products" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
-          <AssociationSet Name="FK__PackageCo__produ__5DCAEF64" Association="Self.FK__PackageCo__produ__5DCAEF64">
+          <AssociationSet Name="FK__PackageCo__produ__5BE2A6F2" Association="Self.FK__PackageCo__produ__5BE2A6F2">
             <End Role="Products" EntitySet="Products" />
             <End Role="PackageContents" EntitySet="PackageContents" />
           </AssociationSet>
@@ -1729,15 +1634,11 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             <End Role="Products" EntitySet="Products" />
             <End Role="WarehouseContents" EntitySet="WarehouseContents" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bills__shipmentI__4F7CD00D" Association="Self.FK__Bills__shipmentI__4F7CD00D">
+          <AssociationSet Name="FK__Bills__shipmentI__4D94879B" Association="Self.FK__Bills__shipmentI__4D94879B">
             <End Role="Shipments" EntitySet="Shipments" />
             <End Role="Bills" EntitySet="Bills" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shipments__staff__46E78A0C" Association="Self.FK__Shipments__staff__46E78A0C">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="Shipments" EntitySet="Shipments" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Shipments__wareh__47DBAE45" Association="Self.FK__Shipments__wareh__47DBAE45">
+          <AssociationSet Name="FK__Shipments__wareh__45F365D3" Association="Self.FK__Shipments__wareh__45F365D3">
             <End Role="Warehouses" EntitySet="Warehouses" />
             <End Role="Shipments" EntitySet="Shipments" />
           </AssociationSet>
@@ -1756,9 +1657,6 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <FunctionImport Name="checkWarehousesWithProductQuantity" IsComposable="true" ReturnType="Collection(OWISDBModel.checkWarehousesWithProductQuantity_Result)">
             <Parameter Name="productID" Mode="In" Type="Int32" />
             <Parameter Name="quantity" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="getStaffActions" IsComposable="true" ReturnType="Collection(OWISDBModel.getStaffActions_Result)">
-            <Parameter Name="staffID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="findWarehouseWithZip" ReturnType="Collection(OWISDBModel.findWarehouseWithZip_Result)">
             <Parameter Name="zipCode" Mode="In" Type="String" />
@@ -1944,7 +1842,6 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             <EntityTypeMapping TypeName="OWISDBModel.Orders">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="orderID" ColumnName="orderID" />
-                <ScalarProperty Name="staffID" ColumnName="staffID" />
                 <ScalarProperty Name="warehouseID" ColumnName="warehouseID" />
                 <ScalarProperty Name="orderDescription" ColumnName="orderDescription" />
                 <ScalarProperty Name="orderDate" ColumnName="orderDate" />
@@ -1983,7 +1880,6 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
             <EntityTypeMapping TypeName="OWISDBModel.Shipments">
               <MappingFragment StoreEntitySet="Shipments">
                 <ScalarProperty Name="shipmentID" ColumnName="shipmentID" />
-                <ScalarProperty Name="staffID" ColumnName="staffID" />
                 <ScalarProperty Name="warehouseID" ColumnName="warehouseID" />
                 <ScalarProperty Name="shipmentDescription" ColumnName="shipmentDescription" />
                 <ScalarProperty Name="shipmentDate" ColumnName="shipmentDate" />
@@ -2280,22 +2176,6 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
                 <ScalarProperty Name="currentCapacity" ColumnName="currentCapacity" />
                 <ScalarProperty Name="warehouseStatus" ColumnName="warehouseStatus" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionName="OWISDBModel.Store.getStaffActions" FunctionImportName="getStaffActions">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="OWISDBModel.getStaffActions_Result">
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="staffWarehouse" ColumnName="staffWarehouse" />
-                <ScalarProperty Name="orderID" ColumnName="orderID" />
-                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
-                <ScalarProperty Name="orderToWarehouse" ColumnName="orderToWarehouse" />
-                <ScalarProperty Name="shipmentID" ColumnName="shipmentID" />
-                <ScalarProperty Name="shipmentDate" ColumnName="shipmentDate" />
-                <ScalarProperty Name="shipmentToWarehouse" ColumnName="shipmentToWarehouse" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
