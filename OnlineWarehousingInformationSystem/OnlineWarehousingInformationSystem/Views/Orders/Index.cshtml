@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="row align-items-center">
+        <div class="col-md-10">
+            <h3>Orders</h3>
+        </div>
+        <div class="col-md-2">
+            <input type="button" class="btn btn-primary" value="Add an order" onclick="location.href='@Url.Action("AddOrder", "Orders")'" />
+        </div>
+
+    </div>
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-hover ">
+        <thead style="font-weight:700;font-size:110%;">
+            <tr>
+                <td>Order ID</td>
+                <td>Warehouse ID</td>
+                <td>Description</td>
+                <td>Order Date</td>
+            </tr>
+        </thead>
+        <hr />
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td scope="row">@item.orderID</td>
+                    <td>@item.warehouseID</td>
+                    <td>@item.orderDescription</td>
+                    <td>@item.orderDate</td>
+                    <td>
+                        @Html.ActionLink("Detail", "DetailWarehouse", "Warehouses", new { id = item.warehouseID }, null) |
+                        @Html.ActionLink("Edit", "EditWarehouse", "Warehouses", new { id = item.warehouseID }, null) |
+                        @Html.ActionLink("Delete", "DeleteFromWarehouses", "Warehouses", new { id = @item.warehouseID }, new { onclick = "return confirm('Are you sure you wish to delete this order with its payment?'); " })
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
