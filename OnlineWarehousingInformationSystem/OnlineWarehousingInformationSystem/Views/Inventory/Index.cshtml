@@ -1,19 +1,12 @@
-﻿
-@{
-    ViewBag.Title = "ShowContents";
+﻿@{
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 <div class="row">
     <div class="row align-items-center">
         <div class="col-md-10">
-            <h3>Warehouses Contents</h3>
+            <h3>Inventory</h3>
         </div>
-        <div class="col-md-2">
-            <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Warehouses")'" />
-        </div>
-
     </div>
 </div>
 
@@ -22,11 +15,12 @@
     <table class="table table-hover ">
         <thead style="font-weight:700;font-size:110%;">
             <tr>
-                <td>Warehouse ID</td>
                 <td>Product ID</td>
                 <td>Product Image</td>
                 <td>Product Name</td>
-                <td>Quantity</td>
+                <td>Manufacturer</td>
+                <td>Total Quantity</td>
+                <td>Update Date</td>
             </tr>
         </thead>
         <hr />
@@ -35,18 +29,14 @@
             {
                 <tr>
 
-                    <td scope="row">@item.warehouseID</td>
                     <td>@item.productID</td>
                     <td>@item.Products.productImage</td>
                     <td>@item.Products.productName</td>
-                    <td>@item.quantity</td>
-                    <td>
-                        @Html.ActionLink("Detail Product", "DetailProduct", "Products", new { id = item.productID }, null)
-                    </td>
-
+                    <td>@item.Products.manufacturer</td>
+                    <td>@item.totalQuantity</td>
+                    <td>@item.updateDate</td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-

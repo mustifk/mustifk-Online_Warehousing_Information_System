@@ -32,7 +32,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
 
         public ActionResult DetailUser(int id)
         {
-            var query = db.Users.Where(s => s.userID == id).Select(s => s);
+            var query = db.Users.Where(s => s.userID == id).Select(s => s).ToList();
             return View(query);
         }
 

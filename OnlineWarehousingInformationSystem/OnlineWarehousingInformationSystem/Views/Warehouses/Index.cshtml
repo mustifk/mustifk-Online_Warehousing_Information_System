@@ -40,7 +40,15 @@
                     <td>
                         @Html.ActionLink("Detail", "DetailWarehouse", "Warehouses", new { id = item.warehouseID }, null) |
                         @Html.ActionLink("Edit", "EditWarehouse", "Warehouses", new { id = item.warehouseID }, null) |
-                        @Html.ActionLink("Delete", "DeleteFromWarehouses", "Warehouses", new { id = item.warehouseID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
+                        @if (item.warehouseID > 1)
+                        {
+                            @Html.ActionLink("Delete", "DeleteFromWarehouses", "Warehouses", new { id = @item.warehouseID }, new { onclick = "return confirm('Are you sure you wish to delete this warehouse with its contents?'); " })
+
+                        }
+                        else
+                        {
+                            <label style="color:red">Delete</label>
+                        }
                     </td>
 
                 </tr>

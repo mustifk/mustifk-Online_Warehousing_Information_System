@@ -18,6 +18,7 @@ namespace OnlineWarehousingInformationSystem.Models
         public int productID { get; set; }
         public int quantity { get; set; }
     
+        public virtual Products Products { get; set; }
         public virtual Warehouses Warehouses { get; set; }
     }
 }

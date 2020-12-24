@@ -19,6 +19,7 @@ namespace OnlineWarehousingInformationSystem.Models
         {
             this.Inventory = new HashSet<Inventory>();
             this.PackageContents = new HashSet<PackageContents>();
+            this.WarehouseContents = new HashSet<WarehouseContents>();
         }
     
         public int productID { get; set; }
@@ -34,5 +35,7 @@ namespace OnlineWarehousingInformationSystem.Models
         public virtual ICollection<Inventory> Inventory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PackageContents> PackageContents { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WarehouseContents> WarehouseContents { get; set; }
     }
 }

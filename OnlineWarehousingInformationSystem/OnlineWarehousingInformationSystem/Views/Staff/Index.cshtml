@@ -21,6 +21,7 @@
         <thead style="font-weight:700;font-size:110%;">
             <tr>
                 <td>User ID</td>
+                <td>Full Name</td>
                 <td>Staff ID</td>
                 <td>Title</td>
                 <td>Warehouse ID</td>
@@ -33,7 +34,8 @@
                 <tr>
 
                     <td>@item.userID</td>
-                    <td scope="row">@item.staffID</td>
+                    <td>@item.Users.firstName @item.Users.lastName</td>
+                    <td>@item.staffID</td>
                     <td>@item.title</td>
                     <td>@item.warehouseID</td>
                     <td>
