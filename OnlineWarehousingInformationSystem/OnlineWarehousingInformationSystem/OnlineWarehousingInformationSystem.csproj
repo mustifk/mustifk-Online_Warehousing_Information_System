@@ -133,7 +133,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\ShipmentsController.cs" />
+	<Compile Include="Controllers\ShipmentsController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -361,13 +361,14 @@
     <Content Include="Views\Staff\EditStaff.cshtml" />
     <Content Include="Views\Inventory\Index.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
-    <Content Include="Views\Orders\AddOrder.cshtml" />
+	<Content Include="Views\Orders\AddOrder.cshtml" />
     <Content Include="Views\Orders\DetailOrder.cshtml" />
     <Content Include="Views\Orders\EditOrder.cshtml" />
     <Content Include="Views\Shipments\Index.cshtml" />
     <Content Include="Views\Shipments\AddShipment.cshtml" />
     <Content Include="Views\Shipments\DetailShipment.cshtml" />
     <Content Include="Views\Shipments\EditShipment.cshtml" />
+    <Content Include="Views\Main\Tracking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -31,7 +31,7 @@
                             @Html.ActionLink("Edit", "EditWarehouse", "Warehouses", new { id = @item.warehouseID }, null)
                             @if (item.warehouseID > 1)
                             {
-                                '|' + @Html.ActionLink("Delete", "DeleteFromWarehouses", "Warehouses", new { id = @item.warehouseID }, new { onclick = "return confirm('Are you sure you wish to delete this warehouse with its contents?'); " })
+                               <span>| </span>@Html.ActionLink("Delete", "DeleteFromWarehouses", "Warehouses", new { id = @item.warehouseID }, new { onclick = "return confirm('Are you sure you wish to delete this warehouse with its contents?'); " })
 
                             }
                         </div>
