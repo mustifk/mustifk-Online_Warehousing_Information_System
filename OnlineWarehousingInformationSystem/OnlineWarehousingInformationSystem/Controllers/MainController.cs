@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 using OnlineWarehousingInformationSystem.Models;
 
 namespace OnlineWarehousingInformationSystem.Controllers
@@ -30,5 +29,9 @@ namespace OnlineWarehousingInformationSystem.Controllers
             return View();
         }
 
+        public ActionResult Tracking(int search = 0)
+        {
+            return View(db.Packages.Where(x => x.packageID == search || search == null).ToList());
+        }
     }
 }
