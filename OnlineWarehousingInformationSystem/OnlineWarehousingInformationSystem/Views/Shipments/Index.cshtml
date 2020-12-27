@@ -7,10 +7,10 @@
 <div class="row">
     <div class="row align-items-center">
         <div class="col-md-10">
-            <h3>Orders</h3>
+            <h3>Shipments</h3>
         </div>
         <div class="col-md-2">
-            <input type="button" class="btn btn-primary" value="Add an order" onclick="location.href='@Url.Action("AddOrder", "Orders")'" />
+            <input type="button" class="btn btn-primary" value="Add an shipment" onclick="location.href='@Url.Action("AddShipment", "Shipments")'" />
         </div>
 
     </div>
@@ -21,11 +21,11 @@
     <table class="table table-hover ">
         <thead style="font-weight:700;font-size:110%;">
             <tr>
-                <td>Order ID</td>
+                <td>Shipment ID</td>
                 <td>Warehouse ID</td>
                 <td>Warehouse Name</td>
                 <td>Description</td>
-                <td>Order Date</td>
+                <td>Shipment Date</td>
             </tr>
         </thead>
         <hr />
@@ -34,15 +34,15 @@
             {
                 <tr>
 
-                    <td scope="row">@item.orderID</td>
+                    <td scope="row">@item.shipmentID</td>
                     <td>@item.warehouseID</td>
                     <td>@item.Warehouses.warehouseName</td>
-                    <td>@item.orderDescription</td>
-                    <td>@item.orderDate</td>
+                    <td>@item.shipmentDescription</td>
+                    <td>@item.shipmentDate</td>
                     <td>
-                        @Html.ActionLink("Detail", "DetailOrder", "Orders", new { id = item.orderID }, null) |
-                        @Html.ActionLink("Edit", "EditOrder", "Orders", new { id = item.orderID }, null) |
-                        @Html.ActionLink("Delete", "DeleteFromOrders", "Orders", new { id = @item.orderID }, new { onclick = "return confirm('Are you sure you wish to delete this order with its payment?'); " })
+                        @Html.ActionLink("Detail", "DetailShipment", "Shipments", new { id = item.shipmentID }, null) |
+                        @Html.ActionLink("Edit", "EditShipment", "Shipments", new { id = item.shipmentID }, null) |
+                        @Html.ActionLink("Delete", "DeleteFromShipments", "Shipments", new { id = @item.shipmentID }, new { onclick = "return confirm('Are you sure you wish to delete this order with its payment?'); " })
                     </td>
 
                 </tr>
@@ -50,7 +50,4 @@
         </tbody>
     </table>
 </div>
-
-
-
 

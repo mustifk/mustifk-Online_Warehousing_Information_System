@@ -31,7 +31,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
 
         public ActionResult DetailOrder(int id)
         {
-            var query = db.Orders.Where(o => o.warehouseID == id).Select(o => o);
+            var query = db.Orders.Where(o => o.orderID == id).Select(o => o);
             return View(query);
         }
 
@@ -57,12 +57,6 @@ namespace OnlineWarehousingInformationSystem.Controllers
             db.Orders.RemoveRange(db.Orders.Where(o => o.orderID == id));
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        public ActionResult ShowPayments(int id)
-        {
-            var query = db.Payments.Where(p => p.orderID == id).Select(p => p);
-            return View(query);
         }
     }
 }
