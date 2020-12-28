@@ -42,7 +42,7 @@
                     <td>
                         @Html.ActionLink("Detail", "DetailShipment", "Shipments", new { id = item.shipmentID }, null) |
                         @Html.ActionLink("Edit", "EditShipment", "Shipments", new { id = item.shipmentID }, null) |
-                        @Html.ActionLink("Delete", "DeleteFromShipments", "Shipments", new { id = @item.shipmentID }, new { onclick = "return confirm('Are you sure you wish to delete this order with its payment?'); " })
+                        @Html.ActionLink("Delete", "DeleteFromShipments", "Shipments", new { id = @item.shipmentID }, new { onclick = "return confirm('Are you sure you wish to delete this shipment with its payment?'); " })
                     </td>
 
                 </tr>
