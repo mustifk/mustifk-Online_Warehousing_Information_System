@@ -132,6 +132,7 @@
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\PackagesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShipmentsController.cs" />
     <Compile Include="Controllers\ShippingController.cs" />
@@ -374,6 +375,7 @@
     <Content Include="Views\Shipping\AddShipping.cshtml" />
     <Content Include="Views\Shipping\DetailShipping.cshtml" />
     <Content Include="Views\Shipping\EditShipping.cshtml" />
+    <Content Include="Views\Packages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
