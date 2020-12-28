@@ -19,6 +19,9 @@
                         <div class="col-md-2">
                             <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Shipments")'" />
                         </div>
+                        <div class="col-md-2">
+                            <input type="button" class="btn btn-primary" value="Add New Package" onclick="location.href='@Url.Action("AddPackage", "Packages",new { id = item.shipmentID, type = true })'" />
+                        </div>
                     </div>
                 </div>
             </div>

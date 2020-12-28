@@ -9,9 +9,6 @@
         <div class="col-md-10">
             <h3>Packages</h3>
         </div>
-        <div class="col-md-2">
-            <input type="button" class="btn btn-primary" value="Create New Package" onclick="location.href='@Url.Action("AddPackage", "Packages")'" />
-        </div>
     </div>
 </div>
 
@@ -41,7 +38,7 @@
                 }
                 else
                 {
-            <td>Shipment #@item.shipmentID</td>
+                    <td>Shipment #@item.shipmentID</td>
                 }
                 <td>@item.supplierID</td>
                 <td>@item.createdTime</td>

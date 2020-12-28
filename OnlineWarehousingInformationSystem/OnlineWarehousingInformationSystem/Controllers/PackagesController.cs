@@ -18,14 +18,28 @@ namespace OnlineWarehousingInformationSystem.Controllers
             return View(shipping);
         }
 
-        public ActionResult AddPackage()
+        public ActionResult AddPackage(int id, bool type)
         {
+            Session["id"] = id.ToString();
+            Session["type"] = type.ToString();
             return View();
         }
 
         [HttpPost]
         public ActionResult AddPackage(Packages package)
         {
+            if (Session["type"].Equals("True"))
+            {
+                package.isProvided = true;
+                package.shipmentID = Convert.ToInt32(Session["id"]);
+                package.supplierID = 1;
+            }
+            else
+            {
+                package.isProvided = false;
+                package.orderID = Convert.ToInt32(Session["id"]);
+            }
+            package.createdTime = DateTime.Now;
             db.Packages.Add(package);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -1,8 +1,57 @@
-﻿
+﻿@model OnlineWarehousingInformationSystem.Models.Packages
 @{
     ViewBag.Title = "AddPackage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddPackage</h2>
+<div class="row">
+    <div class="row align-items-center">
+        <div class="col-md-12">
+            <div class="col-md-10">
+                <h3>Add Package</h3>
+            </div>
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Packages")'" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Package</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.packageID)
+        <div class="form-group">
+            <b class="control-label col-md-2">Supplier</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.supplierID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.supplierID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <b class="control-label col-md-2">Status</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.packageStatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.packageStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b class="control-label col-md-2">Notes</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
 
