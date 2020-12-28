@@ -376,6 +376,9 @@
     <Content Include="Views\Shipping\DetailShipping.cshtml" />
     <Content Include="Views\Shipping\EditShipping.cshtml" />
     <Content Include="Views\Packages\Index.cshtml" />
+    <Content Include="Views\Packages\AddPackage.cshtml" />
+    <Content Include="Views\Packages\DetailPackage.cshtml" />
+    <Content Include="Views\Packages\EditPackage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
