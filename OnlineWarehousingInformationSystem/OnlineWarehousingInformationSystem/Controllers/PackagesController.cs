@@ -34,6 +34,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
         public ActionResult DetailPackage(int id)
         {
             var query = db.PackageContents.Where(o => o.packageID == id).Select(o => o);
+            ViewBag.id = id;
             return View(query);
         }
 
@@ -60,5 +61,12 @@ namespace OnlineWarehousingInformationSystem.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult UpdateQuantity(int id)
+        {
+            var query = db.PackageContents.Where(p => p.productID == id).FirstOrDefault();
+            return View();
+        }
+
     }
 }

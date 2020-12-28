@@ -379,6 +379,7 @@
     <Content Include="Views\Packages\AddPackage.cshtml" />
     <Content Include="Views\Packages\DetailPackage.cshtml" />
     <Content Include="Views\Packages\EditPackage.cshtml" />
+    <Content Include="Views\Packages\UpdateQuantity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
