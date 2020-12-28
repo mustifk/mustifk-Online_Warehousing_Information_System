@@ -19,7 +19,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
                 new Tuple<int,string,string>(db.Products.Count(),"Product" , "Products"),
                 new Tuple<int,string,string>(db.Suppliers.Count(),"Supplier" , "Suppliers"),
                 new Tuple<int,string,string>(db.Packages.Count(),"Package" , "Packages"),
-                new Tuple<int,string,string>(db.Shipping.Count(),"Shipping" , "Shippings"),
+                new Tuple<int,string,string>(db.Shipping.Count(),"Shipping" , "Shipping"),
             };
             ViewData["rec"] = rec;
             return View(ViewData);
@@ -29,9 +29,16 @@ namespace OnlineWarehousingInformationSystem.Controllers
             return View();
         }
 
-        public ActionResult Tracking(int search = 0)
+        public ActionResult Tracking(int search = -1)
         {
-            return View(db.Packages.Where(x => x.packageID == search || search == null).ToList());
+            var package = db.Packages.Where(x => x.packageID == search || search == null).ToList();
+            if (package.Count == 0 && search != -1)
+            {
+                ViewData["non"] = true;
+                return View(package);
+            }
+            ViewData["non"] = false;
+            return View(package);
         }
     }
 }
