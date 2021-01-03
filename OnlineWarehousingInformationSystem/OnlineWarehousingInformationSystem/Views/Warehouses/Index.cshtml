@@ -9,10 +9,18 @@
         <div class="col-md-10">
             <h3>Warehouses</h3>
         </div>
+        @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+        {
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Add a warehouse" onclick="location.href='@Url.Action("AddWarehouse", "Warehouses")'" />
+            </div>
+        }
+        else
+        {
         <div class="col-md-2">
-            <input type="button" class="btn btn-primary" value="Add a warehouse" onclick="location.href='@Url.Action("AddWarehouse", "Warehouses")'" />
+            <input type="button" class="btn btn-primary" value="Back to Main Page" onclick="location.href='@Url.Action("Index", "Main")'" />
         </div>
-
+        }
     </div>
 </div>
 
@@ -23,8 +31,11 @@
             <tr>
                 <td>Warehouse ID</td>
                 <td>Warehouse Name</td>
-                <td>Phone Number</td>
-                <td>Email</td>
+                @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+                {
+                    <td>Phone Number</td>
+                    <td>Email</td>
+                }
             </tr>
         </thead>
         <hr />
@@ -35,6 +46,8 @@
 
                     <td scope="row">@item.warehouseID</td>
                     <td>@item.warehouseName</td>
+                    @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+                    {
                     <td>@item.phoneNumber</td>
                     <td>@item.email</td>
                     <td>
@@ -50,6 +63,7 @@
                             <label style="color:red">Delete</label>
                         }
                     </td>
+                    }
 
                 </tr>
             }

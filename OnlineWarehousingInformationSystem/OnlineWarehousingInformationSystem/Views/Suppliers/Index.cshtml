@@ -9,10 +9,18 @@
         <div class="col-md-10">
             <h3>Suppliers</h3>
         </div>
-        <div class="col-md-2">
-            <input type="button" class="btn btn-primary" value="Add a supplier" onclick="location.href='@Url.Action("AddSupplier", "Suppliers")'" />
-        </div>
-
+        @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+        {
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Add a supplier" onclick="location.href='@Url.Action("AddSupplier", "Suppliers")'" />
+            </div>
+        }
+        else
+        {
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Back to Main Page" onclick="location.href='@Url.Action("Index", "Main")'" />
+            </div>
+        }
     </div>
 </div>
 
@@ -23,8 +31,11 @@
             <tr>
                 <td>Supplier ID</td>
                 <td>Supplier Name</td>
-                <td>Phone Number</td>
-                <td>Email</td>
+                @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+                {
+                    <td>Phone Number</td>
+                    <td>Email</td>
+                }
             </tr>
         </thead>
         <hr />
@@ -35,13 +46,16 @@
 
                     <td scope="row">@item.supplierID</td>
                     <td>@item.supplierName</td>
+                        @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+                        {
                     <td>@item.phoneNumber</td>
                     <td>@item.email</td>
                     <td>
-                        @Html.ActionLink("Detail", "DetailSupplier", "Suppliers", new { id = item.supplierID }, null) |
-                        @Html.ActionLink("Edit", "EditSupplier", "Suppliers", new { id = item.supplierID }, null) |
-                        @Html.ActionLink("Delete", "DeleteFromSuppliers", "Suppliers", new { id = item.supplierID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
+                            @Html.ActionLink("Detail", "DetailSupplier", "Suppliers", new { id = item.supplierID }, null) |
+                            @Html.ActionLink("Edit", "EditSupplier", "Suppliers", new { id = item.supplierID }, null) |
+                            @Html.ActionLink("Delete", "DeleteFromSuppliers", "Suppliers", new { id = item.supplierID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
                     </td>
+                        }
 
                 </tr>
             }

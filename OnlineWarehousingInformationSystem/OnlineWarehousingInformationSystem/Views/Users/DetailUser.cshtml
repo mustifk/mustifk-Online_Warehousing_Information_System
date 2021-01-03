@@ -16,9 +16,18 @@
                         <div class="col-md-10">
                             <h3>User Details</h3>
                         </div>
-                        <div class="col-md-2">
-                            <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Users")'" />
-                        </div>
+                        @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+                        {
+                            <div class="col-md-2">
+                                <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Users")'" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2">
+                                <input type="button" class="btn btn-primary" value="Back to Main Page" onclick="location.href='@Url.Action("Index", "Main")'" />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -34,7 +43,7 @@
                                     @if (item.userType.Equals("0"))
                                     {
                                     <p>User</p>
-                                     }
+                                }
                                     @if (item.userType.Equals("1"))
                                     {
                                         <p>Staff</p>
@@ -44,40 +53,43 @@
                                         <p>Admin</p>
                                     }
                                     </p>
-                                    @Html.ActionLink("Edit", "EditUser", "Users", new { id = @item.userID }, null) |
-                                    @Html.ActionLink("Delete", "DeleteFromUsers", "Users", new { id = @item.userID }, new { onclick = "return confirm('Are you sure you wish to delete this user?'); " })
+                                    @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+                                    {
+                                        @Html.ActionLink("Edit", "EditUser", "Users", new { id = @item.userID }, null) <p>|</p>
+                                        @Html.ActionLink("Delete", "DeleteFromUsers", "Users", new { id = @item.userID }, new { onclick = "return confirm('Are you sure you wish to delete this user?'); " })
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
                     <hr />
                     @if (item.userType.Equals("1"))
-                    {
-            <div class="card mt-3">
-                <h4>Staff Information</h4>
-                @foreach (var i in item.Staff)
-                {
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-0">Staff ID</h6>
-                            <span class="text-secondary">@i.staffID</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-0">Title</h6>
-                            <span class="text-secondary">@i.title</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-0">Warehouse ID</h6>
-                            <span class="text-secondary">@i.warehouseID</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-0">Warehouse Name</h6>
-                            <span class="text-secondary">@i.Warehouses.warehouseName</span>
-                        </li>
-                    </ul>
-                }
-            </div>
-                    }
+                                        {
+                                            <div class="card mt-3">
+                                                <h4>Staff Information</h4>
+                                                @foreach (var i in item.Staff)
+                                                {
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <h6 class="mb-0">Staff ID</h6>
+                                                            <span class="text-secondary">@i.staffID</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <h6 class="mb-0">Title</h6>
+                                                            <span class="text-secondary">@i.title</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <h6 class="mb-0">Warehouse ID</h6>
+                                                            <span class="text-secondary">@i.warehouseID</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <h6 class="mb-0">Warehouse Name</h6>
+                                                            <span class="text-secondary">@i.Warehouses.warehouseName</span>
+                                                        </li>
+                                                    </ul>
+                                                }
+                                            </div>
+                                        }
                 </div>
                 <div class="col-md-8">
                     <div class="card mb-3">

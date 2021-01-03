@@ -8,10 +8,19 @@
         <div class="col-md-10">
             <h3>Products</h3>
         </div>
-        <div class="col-md-2">
-            <input type="button" class="btn btn-primary" value="Add a product" onclick="location.href='@Url.Action("AddProduct", "Products")'" />
-        </div>
-
+        
+        @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+        {
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Add a product" onclick="location.href='@Url.Action("AddProduct", "Products")'" />
+            </div>
+        }
+        else
+        {
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Back to Main Page" onclick="location.href='@Url.Action("Index", "Main")'" />
+            </div>
+        }
     </div>
 </div>
 
@@ -30,18 +39,20 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+            <tr>
 
-                    <td scope="row">@item.productID</td>
-                    <td>@item.productName</td>
-                    <td>@item.productDescription</td>
-                    <td>@item.totalQuantity</td>
+                <td scope="row">@item.productID</td>
+                <td>@item.productName</td>
+                <td>@item.productDescription</td>
+                <td>@item.totalQuantity</td>
+                @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+                {
                     <td>
                         @Html.ActionLink("Detail", "DetailProduct", "Products", new { id = item.productID }, null) |
                         @Html.ActionLink("Edit", "EditProduct", "Products", new { id = item.productID }, null) |
                         @Html.ActionLink("Delete", "DeleteFromProducts", "Products", new { id = item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
                     </td>
-
+                }
                 </tr>
             }
         </tbody>

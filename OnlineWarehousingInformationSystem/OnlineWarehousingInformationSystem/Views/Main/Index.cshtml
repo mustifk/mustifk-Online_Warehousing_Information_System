@@ -29,11 +29,13 @@
                         </p>
                     </div>
                 </div>
-
-                <div class="" style="text-align:right">
-                    <input type="button" class="btn btn-info" value="List Of All @elem.Item3" onclick="location.href='@Url.Action("Index", "" + elem.Item3)'" />
+                @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+                {
+                    <div class="" style="text-align:right">
+                        <input type="button" class="btn btn-info" value="List Of All @elem.Item3" onclick="location.href='@Url.Action("Index", "" + elem.Item3)'" />
+                    </div>
+                }
                 </div>
-            </div>
         </div>
     </div>
 }
