@@ -5,22 +5,22 @@
 }
 <div class="row">
     <div class="row align-items-center">
-        <div class="col-md-10">
-            <h3>Products</h3>
+        <div class="col-md-3">
+            <h2>Products</h2>
         </div>
-        
-        @if (HttpContext.Current.Session["UserType"].ToString().Equals("2") || HttpContext.Current.Session["UserType"].ToString().Equals("1"))
-        {
-            <div class="col-md-2">
-                <input type="button" class="btn btn-primary" value="Add a product" onclick="location.href='@Url.Action("AddProduct", "Products")'" />
-            </div>
-        }
-        else
-        {
-            <div class="col-md-2">
-                <input type="button" class="btn btn-primary" value="Back to Main Page" onclick="location.href='@Url.Action("Index", "Main")'" />
-            </div>
-        }
+        <div class="col-md-9 text-right">
+            <ul>
+                @if (HttpContext.Current.Session["UserType"].ToString().Equals("2") || HttpContext.Current.Session["UserType"].ToString().Equals("1"))
+                {
+                    <li style="text-decoration:none;display:inline-block">
+                        <input type="button" class="btn btn-success" value="Add a Product" onclick="location.href='@Url.Action("AddProduct", "Products")'" />
+                    </li>
+                }
+                <li style="text-decoration:none;display:inline-block">
+                    <input type="button" class="btn btn-primary" value="Back to Main Page" onclick="location.href='@Url.Action("Index", "Main")'" />
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -39,24 +39,24 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
+                <tr>
 
-                <td scope="row">@item.productID</td>
-                <td>@item.productName</td>
-                <td>@item.productDescription</td>
-                <td>@item.totalQuantity</td>
-                @if (HttpContext.Current.Session["UserType"].ToString().Equals("2") || HttpContext.Current.Session["UserType"].ToString().Equals("1"))
-                {
-                    <td>
-                        @Html.ActionLink("Detail", "DetailProduct", "Products", new { id = item.productID }, null) |
-                        @Html.ActionLink("Edit", "EditProduct", "Products", new { id = item.productID }, null) 
-                        @if (item.totalQuantity == 0)
-                        {
-                            <span>|</span>
-                            @Html.ActionLink("Delete", "DeleteFromProducts", "Products", new { id = item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
-                        }
-                    </td>
-                }
+                    <td scope="row">@item.productID</td>
+                    <td>@item.productName</td>
+                    <td>@item.productDescription</td>
+                    <td>@item.totalQuantity</td>
+                    @if (HttpContext.Current.Session["UserType"].ToString().Equals("2") || HttpContext.Current.Session["UserType"].ToString().Equals("1"))
+                    {
+                        <td>
+                            @Html.ActionLink("Detail", "DetailProduct", "Products", new { id = item.productID }, null) |
+                            @Html.ActionLink("Edit", "EditProduct", "Products", new { id = item.productID }, null)
+                            @if (item.totalQuantity == 0)
+                            {
+                                <span>|</span>
+                                @Html.ActionLink("Delete", "DeleteFromProducts", "Products", new { id = item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this record?'); " })
+                            }
+                        </td>
+                    }
                 </tr>
             }
         </tbody>

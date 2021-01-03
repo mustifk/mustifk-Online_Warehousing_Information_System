@@ -31,13 +31,13 @@ namespace OnlineWarehousingInformationSystem.Controllers
 
         public ActionResult DetailShipping(int id)
         {
-            var query = db.Shipping.Where(o => o.packageID == id).Select(o => o);
+            var query = db.Shipping.Where(o => o.packageID == id).FirstOrDefault();
             return View(query);
         }
 
         public ActionResult EditShipping(int id)
         {
-            var query = db.Shipping.Find(id);
+            var query = db.Shipping.SingleOrDefault(s => s.packageID == id);
             return View(query);
         }
 

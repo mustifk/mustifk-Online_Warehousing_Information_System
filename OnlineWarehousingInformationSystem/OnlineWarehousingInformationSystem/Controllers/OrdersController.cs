@@ -9,6 +9,17 @@ namespace OnlineWarehousingInformationSystem.Controllers
 {
     public class OrdersController : Controller
     {
+        public class MyViewModel
+        {
+            public List<Orders> Order { get; set; }
+            public List<Packages> Packages { get; set; }
+
+            public MyViewModel()
+            {
+                this.Packages = new List<Packages>();
+                this.Order = new List<Orders>();
+            }
+        }
         // GET: Orders
         OWISDBEntities db = new OWISDBEntities();
         public ActionResult Index()
@@ -31,11 +42,13 @@ namespace OnlineWarehousingInformationSystem.Controllers
 
         public ActionResult DetailOrder(int id)
         {
-            var query = db.Orders.Where(o => o.orderID == id).Select(o => o);
+            MyViewModel query = new MyViewModel();
+            query.Order = db.Orders.Where(o => o.orderID == id).Select(o => o).ToList();
+            query.Packages = db.Packages.Where(o => o.orderID == id).Select(o => o).ToList();
             return View(query);
         }
 
-        public ActionResult EditOrder(int id)
+    public ActionResult EditOrder(int id)
         {
             var query = db.Orders.Find(id);
             return View(query);

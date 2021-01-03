@@ -7,21 +7,25 @@
 
 <table>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Order)
     {
         <div class="row gutters-sm">
 
             <div class="row">
                 <div class="row align-items-center">
                     <div class="col-md-12">
-                        <div class="col-md-10">
+                        <div class="col-md-3">
                             <h3>Order Details</h3>
                         </div>
-                        <div class="col-md-2">
-                            <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Orders")'" />
-                        </div>
-                        <div class="col-md-2">
-                            <input type="button" class="btn btn-primary" value="Add New Package" onclick="location.href='@Url.Action("AddPackage", "Packages",new { id = item.orderID, type = false })'" />
+                        <div class="row col-md-9 text-right">
+                            <ul>
+                                <li style="text-decoration:none;display:inline-block">
+                                    <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Orders")'" />
+                                </li>
+                                <li style="text-decoration:none;display:inline-block">
+                                    <input type="button" class="btn btn-primary" value="Add New Package" onclick="location.href='@Url.Action("AddPackage", "Packages",new { id = item.orderID, type = false })'" />
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -107,4 +111,38 @@
     }
 </table>
 
+<h4>Contained Packages</h4>
+<div class="table-responsive">
 
+    <table class="table table-hover ">
+        <thead style="font-weight:700;font-size:110%;">
+            <tr>
+                <td>Package ID</td>
+                <td>Supplier ID</td>
+                <td>Supplier</td>
+                <td>Created At</td>
+                <td>Status</td>
+                <td>Notes</td>
+            </tr>
+        </thead>
+        <hr />
+        <tbody>
+            @foreach (var item in Model.Packages)
+            {
+                <tr>
+
+                    <td scope="row">@item.packageID</td>
+
+                    <td>@item.supplierID</td>
+                    <td>@item.Suppliers.supplierName</td>
+                    <td>@item.createdTime</td>
+                    <td>@item.packageStatus</td>
+                    <td>@item.notes</td>
+                    <td>
+                        @Html.ActionLink("Detail", "DetailPackage", "Packages", new { id = item.packageID }, null) 
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

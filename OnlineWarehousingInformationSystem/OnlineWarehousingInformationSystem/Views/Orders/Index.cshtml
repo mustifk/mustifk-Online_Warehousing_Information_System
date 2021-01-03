@@ -6,13 +6,19 @@
 
 <div class="row">
     <div class="row align-items-center">
-        <div class="col-md-10">
-            <h3>Orders</h3>
+        <div class="col-md-3">
+            <h2>Orders</h2>
         </div>
-        <div class="col-md-2">
-            <input type="button" class="btn btn-primary" value="Add an order" onclick="location.href='@Url.Action("AddOrder", "Orders")'" />
+        <div class="col-md-9 text-right">
+            <ul>
+                <li style="text-decoration:none;display:inline-block">
+                    <input type="button" class="btn btn-success" value="Add an Order" onclick="location.href='@Url.Action("AddOrder", "Orders")'" />
+                </li>
+                <li style="text-decoration:none;display:inline-block">
+                    <input type="button" class="btn btn-primary" value="Back to Main Page" onclick="location.href='@Url.Action("Index", "Main")'" />
+                </li>
+            </ul>
         </div>
-
     </div>
 </div>
 
