@@ -4,6 +4,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    function validateForm() {
+        var date = document.getElementById("shippingDate").value;
+        var location = document.getElementById("currentLocation").value;
+        if (date == "" || location == "") {
+            alert("Please fill in mandatory fields");
+            return false;
+        }
+        if (location.length > 20) {
+            var error = "Max limit is 20";
+            document.getElementById("location_error").innerHTML = error;
+            return false;
+        }
+        return Form.submit();
+    }
+</script>
+
 <div class="row">
     <div class="row align-items-center">
         <div class="col-md-12">
@@ -27,32 +44,30 @@
         <div class="form-group">
             <b class="control-label col-md-2">Shipping Date</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.shippingDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.shippingDate, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.shippingDate, new { id = "shippingDate", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <span class="error"><b id="date_error"></b></span>
             </div>
         </div>
 
         <div class="form-group">
             <b class="control-label col-md-2">Estimated Delivery Date</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.estimatedDeliveryDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.estimatedDeliveryDate, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.estimatedDeliveryDate, new { id = "estimatedDeliveryDate", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
             </div>
         </div>
 
         <div class="form-group">
             <b class="control-label col-md-2">Delivery Date</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.deliveryDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.deliveryDate, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.deliveryDate, new { id = "deliveryDate", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
             </div>
         </div>
 
         <div class="form-group">
             <b class="control-label col-md-2">Current Location</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.currentLocation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.currentLocation, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.currentLocation, new { id = "currentLocation", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <span class="error"><b id="location_error"></b></span>
             </div>
         </div>
 
@@ -71,14 +86,13 @@
         <div class="form-group">
             <b class="control-label col-md-2">Shipping Note</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.shippingNote, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.shippingNote, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.shippingNote, new { id = "shippingNote", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Update" class="btn btn-success" />
+                <input type="submit" value="Update" class="btn btn-success" onclick="return validateForm();"/>
             </div>
         </div>
     </div>

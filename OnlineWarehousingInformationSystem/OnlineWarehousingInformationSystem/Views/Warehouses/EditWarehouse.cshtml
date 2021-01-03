@@ -4,6 +4,59 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    function validateForm() {
+        var name = document.getElementById("warehouseName").value;
+        var country = document.getElementById("country").value;
+        var city = document.getElementById("city").value;
+        var address = document.getElementById("address").value;
+        var zip = document.getElementById("zip").value;
+        var phoneNumber = document.getElementById("phoneNumber").value;
+        var email = document.getElementById("email").value;
+        var maxCapacity = document.getElementById("maxCapacity").value;
+        if (name == "" || country == "" || city == "" || address == "" || zip == "" || phoneNumber == "" || email == "" || maxCapacity == "") {
+            alert("Please fill in mandatory fields");
+            return false;
+        }
+        if (name.length > 30) {
+            var error = "Max limit is 30";
+            document.getElementById("name_error").innerHTML = error;
+            return false;
+        }
+        if (country.length > 20) {
+            var error = "Max limit is 30";
+            document.getElementById("country_error").innerHTML = error;
+            return false;
+        }
+        if (city.length > 20) {
+            var error = "Max limit is 20";
+            document.getElementById("city_error").innerHTML = error;
+            return false;
+        }
+        if (address.length > 50) {
+            var error = "Max limit is 50";
+            document.getElementById("address_error").innerHTML = error;
+            return false;
+        }
+        if (zip.length > 5) {
+            var error = "Max limit is 5";
+            document.getElementById("zip_error").innerHTML = error;
+            return false;
+        }
+        if (phoneNumber.length > 15) {
+            var error = "Max limit is 15";
+            document.getElementById("phoneNumber_error").innerHTML = error;
+            return false;
+        }
+        if (email.length > 30) {
+            var error = "Max limit is 30";
+            document.getElementById("email_error").innerHTML = error;
+            return false;
+        }
+        return Form.submit();
+    }
+</script>
+
 <div class="row">
     <div class="row align-items-center">
         <div class="col-md-12">
@@ -27,39 +80,39 @@
         <div class="form-group">
             <b class="control-label col-md-2">Warehouse name</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.warehouseName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.warehouseName, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.warehouseName, new { id = "warehouseName", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <span class="error"><b id="name_error"></b></span>
             </div>
         </div>
 
         <div class="form-group">
             <b class="control-label col-md-2">Country</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.country, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.country, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.country, new { id = "country", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <span class="error"><b id="country_error"></b></span>
             </div>
         </div>
         <div class="form-group">
             <b class="control-label col-md-2">City</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.city, new { id = "city", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <span class="error"><b id="city_error"></b></span>
             </div>
         </div>
 
         <div class="form-group">
             <b class="control-label col-md-2">Address</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.warehouseAddress, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.warehouseAddress, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.warehouseAddress, new { id = "address", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <span class="error"><b id="address_error"></b></span>
             </div>
         </div>
 
         <div class="form-group">
             <b class="control-label col-md-2">ZIP</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ZIP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ZIP, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.ZIP, new { id = "zip", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <span class="error"><b id="zip_error"></b></span>
             </div>
         </div>
 
@@ -78,30 +131,29 @@
         <div class="form-group">
             <b class="control-label col-md-2">Phone Number</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.phoneNumber, new { id = "phoneNumber", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <span class="error"><b id="phoneNumber_error"></b></span>
             </div>
         </div>
 
         <div class="form-group">
             <b class="control-label col-md-2">Email</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.email, new { id = "email", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <span class="error"><b id="email_error"></b></span>
             </div>
         </div>
 
         <div class="form-group">
             <b class="control-label col-md-2">Max Capacity</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.maxCapacity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.maxCapacity, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.maxCapacity, new { id = "maxCapacity", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Update" class="btn btn-success" />
+                <input type="submit" value="Update" class="btn btn-success" onclick="return validateForm();"/>
             </div>
         </div>
     </div>
