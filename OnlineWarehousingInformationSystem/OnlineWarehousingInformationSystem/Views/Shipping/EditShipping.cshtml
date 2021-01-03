@@ -59,8 +59,12 @@
         <div class="form-group">
             <b class="control-label col-md-2">Current Status</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.currentStatus, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.currentStatus, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.currentStatus, new SelectListItem[]
+                 {
+                     new SelectListItem {Value="Processed", Text = "Processed", Selected = (Model.currentStatus == "Processed") },
+                     new SelectListItem {Value="Shipped", Text="Shipped", Selected = (Model.currentStatus == "Shipped") },
+                     new SelectListItem {Value="On The Way", Text="On The Way", Selected = (Model.currentStatus == "On The Way")},
+                     new SelectListItem {Value="Delivered", Text="Delivered", Selected = (Model.currentStatus == "Delivered")}})
             </div>
         </div>
 

@@ -67,8 +67,12 @@
         <div class="form-group">
             <b class="control-label col-md-2">Warehouse Status</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.warehouseStatus, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.warehouseStatus, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.warehouseStatus, new SelectListItem[]
+                 {
+                      new SelectListItem {Value="Stable", Text="Stable"},
+                      new SelectListItem {Value="On Maintanance", Text="On Maintanance"},
+                      new SelectListItem {Value="Closed", Text="Closed"},
+                      new SelectListItem {Value="Under Construct", Text="Under Construct"}})
             </div>
         </div>
 

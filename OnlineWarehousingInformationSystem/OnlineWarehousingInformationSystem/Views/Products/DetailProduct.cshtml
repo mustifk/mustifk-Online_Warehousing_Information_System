@@ -28,12 +28,12 @@
                     <div class="d-flex flex-column align-items-center text-center">
                         <div class="mt-3">
                             <h4>@item.productName</h4>
-                            @Html.ActionLink("Edit", "EditProduct", "Products", new { id = @item.productID }, null) |
+                            @Html.ActionLink("Edit", "EditProduct", "Products", new { id = @item.productID }, null)
                             @if (item.totalQuantity == 0)
                             {
+                                <span>|</span>
                                 @Html.ActionLink("Delete", "DeleteFromProducts", "Products", new { id = @item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this product?'); " })
                             }
-
                         </div>
                     </div>
                 </div>

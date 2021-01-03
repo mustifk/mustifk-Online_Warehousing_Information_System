@@ -55,7 +55,7 @@
                                     </p>
                                     @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
                                     {
-                                        @Html.ActionLink("Edit", "EditUser", "Users", new { id = @item.userID }, null) <p>|</p>
+                                        @Html.ActionLink("Edit", "EditUser", "Users", new { id = @item.userID }, null) <span>|</span>
                                         @Html.ActionLink("Delete", "DeleteFromUsers", "Users", new { id = @item.userID }, new { onclick = "return confirm('Are you sure you wish to delete this user?'); " })
                                     }
                                 </div>

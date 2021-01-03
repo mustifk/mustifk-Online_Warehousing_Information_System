@@ -31,7 +31,7 @@
             <tr>
                 <td>Warehouse ID</td>
                 <td>Warehouse Name</td>
-                @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+                @if (HttpContext.Current.Session["UserType"].ToString().Equals("2") || HttpContext.Current.Session["UserType"].ToString().Equals("1"))
                 {
                     <td>Phone Number</td>
                     <td>Email</td>
@@ -42,30 +42,32 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+            <tr>
 
-                    <td scope="row">@item.warehouseID</td>
-                    <td>@item.warehouseName</td>
-                    @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
-                    {
+                <td scope="row">@item.warehouseID</td>
+                <td>@item.warehouseName</td>
+                @if (HttpContext.Current.Session["UserType"].ToString().Equals("2") || HttpContext.Current.Session["UserType"].ToString().Equals("1"))
+                {
                     <td>@item.phoneNumber</td>
                     <td>@item.email</td>
                     <td>
-                        @Html.ActionLink("Detail", "DetailWarehouse", "Warehouses", new { id = item.warehouseID }, null) |
-                        @Html.ActionLink("Edit", "EditWarehouse", "Warehouses", new { id = item.warehouseID }, null) |
-                        @if (item.warehouseID > 1)
+                        @Html.ActionLink("Detail", "DetailWarehouse", "Warehouses", new { id = item.warehouseID }, null)
+                        @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
                         {
-                            @Html.ActionLink("Delete", "DeleteFromWarehouses", "Warehouses", new { id = @item.warehouseID }, new { onclick = "return confirm('Are you sure you wish to delete this warehouse with its contents?'); " })
-
-                        }
-                        else
-                        {
-                            <label style="color:red">Delete</label>
+                            <span>|</span>
+                            @Html.ActionLink("Edit", "EditWarehouse", "Warehouses", new { id = item.warehouseID }, null) <span>|</span>
+                            if (item.warehouseID > 1)
+                            {
+                                @Html.ActionLink("Delete", "DeleteFromWarehouses", "Warehouses", new { id = @item.warehouseID }, new { onclick = "return confirm('Are you sure you wish to delete this warehouse with its contents?'); " })
+                            }
+                            else
+                            {
+                                <label style="color:red">Delete</label>
+                            }
                         }
                     </td>
-                    }
-
-                </tr>
+                }
+            </tr>
             }
         </tbody>
     </table>
