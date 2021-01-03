@@ -31,7 +31,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
 
         public ActionResult DetailShipping(int id)
         {
-            var query = db.Shipping.Where(o => o.packageID == id).FirstOrDefault();
+            var query = db.Shipping.Where(o => o.packageID == id).ToList();
             return View(query);
         }
 

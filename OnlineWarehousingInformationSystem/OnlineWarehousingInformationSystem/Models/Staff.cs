@@ -14,11 +14,22 @@ namespace OnlineWarehousingInformationSystem.Models
     
     public partial class Staff
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Staff()
+        {
+            this.Orders = new HashSet<Orders>();
+            this.Shipments = new HashSet<Shipments>();
+        }
+    
         public int staffID { get; set; }
         public int userID { get; set; }
         public int warehouseID { get; set; }
         public string title { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Orders> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shipments> Shipments { get; set; }
         public virtual Users Users { get; set; }
         public virtual Warehouses Warehouses { get; set; }
     }

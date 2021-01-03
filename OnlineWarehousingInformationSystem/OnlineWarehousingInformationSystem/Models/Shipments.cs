@@ -22,6 +22,7 @@ namespace OnlineWarehousingInformationSystem.Models
         }
     
         public int shipmentID { get; set; }
+        public int staffID { get; set; }
         public int warehouseID { get; set; }
         public string shipmentDescription { get; set; }
         public System.DateTime shipmentDate { get; set; }
@@ -30,6 +31,7 @@ namespace OnlineWarehousingInformationSystem.Models
         public virtual ICollection<Packages> Packages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bills> Bills { get; set; }
+        public virtual Staff Staff { get; set; }
         public virtual Warehouses Warehouses { get; set; }
     }
 }

@@ -5,6 +5,7 @@
       <EntityTypeMapping TypeName="OWISDBModel.Orders">
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="staffID" ColumnName="staffID" />
           <ScalarProperty Name="warehouseID" ColumnName="warehouseID" />
           <ScalarProperty Name="orderDescription" ColumnName="orderDescription" />
           <ScalarProperty Name="orderDate" ColumnName="orderDate" />
@@ -43,9 +44,23 @@
       <EntityTypeMapping TypeName="OWISDBModel.Shipments">
         <MappingFragment StoreEntitySet="Shipments">
           <ScalarProperty Name="shipmentID" ColumnName="shipmentID" />
+          <ScalarProperty Name="staffID" ColumnName="staffID" />
           <ScalarProperty Name="warehouseID" ColumnName="warehouseID" />
           <ScalarProperty Name="shipmentDescription" ColumnName="shipmentDescription" />
           <ScalarProperty Name="shipmentDate" ColumnName="shipmentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shipping">
+      <EntityTypeMapping TypeName="OWISDBModel.Shipping">
+        <MappingFragment StoreEntitySet="Shipping">
+          <ScalarProperty Name="packageID" ColumnName="packageID" />
+          <ScalarProperty Name="shippingDate" ColumnName="shippingDate" />
+          <ScalarProperty Name="estimatedDeliveryDate" ColumnName="estimatedDeliveryDate" />
+          <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
+          <ScalarProperty Name="currentLocation" ColumnName="currentLocation" />
+          <ScalarProperty Name="currentStatus" ColumnName="currentStatus" />
+          <ScalarProperty Name="shippingNote" ColumnName="shippingNote" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -147,19 +162,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Shipping">
-      <EntityTypeMapping TypeName="OWISDBModel.Shipping">
-        <MappingFragment StoreEntitySet="Shipping">
-          <ScalarProperty Name="packageID" ColumnName="packageID" />
-          <ScalarProperty Name="shippingDate" ColumnName="shippingDate" />
-          <ScalarProperty Name="estimatedDeliveryDate" ColumnName="estimatedDeliveryDate" />
-          <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
-          <ScalarProperty Name="currentLocation" ColumnName="currentLocation" />
-          <ScalarProperty Name="currentStatus" ColumnName="currentStatus" />
-          <ScalarProperty Name="shippingNote" ColumnName="shippingNote" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="WarehouseContents">
       <EntityTypeMapping TypeName="OWISDBModel.WarehouseContents">
         <MappingFragment StoreEntitySet="WarehouseContents">
@@ -173,6 +175,8 @@
       <EntityTypeMapping TypeName="OWISDBModel.detailedPackages">
         <MappingFragment StoreEntitySet="detailedPackages">
           <ScalarProperty Name="packageID" ColumnName="packageID" />
+          <ScalarProperty Name="shipmentID" ColumnName="shipmentID" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
           <ScalarProperty Name="isProvided" ColumnName="isProvided" />
           <ScalarProperty Name="notes" ColumnName="notes" />
           <ScalarProperty Name="PackageWeightKG" ColumnName="PackageWeightKG" />
@@ -382,9 +386,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="getPackageFromDatetoNow" FunctionName="OWISDBModel.Store.getPackageFromDatetoNow">
+    <FunctionImportMapping FunctionImportName="getPackageFromDate" FunctionName="OWISDBModel.Store.getPackageFromDate">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="OWISDBModel.getPackageFromDatetoNow_Result">
+        <ComplexTypeMapping TypeName="OWISDBModel.getPackageFromDate_Result">
           <ScalarProperty Name="packageID" ColumnName="packageID" />
           <ScalarProperty Name="isProvided" ColumnName="isProvided" />
           <ScalarProperty Name="orderID" ColumnName="orderID" />

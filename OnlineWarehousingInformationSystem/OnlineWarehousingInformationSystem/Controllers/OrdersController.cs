@@ -37,7 +37,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
         {
             db.Orders.Add(order);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("DetailOrder",order.orderID);
         }
 
         public ActionResult DetailOrder(int id)

@@ -161,7 +161,7 @@
     <Compile Include="Models\getDeliveredShipping_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\getPackageFromDatetoNow_Result.cs">
+    <Compile Include="Models\getPackageFromDate_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getPaymentsFromDate_Result.cs">

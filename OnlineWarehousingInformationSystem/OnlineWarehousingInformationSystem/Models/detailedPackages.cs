@@ -15,6 +15,8 @@ namespace OnlineWarehousingInformationSystem.Models
     public partial class detailedPackages
     {
         public int packageID { get; set; }
+        public Nullable<int> shipmentID { get; set; }
+        public Nullable<int> orderID { get; set; }
         public bool isProvided { get; set; }
         public string notes { get; set; }
         public Nullable<double> PackageWeightKG { get; set; }

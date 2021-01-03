@@ -31,6 +31,7 @@ namespace OnlineWarehousingInformationSystem.Models
         public virtual DbSet<Packages> Packages { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Shipments> Shipments { get; set; }
+        public virtual DbSet<Shipping> Shipping { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<Users> Users { get; set; }
@@ -39,7 +40,6 @@ namespace OnlineWarehousingInformationSystem.Models
         public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<PackageContents> PackageContents { get; set; }
         public virtual DbSet<Payments> Payments { get; set; }
-        public virtual DbSet<Shipping> Shipping { get; set; }
         public virtual DbSet<WarehouseContents> WarehouseContents { get; set; }
         public virtual DbSet<detailedPackages> detailedPackages { get; set; }
         public virtual DbSet<localPackages> localPackages { get; set; }
@@ -91,13 +91,13 @@ namespace OnlineWarehousingInformationSystem.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getDeliveredShipping_Result>("getDeliveredShipping");
         }
     
-        public virtual ObjectResult<getPackageFromDatetoNow_Result> getPackageFromDatetoNow(Nullable<System.DateTime> date)
+        public virtual ObjectResult<getPackageFromDate_Result> getPackageFromDate(Nullable<System.DateTime> date)
         {
             var dateParameter = date.HasValue ?
                 new ObjectParameter("date", date) :
                 new ObjectParameter("date", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPackageFromDatetoNow_Result>("getPackageFromDatetoNow", dateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPackageFromDate_Result>("getPackageFromDate", dateParameter);
         }
     
         public virtual ObjectResult<getPaymentsFromDate_Result> getPaymentsFromDate(Nullable<System.DateTime> date)

@@ -11,7 +11,7 @@ namespace OnlineWarehousingInformationSystem.Models
 {
     using System;
     
-    public partial class getPackageFromDatetoNow_Result
+    public partial class getPackageFromDate_Result
     {
         public int packageID { get; set; }
         public bool isProvided { get; set; }
