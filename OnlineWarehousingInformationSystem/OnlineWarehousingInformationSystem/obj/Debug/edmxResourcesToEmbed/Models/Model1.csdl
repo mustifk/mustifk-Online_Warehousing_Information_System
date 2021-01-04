@@ -71,19 +71,6 @@
     <NavigationProperty Name="Staff" Relationship="Self.FK__Shipments__staff__46E78A0C" FromRole="Shipments" ToRole="Staff" />
     <NavigationProperty Name="Warehouses" Relationship="Self.FK__Shipments__wareh__47DBAE45" FromRole="Shipments" ToRole="Warehouses" />
   </EntityType>
-  <EntityType Name="Shipping">
-    <Key>
-      <PropertyRef Name="packageID" />
-    </Key>
-    <Property Name="packageID" Type="Int32" Nullable="false" />
-    <Property Name="shippingDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="estimatedDeliveryDate" Type="DateTime" Precision="0" />
-    <Property Name="deliveryDate" Type="DateTime" Precision="0" />
-    <Property Name="currentLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="currentStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="shippingNote" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Packages" Relationship="Self.FK__Shipping__packag__6383C8BA" FromRole="Shipping" ToRole="Packages" />
-  </EntityType>
   <EntityType Name="Staff">
     <Key>
       <PropertyRef Name="staffID" />
@@ -200,6 +187,22 @@
     <Property Name="amount" Type="Int32" Nullable="false" />
     <Property Name="operationDate" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Orders" Relationship="Self.FK__Payments__orderI__4BAC3F29" FromRole="Payments" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Shipping">
+    <Key>
+      <PropertyRef Name="packageID" />
+      <PropertyRef Name="shippingDate" />
+      <PropertyRef Name="currentLocation" />
+      <PropertyRef Name="currentStatus" />
+    </Key>
+    <Property Name="packageID" Type="Int32" Nullable="false" />
+    <Property Name="shippingDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estimatedDeliveryDate" Type="DateTime" Precision="0" />
+    <Property Name="deliveryDate" Type="DateTime" Precision="0" />
+    <Property Name="currentLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="currentStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="shippingNote" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Packages" Relationship="Self.FK__Shipping__packag__6383C8BA" FromRole="Shipping" ToRole="Packages" />
   </EntityType>
   <EntityType Name="WarehouseContents">
     <Key>
@@ -511,7 +514,7 @@
     <End Role="Packages" Type="Self.Packages" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="Shipping" Type="Self.Shipping" Multiplicity="0..1" />
+    <End Role="Shipping" Type="Self.Shipping" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Packages">
         <PropertyRef Name="packageID" />
@@ -644,7 +647,6 @@
     <EntitySet Name="Packages" EntityType="Self.Packages" />
     <EntitySet Name="Products" EntityType="Self.Products" />
     <EntitySet Name="Shipments" EntityType="Self.Shipments" />
-    <EntitySet Name="Shipping" EntityType="Self.Shipping" />
     <EntitySet Name="Staff" EntityType="Self.Staff" />
     <EntitySet Name="Suppliers" EntityType="Self.Suppliers" />
     <EntitySet Name="Users" EntityType="Self.Users" />
@@ -653,6 +655,7 @@
     <EntitySet Name="Inventory" EntityType="Self.Inventory" />
     <EntitySet Name="PackageContents" EntityType="Self.PackageContents" />
     <EntitySet Name="Payments" EntityType="Self.Payments" />
+    <EntitySet Name="Shipping" EntityType="Self.Shipping" />
     <EntitySet Name="WarehouseContents" EntityType="Self.WarehouseContents" />
     <EntitySet Name="detailedPackages" EntityType="Self.detailedPackages" />
     <EntitySet Name="localPackages" EntityType="Self.localPackages" />

@@ -51,19 +51,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Shipping">
-      <EntityTypeMapping TypeName="OWISDBModel.Shipping">
-        <MappingFragment StoreEntitySet="Shipping">
-          <ScalarProperty Name="packageID" ColumnName="packageID" />
-          <ScalarProperty Name="shippingDate" ColumnName="shippingDate" />
-          <ScalarProperty Name="estimatedDeliveryDate" ColumnName="estimatedDeliveryDate" />
-          <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
-          <ScalarProperty Name="currentLocation" ColumnName="currentLocation" />
-          <ScalarProperty Name="currentStatus" ColumnName="currentStatus" />
-          <ScalarProperty Name="shippingNote" ColumnName="shippingNote" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Staff">
       <EntityTypeMapping TypeName="OWISDBModel.Staff">
         <MappingFragment StoreEntitySet="Staff">
@@ -159,6 +146,19 @@
           <ScalarProperty Name="paymentType" ColumnName="paymentType" />
           <ScalarProperty Name="amount" ColumnName="amount" />
           <ScalarProperty Name="operationDate" ColumnName="operationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shipping">
+      <EntityTypeMapping TypeName="OWISDBModel.Shipping">
+        <MappingFragment StoreEntitySet="Shipping">
+          <ScalarProperty Name="packageID" ColumnName="packageID" />
+          <ScalarProperty Name="shippingDate" ColumnName="shippingDate" />
+          <ScalarProperty Name="estimatedDeliveryDate" ColumnName="estimatedDeliveryDate" />
+          <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
+          <ScalarProperty Name="currentLocation" ColumnName="currentLocation" />
+          <ScalarProperty Name="currentStatus" ColumnName="currentStatus" />
+          <ScalarProperty Name="shippingNote" ColumnName="shippingNote" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

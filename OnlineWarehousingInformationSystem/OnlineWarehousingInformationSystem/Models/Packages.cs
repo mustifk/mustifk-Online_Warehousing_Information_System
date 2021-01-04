@@ -18,6 +18,7 @@ namespace OnlineWarehousingInformationSystem.Models
         public Packages()
         {
             this.PackageContents = new HashSet<PackageContents>();
+            this.Shipping = new HashSet<Shipping>();
         }
     
         public int packageID { get; set; }
@@ -34,6 +35,7 @@ namespace OnlineWarehousingInformationSystem.Models
         public virtual ICollection<PackageContents> PackageContents { get; set; }
         public virtual Shipments Shipments { get; set; }
         public virtual Suppliers Suppliers { get; set; }
-        public virtual Shipping Shipping { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shipping> Shipping { get; set; }
     }
 }

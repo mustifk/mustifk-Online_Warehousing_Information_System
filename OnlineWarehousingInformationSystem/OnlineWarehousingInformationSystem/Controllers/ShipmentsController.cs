@@ -9,6 +9,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
 {
     public class ShipmentsController : Controller
     {
+        int shipmentID;
         public class MyViewModel
         {
             public List<Shipments> Shipment{ get; set; }
@@ -35,9 +36,27 @@ namespace OnlineWarehousingInformationSystem.Controllers
         [HttpPost]
         public ActionResult AddShipment(Shipments shipment)
         {
+            shipment.staffID = 1;
             db.Shipments.Add(shipment);
             db.SaveChanges();
-            return RedirectToAction("DetailShipment",shipment.shipmentID);
+            //shipmentID = shipment.shipmentID;
+            return RedirectToAction("AddBill", new { shipmentID = shipment.shipmentID });
+        }
+
+        public ActionResult AddBill(int shipmentID)
+        {
+            var bill = new Bills();
+            bill.shipmentID = shipmentID;
+            return View(bill);
+        }
+
+        [HttpPost]
+        public ActionResult AddBill(Bills bill)
+        {
+            //bill.shipmentID = shipmentID;
+            db.Bills.Add(bill);
+            db.SaveChanges();
+            return RedirectToAction("DetailShipment", new { shipmentID = bill.shipmentID});
         }
 
         public ActionResult DetailShipment(int id)
