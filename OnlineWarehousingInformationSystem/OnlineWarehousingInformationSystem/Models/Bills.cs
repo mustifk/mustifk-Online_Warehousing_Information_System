@@ -19,6 +19,7 @@ namespace OnlineWarehousingInformationSystem.Models
         public string paymentType { get; set; }
         public int amount { get; set; }
         public System.DateTime operationDate { get; set; }
+        public int billID { get; set; }
     
         public virtual Shipments Shipments { get; set; }
     }

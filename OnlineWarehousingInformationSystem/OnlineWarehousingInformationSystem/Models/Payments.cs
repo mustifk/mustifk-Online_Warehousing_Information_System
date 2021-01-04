@@ -19,7 +19,6 @@ namespace OnlineWarehousingInformationSystem.Models
         public string paymentType { get; set; }
         public int amount { get; set; }
         public System.DateTime operationDate { get; set; }
-    
-        public virtual Orders Orders { get; set; }
+        public int paymentID { get; set; }
     }
 }

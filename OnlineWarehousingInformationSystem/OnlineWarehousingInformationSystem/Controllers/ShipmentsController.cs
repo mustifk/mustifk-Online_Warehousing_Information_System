@@ -53,10 +53,10 @@ namespace OnlineWarehousingInformationSystem.Controllers
         [HttpPost]
         public ActionResult AddBill(Bills bill)
         {
-            //bill.shipmentID = shipmentID;
+            int id = bill.shipmentID;
             db.Bills.Add(bill);
             db.SaveChanges();
-            return RedirectToAction("DetailShipment", new { shipmentID = bill.shipmentID});
+            return RedirectToAction("Index");
         }
 
         public ActionResult DetailShipment(int id)

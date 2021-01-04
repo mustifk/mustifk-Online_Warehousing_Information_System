@@ -44,45 +44,46 @@
 @using (Html.BeginForm(FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <h4>Bill</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.shipmentID)
-        <div class="form-group">
-            <b class="control-label col-md-2">Invoice ID</b>
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.invoiceID, new { id = "invoiceID", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-                <span class="error"><b id="id_error"></b></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <b class="control-label col-md-2">Payment Type</b>
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.paymentType, new { id = "type", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-                <span class="error"><b id="type_error"></b></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <b class="control-label col-md-2">Amount</b>
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.amount, new { id = "amount", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            </div>
-        </div>
-
-         <div class="form-group">
-            <b class="control-label col-md-2">Operation Date</b>
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.operationDate, new { id = "date", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add" class="btn btn-success" onclick="return validateForm();" />
-            </div>
+<div class="form-horizontal">
+    <h4>Bill</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.shipmentID)
+    @Html.HiddenFor(model => model.billID)
+    <div class="form-group">
+        <b class="control-label col-md-2">Invoice ID</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.invoiceID, new { id = "invoiceID", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+            <span class="error"><b id="id_error"></b></span>
         </div>
     </div>
+
+    <div class="form-group">
+        <b class="control-label col-md-2">Payment Type</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.paymentType, new { id = "type", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+            <span class="error"><b id="type_error"></b></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b class="control-label col-md-2">Amount</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.amount, new { id = "amount", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b class="control-label col-md-2">Operation Date</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.operationDate, new { id = "date", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add" class="btn btn-success" onclick="return validateForm();" />
+        </div>
+    </div>
+</div>
 }

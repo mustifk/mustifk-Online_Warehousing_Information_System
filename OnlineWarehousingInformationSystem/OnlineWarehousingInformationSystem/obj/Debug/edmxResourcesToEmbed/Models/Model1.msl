@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="OWISDBModelStoreContainer" CdmEntityContainer="OWISDBEntities">
+    <EntitySetMapping Name="Bills">
+      <EntityTypeMapping TypeName="OWISDBModel.Bills">
+        <MappingFragment StoreEntitySet="Bills">
+          <ScalarProperty Name="shipmentID" ColumnName="shipmentID" />
+          <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
+          <ScalarProperty Name="paymentType" ColumnName="paymentType" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="operationDate" ColumnName="operationDate" />
+          <ScalarProperty Name="billID" ColumnName="billID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="OWISDBModel.Orders">
         <MappingFragment StoreEntitySet="Orders">
@@ -26,6 +38,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="OWISDBModel.Payments">
+        <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
+          <ScalarProperty Name="paymentType" ColumnName="paymentType" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="operationDate" ColumnName="operationDate" />
+          <ScalarProperty Name="paymentID" ColumnName="paymentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="OWISDBModel.Products">
         <MappingFragment StoreEntitySet="Products">
@@ -48,6 +72,19 @@
           <ScalarProperty Name="warehouseID" ColumnName="warehouseID" />
           <ScalarProperty Name="shipmentDescription" ColumnName="shipmentDescription" />
           <ScalarProperty Name="shipmentDate" ColumnName="shipmentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shipping">
+      <EntityTypeMapping TypeName="OWISDBModel.Shipping">
+        <MappingFragment StoreEntitySet="Shipping">
+          <ScalarProperty Name="packageID" ColumnName="packageID" />
+          <ScalarProperty Name="shippingDate" ColumnName="shippingDate" />
+          <ScalarProperty Name="estimatedDeliveryDate" ColumnName="estimatedDeliveryDate" />
+          <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
+          <ScalarProperty Name="currentLocation" ColumnName="currentLocation" />
+          <ScalarProperty Name="currentStatus" ColumnName="currentStatus" />
+          <ScalarProperty Name="shippingNote" ColumnName="shippingNote" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -109,17 +146,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Bills">
-      <EntityTypeMapping TypeName="OWISDBModel.Bills">
-        <MappingFragment StoreEntitySet="Bills">
-          <ScalarProperty Name="shipmentID" ColumnName="shipmentID" />
-          <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
-          <ScalarProperty Name="paymentType" ColumnName="paymentType" />
-          <ScalarProperty Name="amount" ColumnName="amount" />
-          <ScalarProperty Name="operationDate" ColumnName="operationDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Inventory">
       <EntityTypeMapping TypeName="OWISDBModel.Inventory">
         <MappingFragment StoreEntitySet="Inventory">
@@ -135,30 +161,6 @@
           <ScalarProperty Name="packageID" ColumnName="packageID" />
           <ScalarProperty Name="productID" ColumnName="productID" />
           <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Payments">
-      <EntityTypeMapping TypeName="OWISDBModel.Payments">
-        <MappingFragment StoreEntitySet="Payments">
-          <ScalarProperty Name="orderID" ColumnName="orderID" />
-          <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
-          <ScalarProperty Name="paymentType" ColumnName="paymentType" />
-          <ScalarProperty Name="amount" ColumnName="amount" />
-          <ScalarProperty Name="operationDate" ColumnName="operationDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Shipping">
-      <EntityTypeMapping TypeName="OWISDBModel.Shipping">
-        <MappingFragment StoreEntitySet="Shipping">
-          <ScalarProperty Name="packageID" ColumnName="packageID" />
-          <ScalarProperty Name="shippingDate" ColumnName="shippingDate" />
-          <ScalarProperty Name="estimatedDeliveryDate" ColumnName="estimatedDeliveryDate" />
-          <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
-          <ScalarProperty Name="currentLocation" ColumnName="currentLocation" />
-          <ScalarProperty Name="currentStatus" ColumnName="currentStatus" />
-          <ScalarProperty Name="shippingNote" ColumnName="shippingNote" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

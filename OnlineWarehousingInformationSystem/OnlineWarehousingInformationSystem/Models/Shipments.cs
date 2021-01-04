@@ -17,8 +17,8 @@ namespace OnlineWarehousingInformationSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Shipments()
         {
-            this.Packages = new HashSet<Packages>();
             this.Bills = new HashSet<Bills>();
+            this.Packages = new HashSet<Packages>();
         }
     
         public int shipmentID { get; set; }
@@ -28,9 +28,9 @@ namespace OnlineWarehousingInformationSystem.Models
         public System.DateTime shipmentDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Packages> Packages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bills> Bills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Packages> Packages { get; set; }
         public virtual Staff Staff { get; set; }
         public virtual Warehouses Warehouses { get; set; }
     }
