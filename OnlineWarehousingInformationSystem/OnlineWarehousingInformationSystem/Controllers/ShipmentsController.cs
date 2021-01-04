@@ -9,7 +9,6 @@ namespace OnlineWarehousingInformationSystem.Controllers
 {
     public class ShipmentsController : Controller
     {
-        int shipmentID;
         public class MyViewModel
         {
             public List<Shipments> Shipment{ get; set; }
@@ -39,7 +38,6 @@ namespace OnlineWarehousingInformationSystem.Controllers
             shipment.staffID = 1;
             db.Shipments.Add(shipment);
             db.SaveChanges();
-            //shipmentID = shipment.shipmentID;
             return RedirectToAction("AddBill", new { shipmentID = shipment.shipmentID });
         }
 
@@ -47,13 +45,19 @@ namespace OnlineWarehousingInformationSystem.Controllers
         {
             var bill = new Bills();
             bill.shipmentID = shipmentID;
+            var query = (from ships in db.Shipments
+                                    where ships.shipmentID == shipmentID
+                                    select new
+                                    {
+                                        ships.shipmentDate
+                                    }).ToList();
+            bill.operationDate = query.FirstOrDefault().shipmentDate;
             return View(bill);
         }
 
         [HttpPost]
         public ActionResult AddBill(Bills bill)
         {
-            int id = bill.shipmentID;
             db.Bills.Add(bill);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -64,7 +68,6 @@ namespace OnlineWarehousingInformationSystem.Controllers
             MyViewModel query = new MyViewModel();
             query.Shipment = db.Shipments.Where(o => o.shipmentID == id).Select(o => o).ToList();
             query.Packages = db.Packages.Where(o => o.shipmentID == id).Select(o => o).ToList();
-
             return View(query);
         }
 

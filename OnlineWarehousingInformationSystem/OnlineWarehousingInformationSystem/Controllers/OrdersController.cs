@@ -35,9 +35,32 @@ namespace OnlineWarehousingInformationSystem.Controllers
         [HttpPost]
         public ActionResult AddOrder(Orders order)
         {
+            order.staffID = 1;
             db.Orders.Add(order);
             db.SaveChanges();
-            return RedirectToAction("DetailOrder",order.orderID);
+            return RedirectToAction("AddPayment", new { orderID = order.orderID });
+        }
+
+        public ActionResult AddPayment(int orderID)
+        {
+            var payment = new Payments();
+            payment.orderID = orderID;
+            var query = (from order in db.Orders
+                         where order.orderID == orderID
+                         select new
+                         {
+                             order.orderDate
+                         }).ToList();
+            payment.operationDate = query.FirstOrDefault().orderDate;
+            return View(payment);
+        }
+
+        [HttpPost]
+        public ActionResult AddPayment(Payments payment)
+        {
+            db.Payments.Add(payment);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult DetailOrder(int id)

@@ -9,8 +9,7 @@
         var id = document.getElementById("invoiceID").value;
         var type = document.getElementById("type").value;
         var amount = document.getElementById("amount").value;
-        var date = document.getElementById("date").value;
-        if (id == "" || type == "" || amount == "" || date == "") {
+        if (id == "" || type == "" || amount == "") {
             alert("Please fill in mandatory fields");
             return false;
         }
@@ -50,6 +49,7 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.shipmentID)
     @Html.HiddenFor(model => model.billID)
+    @Html.HiddenFor(model => model.operationDate)
     <div class="form-group">
         <b class="control-label col-md-2">Invoice ID</b>
         <div class="col-md-10">
@@ -70,13 +70,6 @@
         <b class="control-label col-md-2">Amount</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.amount, new { id = "amount", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <b class="control-label col-md-2">Operation Date</b>
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.operationDate, new { id = "date", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
         </div>
     </div>
 

@@ -29,6 +29,7 @@ namespace OnlineWarehousingInformationSystem.Models
         public string packageStatus { get; set; }
         public string notes { get; set; }
     
+        public virtual Orders Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PackageContents> PackageContents { get; set; }
         public virtual Shipments Shipments { get; set; }

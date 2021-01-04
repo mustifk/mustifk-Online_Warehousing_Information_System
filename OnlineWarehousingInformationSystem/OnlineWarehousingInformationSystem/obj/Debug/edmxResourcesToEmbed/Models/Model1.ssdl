@@ -486,6 +486,18 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Packages__orderI__59063A47">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+    <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="Packages">
+        <PropertyRef Name="orderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Packages__shipme__59FA5E80">
     <End Role="Shipments" Type="Self.Shipments" Multiplicity="0..1" />
     <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
@@ -509,6 +521,20 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
       </Principal>
       <Dependent Role="Packages">
         <PropertyRef Name="supplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payments__orderI__4BAC3F29">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="orderID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -865,6 +891,10 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
       <End Role="Products" EntitySet="Products" />
       <End Role="PackageContents" EntitySet="PackageContents" />
     </AssociationSet>
+    <AssociationSet Name="FK__Packages__orderI__59063A47" Association="Self.FK__Packages__orderI__59063A47">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Packages" EntitySet="Packages" />
+    </AssociationSet>
     <AssociationSet Name="FK__Packages__shipme__59FA5E80" Association="Self.FK__Packages__shipme__59FA5E80">
       <End Role="Shipments" EntitySet="Shipments" />
       <End Role="Packages" EntitySet="Packages" />
@@ -872,6 +902,10 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
     <AssociationSet Name="FK__Packages__suppli__5AEE82B9" Association="Self.FK__Packages__suppli__5AEE82B9">
       <End Role="Suppliers" EntitySet="Suppliers" />
       <End Role="Packages" EntitySet="Packages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payments__orderI__4BAC3F29" Association="Self.FK__Payments__orderI__4BAC3F29">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Payments" EntitySet="Payments" />
     </AssociationSet>
     <AssociationSet Name="FK__Shipments__staff__46E78A0C" Association="Self.FK__Shipments__staff__46E78A0C">
       <End Role="Staff" EntitySet="Staff" />

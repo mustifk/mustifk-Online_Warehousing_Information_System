@@ -62,8 +62,8 @@ namespace OnlineWarehousingInformationSystem.Controllers
         public ActionResult EditPackage(Packages package)
         {
             Packages u_package = db.Packages.Where(o => o.packageID == package.packageID).FirstOrDefault();
-            u_package.createdTime = package.createdTime;
             u_package.packageStatus = package.packageStatus;
+            u_package.supplierID = package.supplierID;
             u_package.notes = package.notes;
             db.SaveChanges();
             return RedirectToAction("Index");

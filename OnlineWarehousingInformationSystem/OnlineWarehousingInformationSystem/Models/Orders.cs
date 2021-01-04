@@ -14,6 +14,13 @@ namespace OnlineWarehousingInformationSystem.Models
     
     public partial class Orders
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Orders()
+        {
+            this.Packages = new HashSet<Packages>();
+            this.Payments = new HashSet<Payments>();
+        }
+    
         public int orderID { get; set; }
         public int staffID { get; set; }
         public int warehouseID { get; set; }
@@ -22,5 +29,9 @@ namespace OnlineWarehousingInformationSystem.Models
     
         public virtual Staff Staff { get; set; }
         public virtual Warehouses Warehouses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Packages> Packages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Payments> Payments { get; set; }
     }
 }
