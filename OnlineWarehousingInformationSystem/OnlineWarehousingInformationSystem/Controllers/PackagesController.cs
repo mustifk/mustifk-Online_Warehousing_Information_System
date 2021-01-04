@@ -11,6 +11,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
     {
         // GET: Packages
         OWISDBEntities db = new OWISDBEntities();
+        int pID;
         public ActionResult Index()
         {
             var shipping = db.Packages.Where(o => o.packageID > 0).Select(o => o);
@@ -76,10 +77,18 @@ namespace OnlineWarehousingInformationSystem.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult UpdateQuantity(int id)
+        public ActionResult AddProduct(int packageID)
         {
-            var query = db.PackageContents.Where(p => p.productID == id).FirstOrDefault();
+            pID = packageID;
             return View();
+        }
+        [HttpPost]
+        public ActionResult AddProduct(PackageContents pc)
+        {
+            pc.packageID = pID;
+            db.PackageContents.Add(pc);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }

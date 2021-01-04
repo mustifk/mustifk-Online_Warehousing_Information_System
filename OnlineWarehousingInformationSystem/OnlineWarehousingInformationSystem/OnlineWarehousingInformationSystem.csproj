@@ -379,9 +379,9 @@
     <Content Include="Views\Packages\AddPackage.cshtml" />
     <Content Include="Views\Packages\DetailPackage.cshtml" />
     <Content Include="Views\Packages\EditPackage.cshtml" />
-    <Content Include="Views\Packages\UpdateQuantity.cshtml" />
     <Content Include="Views\Shipments\AddBill.cshtml" />
     <Content Include="Views\Orders\AddPayment.cshtml" />
+    <Content Include="Views\Packages\AddProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

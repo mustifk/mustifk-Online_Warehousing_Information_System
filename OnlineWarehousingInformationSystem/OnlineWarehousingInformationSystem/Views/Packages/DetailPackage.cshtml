@@ -12,6 +12,7 @@
             </div>
             <div class="col-md-2">
                 <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Packages")'" />
+                <input type="button" class="btn btn-primary" value="Add Product" onclick="location.href='@Url.Action("AddProduct", "Packages", new { packageID = ViewBag.id})'" />
             </div>
         </div>
     </div>
@@ -36,7 +37,6 @@
                     <td>@item.Products.productName</td>
                     <td>@item.Products.productImage</td>
                     <td>@item.productQuantity</td>
-                    <td>@Html.ActionLink("Update", "UpdateQuantity", "Packages", new { id= @item.productID }, null)</td>
                 </tr>
             }
         </tbody>
