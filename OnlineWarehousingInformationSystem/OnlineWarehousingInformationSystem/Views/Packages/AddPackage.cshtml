@@ -20,45 +20,50 @@
 @using (Html.BeginForm(FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <h4>Package</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.packageID)
-        @if (Session["type"].Equals("False"))
-        {
-            <div class="form-group">
-                <b class="control-label col-md-2">Supplier</b>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.supplierID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.supplierID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        }
+<div class="form-horizontal">
+    <h4>Package</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.packageID)
+    @if (Session["type"].Equals("False"))
+    {
+        @Html.HiddenFor(model => model.orderID)
         <div class="form-group">
-            <b class="control-label col-md-2">Status</b>
+            <b class="control-label col-md-2">Supplier</b>
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.packageStatus, new SelectListItem[]
-          {
-              new SelectListItem {Value="Preparing", Text = "Preparing" },
-              new SelectListItem {Value="Pending", Text="Pending"},
-              new SelectListItem {Value="Ready For Shipping", Text="Ready For Shipping"},
-              new SelectListItem {Value="On Shipping", Text="On Shipping"}})
+                @Html.EditorFor(model => model.supplierID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.supplierID, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            <b class="control-label col-md-2">Notes</b>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add" class="btn btn-success" />
-            </div>
+    }
+    else
+    {
+        @Html.HiddenFor(model => model.shipmentID)
+    }
+    <div class="form-group">
+        <b class="control-label col-md-2">Status</b>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.packageStatus, new SelectListItem[]
+      {
+          new SelectListItem {Value="Preparing", Text = "Preparing" },
+          new SelectListItem {Value="Pending", Text="Pending"},
+          new SelectListItem {Value="Ready For Shipping", Text="Ready For Shipping"},
+          new SelectListItem {Value="On Shipping", Text="On Shipping"}})
         </div>
     </div>
+
+    <div class="form-group">
+        <b class="control-label col-md-2">Notes</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add" class="btn btn-success" />
+        </div>
+    </div>
+</div>
 }
 

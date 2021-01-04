@@ -4,19 +4,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="row">
     <div class="row align-items-center">
-        <div class="col-md-10">
+        <div class="col-md-3">
             <h3>Warehouses Contents</h3>
         </div>
-        <div class="col-md-2">
-            <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Warehouses")'" />
+        <div class="row col-md-9 text-right">
+            <ul>
+                <li style="text-decoration:none;display:inline-block">
+                    <input type="button" class="btn btn-primary" value="Return to Warehouse" onclick="location.href='@Request.UrlReferrer'" />
+                </li>
+                <li style="text-decoration:none;display:inline-block">
+                    <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Warehouses")'" />
+                </li>
+            </ul>
         </div>
-
     </div>
 </div>
-
 
 <div class="table-responsive">
     <table class="table table-hover ">
