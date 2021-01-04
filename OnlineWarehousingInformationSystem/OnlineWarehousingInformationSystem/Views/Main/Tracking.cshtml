@@ -36,7 +36,7 @@
     }
     else
     {
-        foreach (var item in Model)
+        foreach (var item in Model.Package)
         {
             <div class="card2">
                 <h2 style="padding:15px 0 0 25px ">
@@ -87,7 +87,7 @@
                         </ul>
                         <ul id="progressbar" class="active text-center" style="margin-top:-50px;">
                             <li class="active step0"></li>
-                            @if (item.packageStatus == "Preparing" || item.packageStatus == "On The Way" || item.packageStatus == "Delivered")
+                            @if (item.packageStatus == "On Shipping" || item.Shipping.currentStatus == "Delivered")
                             {
                                 <li class="active step0"></li>
                             }
@@ -95,7 +95,7 @@
                             {
                                 <li class="step0"></li>
                             }
-                            @if (item.packageStatus == "On The Way" || item.packageStatus == "Delivered")
+                            @if (item.Shipping.currentStatus == "On The Way" || item.Shipping.currentStatus == "Delivered")
                             {
                                 <li class="active step0"></li>
                             }
@@ -103,7 +103,7 @@
                             {
                                 <li class="step0"></li>
                             }
-                            @if (item.packageStatus == "Delivered")
+                            @if (item.Shipping.currentStatus == "Delivered")
                             {
                                 <li class="active step0"></li>
                             }
@@ -164,34 +164,37 @@
                             <h2>Shipping Detail</h2>
                             <div class="col-md-6">
                                 <ul style="text-decoration: none; list-style: none;padding:0;">
-                                    <li>Package Shipping Date</li>
-                                    <li>Estimated Delivery Date</li>
-                                    <li>Delivery Date</li>
-                                    <li>Current Location</li>
-                                    <li>Supplier</li>
+                                    @foreach (var tem in Model.Shipping)
+                                    {
+                                        <li>Package Shipping Date</li>
+                                        if (tem.estimatedDeliveryDate == null)
+                                        {
+                                            <li>Estimated Delivery Date</li>
+                                        }
+                                        else
+                                        {
+                                            <li>Delivery Date</li>
+                                        }
+                                        <li>Current Status</li>
+                                        <li>Current Location</li>
+                                        <li>Supplier</li>
+                                    }
                                 </ul>
                             </div>
                             <div class="col-md-6">
                                 <ul style="text-decoration: none;list-style: none;padding:0;color:#283c8b">
-                                    @foreach (var tem in item.Shipping)
+                                    @foreach (var tem in Model.Shipping)
                                     {
                                         <li>@tem.shippingDate</li>
                                         if (tem.estimatedDeliveryDate == null)
                                         {
-                                            <li>-</li>
+                                            <li>@tem.deliveryDate</li>
                                         }
                                         else
                                         {
-                                            <li>@tem.estimatedDeliveryDate.Date </li>
+                                            <li>@tem.estimatedDeliveryDate </li>
                                         }
-                                        if (tem.deliveryDate == null)
-                                        {
-                                            <li>-</li>
-                                        }
-                                        else
-                                        {
-                                            <li>@tem.deliveryDate.Date </li>
-                                        }
+                                        <li>@tem.currentStatus</li>
                                         <li>@tem.currentLocation</li>
                                         <li>@item.Suppliers.supplierName</li>
                                     }

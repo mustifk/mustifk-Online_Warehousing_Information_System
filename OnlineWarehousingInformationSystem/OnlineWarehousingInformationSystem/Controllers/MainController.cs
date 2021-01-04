@@ -7,6 +7,17 @@ using OnlineWarehousingInformationSystem.Models;
 
 namespace OnlineWarehousingInformationSystem.Controllers
 {
+    public class MyViewModel
+    {
+        public List<Packages> Package { get; set; }
+        public List<Shipping> Shipping { get; set; }
+
+        public MyViewModel()
+        {
+            this.Shipping = new List<Shipping>();
+            this.Package = new List<Packages>();
+        }
+    }
     public class MainController : Controller
     {
         OWISDBEntities db = new OWISDBEntities();
@@ -31,13 +42,30 @@ namespace OnlineWarehousingInformationSystem.Controllers
 
         public ActionResult Tracking(int search = -1)
         {
-            var package = db.Packages.Where(x => x.packageID == search || search == null).ToList();
-            if (package.Count == 0 && search != -1)
+            int id;
+            MyViewModel package = new MyViewModel();
+            package.Package = db.Packages.Where(x => x.packageID == search || search == null).ToList();
+            if (search != -1)
             {
-                ViewData["non"] = true;
+                if (package.Package.Count() == 0)
+                {
+                    ViewData["non"] = true;
+                    return View(package);
+                }
+                else
+                {
+                    id = package.Package.First().packageID;
+                    package.Shipping = db.Shipping.Where(x => x.packageID == id).ToList();
+                    ViewData["non"] = false;
+                    return View(package);
+                }
                 return View(package);
             }
-            ViewData["non"] = false;
+            else if (search == -1)
+            {
+                ViewData["non"] = false;
+                return View(package);
+            }
             return View(package);
         }
     }

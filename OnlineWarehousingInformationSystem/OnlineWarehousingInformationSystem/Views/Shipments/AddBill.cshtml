@@ -59,12 +59,17 @@
     </div>
 
     <div class="form-group">
-        <b class="control-label col-md-2">Payment Type</b>
+        <b class="control-label col-md-2">Status</b>
         <div class="col-md-10">
-            @Html.TextBoxFor(model => model.paymentType, new { id = "type", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="type_error"></b></span>
+            @Html.DropDownListFor(model => model.paymentType, new SelectListItem[]
+      {
+          new SelectListItem {Value="Cash", Text = "Cash" },
+          new SelectListItem {Value="Check", Text="Check"},
+          new SelectListItem {Value="Debit Card", Text="Debit Card"},
+          new SelectListItem {Value="Credit Card", Text="Credit Card"}})
         </div>
     </div>
+
 
     <div class="form-group">
         <b class="control-label col-md-2">Amount</b>
