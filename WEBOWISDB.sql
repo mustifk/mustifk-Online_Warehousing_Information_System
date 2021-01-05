@@ -139,7 +139,7 @@ FOREIGN KEY(supplierID) REFERENCES owis.Suppliers(supplierID) ON DELETE CASCADE
 );
 
 CREATE TABLE owis.PackageContents( /* The contents of the packages */
-contentID INT IDENTITY PRIMARY KEY,
+contentID INT PRIMARY KEY IDENTITY,
 packageID INT NOT NULL,
 productID INT NOT NULL,
 productQuantity INT NOT NULL DEFAULT 0,
@@ -1283,8 +1283,8 @@ INSERT INTO owis.Suppliers(supplierName, country, city, supplierAddress, phoneNu
 VALUES('Can Tarým', 'Türkiye', 'Ýstanbul', 'Bahçelievler', '542-256-9685', 'cantarim@gmail.com')
 
 
-INSERT INTO owis.Packages(isProvided, orderID, supplierID, createdTime)
-VALUES(0, 1, 2, '2020-07-02')
+INSERT INTO owis.Packages(isProvided, orderID, supplierID, createdTime,packageStatus)
+VALUES(0, 1, 2, '2020-07-02','On Shipping')
 
 INSERT INTO owis.Packages(isProvided, orderID, supplierID, createdTime)
 VALUES(0, 2, 2, '2020-11-08')
@@ -1295,8 +1295,8 @@ VALUES(1, 1, 1, '2020-11-07')
 INSERT INTO owis.Packages(isProvided, shipmentID, supplierID, createdTime)
 VALUES(1, 1, 3, '2020-11-08')
 
-INSERT INTO owis.Packages(isProvided, orderID, supplierID, createdTime)
-VALUES(0, 3, 5, '2020-10-13')
+INSERT INTO owis.Packages(isProvided, orderID, supplierID, createdTime,packageStatus)
+VALUES(0, 3, 5, '2020-10-13','On Shipping')
 
 INSERT INTO owis.Packages(isProvided, orderID, supplierID, createdTime)
 VALUES(0, 6, 4, '2020-11-06')
@@ -1330,25 +1330,25 @@ INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
 VALUES(6, 9, 160)
 
 
-INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
-VALUES(1, '2020-11-10', '2020-11-15', 'Adana')
+INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation, currentStatus)
+VALUES(1, '2020-11-10', '2020-11-15', 'Adana','Delivered')
 
-INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
+INSERT INTO owis.Shipping(packageID, shippingDate, estimatedDeliveryDate, currentLocation)
 VALUES(2, '2020-11-10', '2020-11-15', 'Bolu')
 
-INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
+INSERT INTO owis.Shipping(packageID, shippingDate, estimatedDeliveryDate, currentLocation)
 VALUES(3, '2020-06-10', '2020-06-12', 'Antalya')
 
 INSERT INTO owis.Shipping(packageID, shippingDate, estimatedDeliveryDate, currentLocation)
 VALUES(4, '2020-12-15', '2020-12-18', 'Ankara')
 
-INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
-VALUES(5, '2020-11-10', '2020-11-15', 'Hatay')
+INSERT INTO owis.Shipping(packageID, shippingDate, estimatedDeliveryDate, currentLocation,currentStatus)
+VALUES(5, '2020-11-10', '2020-11-15', 'Hatay','Delivered')
 
-INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
+INSERT INTO owis.Shipping(packageID, shippingDate, estimatedDeliveryDate, currentLocation)
 VALUES(6, '2020-11-10', '2020-11-15', 'Þanlýurfa')
 
-INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
+INSERT INTO owis.Shipping(packageID, shippingDate, estimatedDeliveryDate, currentLocation)
 VALUES(7, '2020-06-10', '2020-06-12', 'Niðde')
 
 INSERT INTO owis.Shipping(packageID, shippingDate, estimatedDeliveryDate, currentLocation)
