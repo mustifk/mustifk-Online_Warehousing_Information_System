@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "DetailPackage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -39,9 +38,11 @@
             {
                 <tr>
                     <td scope="row">@item.productID</td>
-                    <td>@item.Products.productName</td>
+                    <td>@item.productName</td>
                     <td>@item.productQuantity</td>
-                    <td>@Html.ActionLink("Update","UpdatePackageProduct", "Packages", new { packageID = ViewBag.id })</td>
+                    <td>@Html.ActionLink("Update","UpdatePackageProduct", "Packages", new { packageID = item.packageID, productID = item.productID }) |
+                        @Html.ActionLink("Delete", "DeleteProducts", "Packages", new { packageID = item.packageID, productID = item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this product from package?'); " })
+                    </td>
                 </tr>
             }
         </tbody>

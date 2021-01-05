@@ -161,6 +161,9 @@
     <Compile Include="Models\getDeliveredShipping_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getPackageContents.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getPackageFromDate_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -388,6 +391,7 @@
     <Content Include="Views\Shipments\AddBill.cshtml" />
     <Content Include="Views\Orders\AddPayment.cshtml" />
     <Content Include="Views\Packages\AddProduct.cshtml" />
+    <Content Include="Views\Packages\UpdatePackageProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

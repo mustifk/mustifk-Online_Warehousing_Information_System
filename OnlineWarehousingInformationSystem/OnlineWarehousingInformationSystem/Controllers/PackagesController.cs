@@ -47,7 +47,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
 
         public ActionResult DetailPackage(int id)
         {
-            var query = db.PackageContents.Where(o => o.packageID == id).Select(o => o);
+            var query = db.getPackageContents.Where(o => o.packageID == id).ToList();
             ViewBag.id = id;
             return View(query);
         }
@@ -91,11 +91,32 @@ namespace OnlineWarehousingInformationSystem.Controllers
         {
             pc.packageID = Convert.ToInt32(Session["packageID"]);
             /*db.PackageContents.Add(pc);*/
-            db.Database.ExecuteSqlCommand("INSERT INTO owis.PackageContents(packageID, productID, productQuantity)" +
-            "Values('" + pc.packageID + "','" + pc.productID + "','" + pc.productQuantity + "')");
+            /*db.Database.ExecuteSqlCommand("INSERT INTO owis.PackageContents(packageID, productID, productQuantity)" +
+            "Values('" + pc.packageID + "','" + pc.productID + "','" + pc.productQuantity + "')");*/
+            db.PackageContents.Add(pc);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public RedirectToRouteResult DeleteProducts(int packageID, int productID)
+        {
+            db.PackageContents.RemoveRange(db.PackageContents.Where(p => p.packageID == packageID).Where(p => p.productID == productID));
+            db.SaveChanges();
+            return RedirectToAction("DetailPackage", new { id = packageID});
+        }
 
+        public ActionResult UpdatePackageProduct(int packageID, int productID)
+        {
+            var query = db.PackageContents.Where(p => p.packageID == packageID).Where(p => p.productID == productID).Select(p => p);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePackageProduct(PackageContents pc)
+        {
+            PackageContents u_pc = db.PackageContents.Where(p => p.packageID == pc.packageID).Where(p => p.productID == pc.productID).FirstOrDefault();
+            u_pc.productQuantity = pc.productQuantity;
+            db.SaveChanges();
+            return RedirectToAction("DetailPackage", new { id = pc.packageID });
+        }
     }
 }

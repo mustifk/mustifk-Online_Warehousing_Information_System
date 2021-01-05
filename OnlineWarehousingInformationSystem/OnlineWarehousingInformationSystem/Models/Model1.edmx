@@ -197,6 +197,19 @@ warning 6002: The table/view 'OWISDB.owis.detailedPackages' does not have a prim
           <Property Name="createdTime" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'OWISDB.owis.getPackageContents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="getPackageContents">
+          <Key>
+            <PropertyRef Name="packageID" />
+            <PropertyRef Name="productID" />
+            <PropertyRef Name="productName" />
+          </Key>
+          <Property Name="packageID" Type="int" Nullable="false" />
+          <Property Name="productID" Type="int" Nullable="false" />
+          <Property Name="productName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="productQuantity" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'OWISDB.owis.localPackages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="localPackages">
           <Key>
@@ -739,6 +752,14 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
     [detailedPackages].[createdTime] AS [createdTime]
     FROM [owis].[detailedPackages] AS [detailedPackages]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="getPackageContents" EntityType="Self.getPackageContents" store:Type="Views" store:Schema="owis">
+            <DefiningQuery>SELECT 
+    [getPackageContents].[packageID] AS [packageID], 
+    [getPackageContents].[productID] AS [productID], 
+    [getPackageContents].[productName] AS [productName], 
+    [getPackageContents].[productQuantity] AS [productQuantity]
+    FROM [owis].[getPackageContents] AS [getPackageContents]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="localPackages" EntityType="Self.localPackages" store:Type="Views" store:Schema="owis">
             <DefiningQuery>SELECT 
     [localPackages].[packageID] AS [packageID], 
@@ -1163,6 +1184,17 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="createdTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="getPackageContents">
+          <Key>
+            <PropertyRef Name="packageID" />
+            <PropertyRef Name="productID" />
+            <PropertyRef Name="productName" />
+          </Key>
+          <Property Name="packageID" Type="Int32" Nullable="false" />
+          <Property Name="productID" Type="Int32" Nullable="false" />
+          <Property Name="productName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="productQuantity" Type="Int32" />
+        </EntityType>
         <EntityType Name="localPackages">
           <Key>
             <PropertyRef Name="packageID" />
@@ -1581,6 +1613,7 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
           <EntitySet Name="Inventory" EntityType="Self.Inventory" />
           <EntitySet Name="WarehouseContents" EntityType="Self.WarehouseContents" />
           <EntitySet Name="detailedPackages" EntityType="Self.detailedPackages" />
+          <EntitySet Name="getPackageContents" EntityType="Self.getPackageContents" />
           <EntitySet Name="localPackages" EntityType="Self.localPackages" />
           <EntitySet Name="orderPaidByCreditCard" EntityType="Self.orderPaidByCreditCard" />
           <EntitySet Name="ordersFromAbroad" EntityType="Self.ordersFromAbroad" />
@@ -2028,6 +2061,16 @@ warning 6002: The table/view 'OWISDB.owis.warehouseStaffCount' does not have a p
                 <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="city" ColumnName="city" />
                 <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="getPackageContents">
+            <EntityTypeMapping TypeName="OWISDBModel.getPackageContents">
+              <MappingFragment StoreEntitySet="getPackageContents">
+                <ScalarProperty Name="packageID" ColumnName="packageID" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

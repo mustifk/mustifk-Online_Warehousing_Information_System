@@ -393,6 +393,18 @@ FROM
 GROUP BY w.warehouseID,w.warehouseName,w.currentCapacity,w.country,w.city
 GO
 
+CREATE VIEW getPackageContents
+AS
+SELECT
+	pc.packageID,
+	pc.productID,
+	p.productName,
+	pc.productQuantity
+	FROM owis.Products p INNER JOIN 
+	(SELECT packageID, productID, SUM(pc.productQuantity) AS productQuantity
+	FROM owis.PackageContents pc GROUP BY pc.packageID, pc.productID) 
+	AS pc ON p.productID = pc.productID
+GO
 
 /*============================= FUNCTIONS =============================*/
 CREATE FUNCTION owis.getStockFromWarehouse(@productID INT,@warehouseID INT) /* Returns the current stock of a spesific product in a spesific warehouse */ 
@@ -523,6 +535,8 @@ AS
 		SET totalQuantity = totalQuantity + @productQuantityInPackage
 		WHERE productID = @productID
 		END
+
+		select contentID from owis.PackageContents where @@ROWCOUNT > 0 and contentID = scope_identity()
  END
  GO
 
