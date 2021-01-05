@@ -480,7 +480,7 @@ AS
 GO
 CREATE TRIGGER updateStockQuantity  /* Update product's stock in product table when a new package content is added */
 ON owis.PackageContents
-INSTEAD OF INSERT 
+AFTER INSERT 
 AS
  BEGIN
 	DECLARE @packageID INT
@@ -496,49 +496,56 @@ AS
 	IF (@isProvided = 1)
 		IF(@total_quantity >= @productQuantityInPackage)
 			BEGIN
-
-			IF EXISTS( SELECT * FROM owis.PackageContents WHERE productID = @productID )
-					BEGIN
-					UPDATE owis.PackageContents
-					SET productQuantity = productQuantity + @productQuantityInPackage
-					WHERE packageID = @packageID AND productID = @productID
-				END
-			ELSE
-				BEGIN
-					INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
-					VALUES(@packageID, @productID, @productQuantityInPackage)
-				END
-			
 			UPDATE owis.Products
 			SET totalQuantity = totalQuantity - @productQuantityInPackage
 			WHERE productID = @productID
 			END
 		ELSE
 			BEGIN
-			PRINT 'ERROR --> Quantity of product is not enough in stock'
+				ALTER TABLE owis.PackageContents DISABLE TRIGGER afterDelete
+				DELETE TOP(1) FROM owis.PackageContents WHERE packageID = @packageID AND productID = @productID AND productQuantity = @productQuantityInPackage
+				ALTER TABLE owis.PackageContents ENABLE TRIGGER afterDelete
 			END
 	ELSE IF(@isProvided = 0)
 		BEGIN
-		IF EXISTS( SELECT * FROM owis.PackageContents WHERE productID = @productID)
-			BEGIN
-				UPDATE owis.PackageContents
-				SET productQuantity = productQuantity + @productQuantityInPackage
-					WHERE packageID = @packageID AND productID = @productID
-			END
-		ELSE
-			BEGIN
-				INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
-				VALUES(@packageID, @productID, @productQuantityInPackage)
-			END
-			
 		UPDATE owis.Products
 		SET totalQuantity = totalQuantity + @productQuantityInPackage
 		WHERE productID = @productID
 		END
 
-		select contentID from owis.PackageContents where @@ROWCOUNT > 0 and contentID = scope_identity()
  END
  GO
+
+CREATE TRIGGER afterDelete
+ON owis.packageContents
+AFTER DELETE 
+AS
+ BEGIN
+	DECLARE @packageID INT
+	DECLARE @isProvided BIT
+	DECLARE @productQuantityInPackage INT
+	DECLARE @productID INT
+
+	SELECT @packageID = packageID, @productQuantityInPackage = SUM(productQuantity), @productID = productID FROM deleted GROUP BY packageID, productID
+	SELECT @isProvided = isProvided FROM owis.Packages WHERE packageID = @packageID
+	
+	IF (@isProvided = 1)
+		BEGIN
+		UPDATE owis.Products
+		SET totalQuantity = totalQuantity + @productQuantityInPackage
+		WHERE productID = @productID
+		END
+		
+	ELSE IF(@isProvided = 0)
+		BEGIN
+		UPDATE owis.Products
+		SET totalQuantity = totalQuantity - @productQuantityInPackage
+		WHERE productID = @productID
+		END
+
+ END
+ GO
+
 
 CREATE TRIGGER addInventoryStock /* Insert a new record to inventory when a new product is added */
 ON owis.Products
