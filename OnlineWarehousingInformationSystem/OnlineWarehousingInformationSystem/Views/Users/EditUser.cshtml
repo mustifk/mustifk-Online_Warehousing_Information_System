@@ -92,14 +92,14 @@
         <b class="control-label col-md-2">User name</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.userName, new { id = "userName", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="name_error"></b></span>
+            <b id="name_error" style="color:red;font-weight:300"></b>
         </div>
     </div>
     <div class="form-group">
         <b class="control-label col-md-2">Password</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.userPassword, new { id = "password", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="password_error"></b></span>
+            <b id="password_error" style="color:red;font-weight:300"></b>
         </div>
     </div>
     <div class="form-group">
@@ -116,7 +116,7 @@
         <b class="control-label col-md-2">First name</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.firstName, new { id = "firstName", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="first_error"></b></span>
+            <b id="first_error" style="color:red;font-weight:300"></b>
         </div>
     </div>
 
@@ -124,14 +124,14 @@
         <b class="control-label col-md-2">Last Name</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.lastName, new { id = "lastName", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="last_error"></b></span>
+            <b id="last_error" style="color:red;font-weight:300"></b>
         </div>
     </div>
     <div class="form-group">
         <b class="control-label col-md-2">Age</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.userAge, new { id = "age", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="age_error"></b></span>
+            <b id="age_error" style="color:red;font-weight:300"></b>
         </div>
     </div>
 
@@ -148,7 +148,7 @@
         <b class="control-label col-md-2">Address</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.userAddress, new { id = "address", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="address_error"></b></span>
+            <b id="address_error" style="color:red;font-weight:300"></b>
         </div>
     </div>
 
@@ -156,7 +156,7 @@
         <b class="control-label col-md-2">E-mail</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.email, new { id = "email", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="email_error"></b></span>
+            <b id="email_error" style="color:red;font-weight:300"></b>
         </div>
     </div>
 
@@ -164,7 +164,7 @@
         <b class="control-label col-md-2">Phone Number</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.phoneNumber, new { id = "phoneNumber", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="phoneNumber_error"></b></span>
+            <b id="phoneNumber_error" style="color:red;font-weight:300"></b>
         </div>
     </div>
 

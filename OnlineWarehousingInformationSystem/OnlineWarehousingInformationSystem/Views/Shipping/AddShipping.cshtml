@@ -43,7 +43,7 @@
         <b class="control-label col-md-2">Shipping Date</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.shippingDate, new { @value = DateTime.Now, id = "shippingDate", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="date_error"></b></span>
+            <b id="date_error" style="color:red;font-weight:300"></b>
         </div>
     </div>
 
@@ -65,7 +65,7 @@
         <b class="control-label col-md-2">Current Location</b>
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.currentLocation, new { id = "currentLocation", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            <span class="error"><b id="location_error"></b></span>
+            <b id="location_error" style="color:red;font-weight:300"></b>
         </div>
     </div>
 

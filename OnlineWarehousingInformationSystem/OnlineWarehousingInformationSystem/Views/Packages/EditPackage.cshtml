@@ -49,7 +49,7 @@
                 <b class="control-label col-md-2">Supplier</b>
                 <div class="col-md-10">
                     @Html.TextBoxFor(model => model.supplierID, new { id = "id", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-                    <span class="error"><b id="id_error"></b></span>
+                    <b id="desc_error" style="color:red;font-weight:300"></b>
                 </div>
             </div>
         }
@@ -69,7 +69,7 @@
             <b class="control-label col-md-2">Notes</b>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.notes, new { id = "notes", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-                <span class="error"><b id="note_error"></b></span>
+                <b id="note_error" style="color:red;font-weight:300"></b>
             </div>
         </div>
         <div class="form-group">
