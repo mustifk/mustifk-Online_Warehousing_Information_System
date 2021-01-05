@@ -468,7 +468,7 @@ AS
 GO
 CREATE TRIGGER updateStockQuantity  /* Update product's stock in product table when a new package content is added */
 ON owis.PackageContents
-AFTER INSERT 
+INSTEAD OF INSERT 
 AS
  BEGIN
 	DECLARE @packageID INT
@@ -485,7 +485,7 @@ AS
 		IF(@total_quantity >= @productQuantityInPackage)
 			BEGIN
 
-			IF EXISTS( SELECT * FROM owis.Inventory WHERE productID IN (SELECT productID FROM inserted) GROUP BY productID HAVING COUNT(*) >= 1)
+			IF EXISTS( SELECT * FROM owis.PackageContents WHERE productID IN (SELECT productID FROM inserted) GROUP BY productID HAVING COUNT(*) >= 1)
 				BEGIN
 					UPDATE owis.PackageContents
 					SET productQuantity = productQuantity + @productQuantityInPackage
@@ -508,7 +508,7 @@ AS
 	ELSE IF(@isProvided = 0)
 		BEGIN
 
-		IF EXISTS( SELECT * FROM owis.Inventory WHERE productID IN (SELECT productID FROM inserted) GROUP BY productID HAVING COUNT(*) >= 1)
+		IF EXISTS( SELECT * FROM owis.PackageContents WHERE productID IN (SELECT productID FROM inserted) GROUP BY productID HAVING COUNT(*) >= 1)
 				BEGIN
 					UPDATE owis.PackageContents
 					SET productQuantity = productQuantity + @productQuantityInPackage

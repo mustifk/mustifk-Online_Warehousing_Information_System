@@ -79,15 +79,17 @@ namespace OnlineWarehousingInformationSystem.Controllers
 
         public ActionResult AddProduct(int packageID)
         {
-            pID = packageID;
-            var package = (from pc in db.Packages where pc.packageID == packageID select new { pc.isProvided}).ToList();
-            ViewBag.type = package.FirstOrDefault().isProvided;
-            return View();
+            //pID = packageID;
+            PackageContents pc = new PackageContents();
+            //ViewBag.packageID = packageID;
+           // var package = (from pc in db.Packages where pc.packageID == packageID select new { pc.isProvided}).ToList();
+           // ViewBag.type = package.FirstOrDefault().isProvided;
+            return View(pc);
         }
         [HttpPost]
         public ActionResult AddProduct(PackageContents pc)
         {
-            pc.packageID = pID;
+            //pc.packageID = pID;
             db.PackageContents.Add(pc);
             db.SaveChanges();
             return RedirectToAction("Index");

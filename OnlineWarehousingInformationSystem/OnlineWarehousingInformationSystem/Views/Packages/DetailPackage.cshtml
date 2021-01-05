@@ -29,9 +29,8 @@
             <tr>
                 <td>Product ID</td>
                 <td>Product Name</td>
-                <td>Product Image</td>
                 <td>Quantity</td>
-                <td>Operation</td>
+                <td></td>
             </tr>
         </thead>
         <hr />
@@ -41,8 +40,8 @@
                 <tr>
                     <td scope="row">@item.productID</td>
                     <td>@item.Products.productName</td>
-                    <td>@item.Products.productImage</td>
                     <td>@item.productQuantity</td>
+                    <td>@Html.ActionLink("Update","UpdatePackageProduct", "Packages", new { packageID = ViewBag.id })</td>
                 </tr>
             }
         </tbody>
