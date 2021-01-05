@@ -485,8 +485,8 @@ AS
 		IF(@total_quantity >= @productQuantityInPackage)
 			BEGIN
 
-			IF EXISTS( SELECT * FROM owis.PackageContents WHERE productID IN (SELECT productID FROM inserted) GROUP BY productID HAVING COUNT(*) >= 1)
-				BEGIN
+			IF EXISTS( SELECT * FROM owis.PackageContents WHERE productID = @productID )
+					BEGIN
 					UPDATE owis.PackageContents
 					SET productQuantity = productQuantity + @productQuantityInPackage
 					WHERE packageID = @packageID AND productID = @productID
@@ -507,18 +507,17 @@ AS
 			END
 	ELSE IF(@isProvided = 0)
 		BEGIN
-
-		IF EXISTS( SELECT * FROM owis.PackageContents WHERE productID IN (SELECT productID FROM inserted) GROUP BY productID HAVING COUNT(*) >= 1)
-				BEGIN
-					UPDATE owis.PackageContents
-					SET productQuantity = productQuantity + @productQuantityInPackage
+		IF EXISTS( SELECT * FROM owis.PackageContents WHERE productID = @productID)
+			BEGIN
+				UPDATE owis.PackageContents
+				SET productQuantity = productQuantity + @productQuantityInPackage
 					WHERE packageID = @packageID AND productID = @productID
-				END
-			ELSE
-				BEGIN
-					INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
-					VALUES(@packageID, @productID, @productQuantityInPackage)
-				END
+			END
+		ELSE
+			BEGIN
+				INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
+				VALUES(@packageID, @productID, @productQuantityInPackage)
+			END
 			
 		UPDATE owis.Products
 		SET totalQuantity = totalQuantity + @productQuantityInPackage
