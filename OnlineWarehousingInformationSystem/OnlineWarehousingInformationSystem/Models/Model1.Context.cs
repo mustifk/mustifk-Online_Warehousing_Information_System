@@ -41,8 +41,8 @@ namespace OnlineWarehousingInformationSystem.Models
         public virtual DbSet<Warehouses> Warehouses { get; set; }
         public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<WarehouseContents> WarehouseContents { get; set; }
-        public virtual DbSet<getPackageContents> getPackageContents { get; set; }
         public virtual DbSet<detailedPackages> detailedPackages { get; set; }
+        public virtual DbSet<getPackageContents> getPackageContents { get; set; }
         public virtual DbSet<localPackages> localPackages { get; set; }
         public virtual DbSet<orderPaidByCreditCard> orderPaidByCreditCard { get; set; }
         public virtual DbSet<ordersFromAbroad> ordersFromAbroad { get; set; }
