@@ -16,9 +16,11 @@ namespace OnlineWarehousingInformationSystem.Controllers
             var shipping = db.Shipping.Where(o => o.packageID > 0).Select(o => o);
             return View(shipping);
         }
-        public ActionResult AddShipping()
+        public ActionResult AddShipping(int id)
         {
-            return View();
+            Shipping ship = new Shipping();
+            ship.packageID = id;
+            return View(ship);
         }
 
         [HttpPost]
@@ -26,7 +28,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
         {
             db.Shipping.Add(shipping);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Packages");
         }
 
         public ActionResult DetailShipping(int id)

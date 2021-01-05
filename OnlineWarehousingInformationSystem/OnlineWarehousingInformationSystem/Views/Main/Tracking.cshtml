@@ -132,8 +132,6 @@
                                     <li>Package Created At</li>
                                     <li>Status</li>
                                     <li>Note</li>
-                                    <li></li>
-                                    <li></li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
@@ -186,13 +184,17 @@
                                     @foreach (var tem in Model.Shipping)
                                     {
                                         <li>@tem.shippingDate</li>
-                                        if (tem.estimatedDeliveryDate == null)
+                                        if (tem.estimatedDeliveryDate != null)
                                         {
-                                            <li>@tem.deliveryDate</li>
+                                            <li> @tem.estimatedDeliveryDate </li>
+                                        }
+                                        else if (tem.deliveryDate != null)
+                                        {
+                                            <li>@tem.deliveryDate </li>
                                         }
                                         else
                                         {
-                                            <li>@tem.estimatedDeliveryDate </li>
+                                            <br />
                                         }
                                         <li>@tem.currentStatus</li>
                                         <li>@tem.currentLocation</li>

@@ -27,9 +27,6 @@
             <div class="col-md-10">
                 <h3>Add Shipping</h3>
             </div>
-            <div class="col-md-2">
-                <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Shipping")'" />
-            </div>
         </div>
     </div>
 </div>
@@ -37,65 +34,66 @@
 @using (Html.BeginForm(FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <h4>Shipping</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.packageID)
-        <div class="form-group">
-            <b class="control-label col-md-2">Shipping Date</b>
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.shippingDate, new { id = "shippingDate", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-                <span class="error"><b id="date_error"></b></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <b class="control-label col-md-2">Estimated Delivery Date</b>
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.estimatedDeliveryDate, new { id = "estimatedDeliveryDate", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <b class="control-label col-md-2">Delivery Date</b>
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.deliveryDate, new { id = "deliveryDate", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <b class="control-label col-md-2">Current Location</b>
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.currentLocation, new { id = "currentLocation", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-                <span class="error"><b id="location_error"></b></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <b class="control-label col-md-2">Current Status</b>
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.currentStatus, new SelectListItem[]
-                  {
-                      new SelectListItem {Value="Processed", Text = "Processed" },
-                      new SelectListItem {Value="Shipped", Text="Shipped"},
-                      new SelectListItem {Value="On The Way", Text="On The Way"},
-                      new SelectListItem {Value="Delivered", Text="Delivered"}})
-            </div>
-
-        <div class="form-group">
-            <b class="control-label col-md-2">Shipping Note</b>
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.shippingNote, new { id = "shippingNote", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add" class="btn btn-success" onclick="return validateForm();"/>
-            </div>
+<div class="form-horizontal">
+    <h4>Shipping</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.packageID)
+    <div class="form-group">
+        <b class="control-label col-md-2">Shipping Date</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.shippingDate, new { @value = DateTime.Now, id = "shippingDate", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+            <span class="error"><b id="date_error"></b></span>
         </div>
     </div>
+
+    <div class="form-group">
+        <b class="control-label col-md-2">Estimated Delivery Date</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.estimatedDeliveryDate, new { id = "estimatedDeliveryDate", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b class="control-label col-md-2">Delivery Date</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.deliveryDate, new { id = "deliveryDate", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b class="control-label col-md-2">Current Location</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.currentLocation, new { id = "currentLocation", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+            <span class="error"><b id="location_error"></b></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b class="control-label col-md-2">Current Status</b>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.currentStatus, new SelectListItem[]
+              {
+                  new SelectListItem {Value="Processed", Text = "Processed" },
+                  new SelectListItem {Value="Shipped", Text="Shipped"},
+                  new SelectListItem {Value="On The Way", Text="On The Way"},
+                  new SelectListItem {Value="Delivered", Text="Delivered"}})
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b class="control-label col-md-2">Shipping Note</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.shippingNote, new { id = "shippingNote", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add" class="btn btn-success" onclick="return validateForm();" />
+        </div>
+    </div>
+</div>
 }
 
 
