@@ -204,6 +204,17 @@
     <NavigationProperty Name="Products" Relationship="Self.FK__Warehouse__produ__33D4B598" FromRole="WarehouseContents" ToRole="Products" />
     <NavigationProperty Name="Warehouses" Relationship="Self.FK__Warehouse__wareh__32E0915F" FromRole="WarehouseContents" ToRole="Warehouses" />
   </EntityType>
+  <EntityType Name="getPackageContents">
+    <Key>
+      <PropertyRef Name="packageID" />
+      <PropertyRef Name="productID" />
+      <PropertyRef Name="productName" />
+    </Key>
+    <Property Name="packageID" Type="Int32" Nullable="false" />
+    <Property Name="productID" Type="Int32" Nullable="false" />
+    <Property Name="productName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="productQuantity" Type="Int32" />
+  </EntityType>
   <EntityType Name="detailedPackages">
     <Key>
       <PropertyRef Name="packageID" />
@@ -227,17 +238,6 @@
     <Property Name="country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="createdTime" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
-  <EntityType Name="getPackageContents">
-    <Key>
-      <PropertyRef Name="packageID" />
-      <PropertyRef Name="productID" />
-      <PropertyRef Name="productName" />
-    </Key>
-    <Property Name="packageID" Type="Int32" Nullable="false" />
-    <Property Name="productID" Type="Int32" Nullable="false" />
-    <Property Name="productName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="productQuantity" Type="Int32" />
   </EntityType>
   <EntityType Name="localPackages">
     <Key>
@@ -656,8 +656,8 @@
     <EntitySet Name="Warehouses" EntityType="Self.Warehouses" />
     <EntitySet Name="Inventory" EntityType="Self.Inventory" />
     <EntitySet Name="WarehouseContents" EntityType="Self.WarehouseContents" />
-    <EntitySet Name="detailedPackages" EntityType="Self.detailedPackages" />
     <EntitySet Name="getPackageContents" EntityType="Self.getPackageContents" />
+    <EntitySet Name="detailedPackages" EntityType="Self.detailedPackages" />
     <EntitySet Name="localPackages" EntityType="Self.localPackages" />
     <EntitySet Name="orderPaidByCreditCard" EntityType="Self.orderPaidByCreditCard" />
     <EntitySet Name="ordersFromAbroad" EntityType="Self.ordersFromAbroad" />
