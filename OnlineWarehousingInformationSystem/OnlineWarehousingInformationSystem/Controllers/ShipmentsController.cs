@@ -35,7 +35,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
         [HttpPost]
         public ActionResult AddShipment(Shipments shipment)
         {
-            shipment.staffID = 1;
+            shipment.staffID = Convert.ToInt32(Session["StaffID"].ToString());
             db.Shipments.Add(shipment);
             db.SaveChanges();
             return RedirectToAction("AddBill", new { shipmentID = shipment.shipmentID });

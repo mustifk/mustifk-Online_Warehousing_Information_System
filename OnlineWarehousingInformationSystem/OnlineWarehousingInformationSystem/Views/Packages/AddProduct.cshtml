@@ -12,6 +12,10 @@
             alert("Please fill in mandatory fields");
             return false;
         }
+        if ('@ViewBag.type'.toString() == "1") {
+            document.getElementById("q_error").innerHTML = "aksdnasndmasdn";
+            return false;
+        }
         return Form.submit();
     }
 </script>
@@ -55,6 +59,8 @@
                 <input type="submit" value="Update" class="btn btn-success" onclick="return validateForm();"/>
             </div>
         </div>
+
+        <span class="error"><b id="q_er"></b></span>
     </div>
 }
 

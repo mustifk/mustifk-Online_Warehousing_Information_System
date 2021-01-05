@@ -34,10 +34,6 @@
                         <input type="password" name="Password" required autocomplete="off" placeholder="Password" style="width:97%"/>
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" })
                     </div>
-                    <div style="margin:auto !important;display:inline;">
-                        <div style="width:30%;float:left;margin-left:19%;color:dimgray">Remember Me</div>
-                        <div style="width:5%;float:right;margin-right:40%">@Html.CheckBoxFor(model => model.remember)</div>
-                    </div>
                     <br />
                     <button class="button button-block">Sign In</button>
 

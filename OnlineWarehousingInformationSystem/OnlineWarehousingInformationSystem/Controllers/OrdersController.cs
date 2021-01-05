@@ -35,7 +35,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
         [HttpPost]
         public ActionResult AddOrder(Orders order)
         {
-            order.staffID = 1;
+            order.staffID = Convert.ToInt32(Session["StaffID"].ToString());
             db.Orders.Add(order);
             db.SaveChanges();
             return RedirectToAction("AddPayment", new { orderID = order.orderID });

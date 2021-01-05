@@ -289,8 +289,14 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\adminman.png" />
+    <Content Include="Content\images\adminwoman.png" />
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\staffman.png" />
+    <Content Include="Content\images\staffwoman.png" />
+    <Content Include="Content\images\userman.png" />
+    <Content Include="Content\images\userwoman.png" />
     <Content Include="Content\Style.css" />
     <Content Include="Content\main.css" />
     <Content Include="favicon.ico" />

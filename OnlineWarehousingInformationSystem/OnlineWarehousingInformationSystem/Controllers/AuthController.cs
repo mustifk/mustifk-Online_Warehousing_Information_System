@@ -40,6 +40,12 @@ namespace OnlineWarehousingInformationSystem.Controllers
                     Session["UserName"] = user.FirstOrDefault().userName;
                     Session["UserID"] = user.FirstOrDefault().userID;
                     Session["UserType"] = user.FirstOrDefault().userType;
+                    int userID = Convert.ToInt32(Session["UserID"].ToString());
+                    if (user.FirstOrDefault().userType.Equals("1"))
+                    {
+                        var staff = (from st in db.Staff where st.userID == userID select new { st.staffID, st.warehouseID }).ToList();
+                        Session["StaffID"] = staff.FirstOrDefault().staffID;
+                    }
                     return Redirect("/Main/Index");
                 }
                 else

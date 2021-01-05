@@ -43,7 +43,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
             package.createdTime = DateTime.Now;
             db.Packages.Add(package);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AddShipping", "Shipping", new { id = package.packageID});
         }
 
         public ActionResult DetailPackage(int id)
@@ -80,6 +80,8 @@ namespace OnlineWarehousingInformationSystem.Controllers
         public ActionResult AddProduct(int packageID)
         {
             pID = packageID;
+            var package = (from pc in db.Packages where pc.packageID == packageID select new { pc.isProvided}).ToList();
+            ViewBag.type = package.FirstOrDefault().isProvided;
             return View();
         }
         [HttpPost]
