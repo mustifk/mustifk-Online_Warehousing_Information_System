@@ -35,7 +35,8 @@ namespace OnlineWarehousingInformationSystem.Controllers
         [HttpPost]
         public ActionResult AddOrder(Orders order)
         {
-            order.staffID = Convert.ToInt32(Session["StaffID"].ToString());
+            if(Session["StaffID"] != null)
+                order.staffID = Convert.ToInt32(Session["StaffID"].ToString());
             db.Orders.Add(order);
             db.SaveChanges();
             return RedirectToAction("AddPayment", new { orderID = order.orderID });
@@ -58,9 +59,13 @@ namespace OnlineWarehousingInformationSystem.Controllers
         [HttpPost]
         public ActionResult AddPayment(Payments payment)
         {
-            db.Payments.Add(payment);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                db.Payments.Add(payment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(payment);    
         }
 
         public ActionResult DetailOrder(int id)

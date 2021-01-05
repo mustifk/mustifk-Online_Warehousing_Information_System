@@ -4,6 +4,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    function validateForm() {
+        var id = document.getElementById("id").value;
+        var notes = document.getElementById("notes").value;
+        if (id == "" || notes == "") {
+            alert("Please fill in mandatory fields");
+            return false;
+        }
+        if (notes.length > 100) {
+            var error = "Max limit is 100";
+            document.getElementById("note_error").innerHTML = error;
+            return false;
+        }
+        return Form.submit();
+    }
+</script>
+
 <div class="row">
     <div class="row align-items-center">
         <div class="col-md-12">
@@ -31,8 +48,8 @@
             <div class="form-group">
                 <b class="control-label col-md-2">Supplier</b>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.supplierID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.supplierID, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.supplierID, new { id = "id", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                    <span class="error"><b id="id_error"></b></span>
                 </div>
             </div>
         }
@@ -51,8 +68,8 @@
         <div class="form-group">
             <b class="control-label col-md-2">Notes</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.notes, new { id = "notes", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <span class="error"><b id="note_error"></b></span>
             </div>
         </div>
         <div class="form-group">
