@@ -87,7 +87,7 @@
                         </ul>
                         <ul id="progressbar" class="active text-center" style="margin-top:-50px;">
                             <li class="active step0"></li>
-                            @if (item.packageStatus == "On Shipping" || item.Shipping.currentStatus == "Delivered")
+                            @if (item.packageStatus == "On Shipping" || item.Shipping.currentStatus == "Shipped" || item.Shipping.currentStatus == "Delivered")
                             {
                                 <li class="active step0"></li>
                             }
