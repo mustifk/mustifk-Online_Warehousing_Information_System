@@ -11,13 +11,9 @@ namespace OnlineWarehousingInformationSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
-
+    
     public partial class PackageContents
     {
-        [HiddenInput(DisplayValue = false)]
-        [Key]
         public int contentID { get; set; }
         public int packageID { get; set; }
         public int productID { get; set; }

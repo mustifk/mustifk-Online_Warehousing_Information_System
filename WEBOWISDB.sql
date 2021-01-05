@@ -139,7 +139,7 @@ FOREIGN KEY(supplierID) REFERENCES owis.Suppliers(supplierID) ON DELETE CASCADE
 );
 
 CREATE TABLE owis.PackageContents( /* The contents of the packages */
-contentID INT PRIMARY KEY IDENTITY,
+contentID INT IDENTITY PRIMARY KEY NOT NULL,
 packageID INT NOT NULL,
 productID INT NOT NULL,
 productQuantity INT NOT NULL DEFAULT 0,

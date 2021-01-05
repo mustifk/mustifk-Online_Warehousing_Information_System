@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="54f8cf45f15e4f13b445255dc0e0dec7" Name="Diagram1">
+      <Diagram DiagramId="0a05959391b948689f1798939964d9c7" Name="Diagram1">
         <EntityTypeShape EntityType="OWISDBModel.Bills" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="OWISDBModel.Orders" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="OWISDBModel.PackageContents" Width="1.5" PointX="13.5" PointY="8.75" IsExpanded="true" />

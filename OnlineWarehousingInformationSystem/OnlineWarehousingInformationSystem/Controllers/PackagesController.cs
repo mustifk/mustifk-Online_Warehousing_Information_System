@@ -90,7 +90,9 @@ namespace OnlineWarehousingInformationSystem.Controllers
         public ActionResult AddProduct(PackageContents pc)
         {
             pc.packageID = Convert.ToInt32(Session["packageID"]);
-            db.PackageContents.Add(pc);
+            /*db.PackageContents.Add(pc);*/
+            db.Database.ExecuteSqlCommand("INSERT INTO owis.PackageContents(packageID, productID, productQuantity)" +
+            "Values('" + pc.packageID + "','" + pc.productID + "','" + pc.productQuantity + "')");
             db.SaveChanges();
             return RedirectToAction("Index");
         }
