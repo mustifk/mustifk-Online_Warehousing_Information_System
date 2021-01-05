@@ -29,6 +29,7 @@ namespace OnlineWarehousingInformationSystem.Models
     
         public virtual DbSet<Bills> Bills { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<PackageContents> PackageContents { get; set; }
         public virtual DbSet<Packages> Packages { get; set; }
         public virtual DbSet<Payments> Payments { get; set; }
         public virtual DbSet<Products> Products { get; set; }
@@ -39,7 +40,6 @@ namespace OnlineWarehousingInformationSystem.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Warehouses> Warehouses { get; set; }
         public virtual DbSet<Inventory> Inventory { get; set; }
-        public virtual DbSet<PackageContents> PackageContents { get; set; }
         public virtual DbSet<WarehouseContents> WarehouseContents { get; set; }
         public virtual DbSet<detailedPackages> detailedPackages { get; set; }
         public virtual DbSet<localPackages> localPackages { get; set; }

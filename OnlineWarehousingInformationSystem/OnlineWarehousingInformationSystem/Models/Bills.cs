@@ -14,12 +14,12 @@ namespace OnlineWarehousingInformationSystem.Models
     
     public partial class Bills
     {
+        public int billID { get; set; }
         public int shipmentID { get; set; }
         public string invoiceID { get; set; }
         public string paymentType { get; set; }
         public int amount { get; set; }
         public System.DateTime operationDate { get; set; }
-        public int billID { get; set; }
     
         public virtual Shipments Shipments { get; set; }
     }

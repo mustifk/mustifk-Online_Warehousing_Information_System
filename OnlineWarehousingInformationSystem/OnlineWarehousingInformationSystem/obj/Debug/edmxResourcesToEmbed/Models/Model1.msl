@@ -4,12 +4,12 @@
     <EntitySetMapping Name="Bills">
       <EntityTypeMapping TypeName="OWISDBModel.Bills">
         <MappingFragment StoreEntitySet="Bills">
+          <ScalarProperty Name="billID" ColumnName="billID" />
           <ScalarProperty Name="shipmentID" ColumnName="shipmentID" />
           <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
           <ScalarProperty Name="paymentType" ColumnName="paymentType" />
           <ScalarProperty Name="amount" ColumnName="amount" />
           <ScalarProperty Name="operationDate" ColumnName="operationDate" />
-          <ScalarProperty Name="billID" ColumnName="billID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -21,6 +21,16 @@
           <ScalarProperty Name="warehouseID" ColumnName="warehouseID" />
           <ScalarProperty Name="orderDescription" ColumnName="orderDescription" />
           <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackageContents">
+      <EntityTypeMapping TypeName="OWISDBModel.PackageContents">
+        <MappingFragment StoreEntitySet="PackageContents">
+          <ScalarProperty Name="contentID" ColumnName="contentID" />
+          <ScalarProperty Name="packageID" ColumnName="packageID" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -41,12 +51,12 @@
     <EntitySetMapping Name="Payments">
       <EntityTypeMapping TypeName="OWISDBModel.Payments">
         <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="paymentID" ColumnName="paymentID" />
           <ScalarProperty Name="orderID" ColumnName="orderID" />
           <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
           <ScalarProperty Name="paymentType" ColumnName="paymentType" />
           <ScalarProperty Name="amount" ColumnName="amount" />
           <ScalarProperty Name="operationDate" ColumnName="operationDate" />
-          <ScalarProperty Name="paymentID" ColumnName="paymentID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -56,7 +66,6 @@
           <ScalarProperty Name="productID" ColumnName="productID" />
           <ScalarProperty Name="productName" ColumnName="productName" />
           <ScalarProperty Name="productDescription" ColumnName="productDescription" />
-          <ScalarProperty Name="productImage" ColumnName="productImage" />
           <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
           <ScalarProperty Name="productWeight" ColumnName="productWeight" />
           <ScalarProperty Name="inStock" ColumnName="inStock" />
@@ -119,7 +128,6 @@
           <ScalarProperty Name="userPassword" ColumnName="userPassword" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
           <ScalarProperty Name="lastName" ColumnName="lastName" />
-          <ScalarProperty Name="userImage" ColumnName="userImage" />
           <ScalarProperty Name="userGender" ColumnName="userGender" />
           <ScalarProperty Name="userAge" ColumnName="userAge" />
           <ScalarProperty Name="userType" ColumnName="userType" />
@@ -152,15 +160,6 @@
           <ScalarProperty Name="productID" ColumnName="productID" />
           <ScalarProperty Name="totalQuantity" ColumnName="totalQuantity" />
           <ScalarProperty Name="updateDate" ColumnName="updateDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PackageContents">
-      <EntityTypeMapping TypeName="OWISDBModel.PackageContents">
-        <MappingFragment StoreEntitySet="PackageContents">
-          <ScalarProperty Name="packageID" ColumnName="packageID" />
-          <ScalarProperty Name="productID" ColumnName="productID" />
-          <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -453,7 +452,6 @@
           <ScalarProperty Name="productID" ColumnName="productID" />
           <ScalarProperty Name="productName" ColumnName="productName" />
           <ScalarProperty Name="productDescription" ColumnName="productDescription" />
-          <ScalarProperty Name="productImage" ColumnName="productImage" />
           <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
           <ScalarProperty Name="productWeight" ColumnName="productWeight" />
           <ScalarProperty Name="inStock" ColumnName="inStock" />
@@ -516,7 +514,6 @@
           <ScalarProperty Name="productID" ColumnName="productID" />
           <ScalarProperty Name="productName" ColumnName="productName" />
           <ScalarProperty Name="productDescription" ColumnName="productDescription" />
-          <ScalarProperty Name="productImage" ColumnName="productImage" />
           <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
           <ScalarProperty Name="productWeight" ColumnName="productWeight" />
           <ScalarProperty Name="inStock" ColumnName="inStock" />

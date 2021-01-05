@@ -13,27 +13,38 @@
     <Key>
       <PropertyRef Name="billID" />
     </Key>
+    <Property Name="billID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="shipmentID" Type="Int32" Nullable="false" />
     <Property Name="invoiceID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="paymentType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="amount" Type="Int32" Nullable="false" />
     <Property Name="operationDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="billID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Shipments" Relationship="Self.FK__Bills__shipmentI__4F7CD00D" FromRole="Bills" ToRole="Shipments" />
+    <NavigationProperty Name="Shipments" Relationship="Self.FK__Bills__shipmentI__5165187F" FromRole="Bills" ToRole="Shipments" />
   </EntityType>
   <EntityType Name="Orders">
     <Key>
       <PropertyRef Name="orderID" />
     </Key>
     <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="staffID" Type="Int32" Nullable="false" />
+    <Property Name="staffID" Type="Int32" />
     <Property Name="warehouseID" Type="Int32" Nullable="false" />
     <Property Name="orderDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Staff" Relationship="Self.FK__Orders__staffID__4222D4EF" FromRole="Orders" ToRole="Staff" />
     <NavigationProperty Name="Warehouses" Relationship="Self.FK__Orders__warehous__4316F928" FromRole="Orders" ToRole="Warehouses" />
-    <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__orderI__59063A47" FromRole="Orders" ToRole="Packages" />
-    <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__orderI__4BAC3F29" FromRole="Orders" ToRole="Payments" />
+    <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__orderI__5AEE82B9" FromRole="Orders" ToRole="Packages" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__orderI__4CA06362" FromRole="Orders" ToRole="Payments" />
+  </EntityType>
+  <EntityType Name="PackageContents">
+    <Key>
+      <PropertyRef Name="contentID" />
+    </Key>
+    <Property Name="contentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="packageID" Type="Int32" Nullable="false" />
+    <Property Name="productID" Type="Int32" Nullable="false" />
+    <Property Name="productQuantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Packages" Relationship="Self.FK__PackageCo__packa__619B8048" FromRole="PackageContents" ToRole="Packages" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__PackageCo__produ__60A75C0F" FromRole="PackageContents" ToRole="Products" />
   </EntityType>
   <EntityType Name="Packages">
     <Key>
@@ -47,23 +58,23 @@
     <Property Name="createdTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="packageStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="notes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK__Packages__orderI__59063A47" FromRole="Packages" ToRole="Orders" />
-    <NavigationProperty Name="PackageContents" Relationship="Self.FK__PackageCo__packa__5EBF139D" FromRole="Packages" ToRole="PackageContents" />
-    <NavigationProperty Name="Shipments" Relationship="Self.FK__Packages__shipme__59FA5E80" FromRole="Packages" ToRole="Shipments" />
-    <NavigationProperty Name="Suppliers" Relationship="Self.FK__Packages__suppli__5AEE82B9" FromRole="Packages" ToRole="Suppliers" />
-    <NavigationProperty Name="Shipping" Relationship="Self.FK__Shipping__packag__6383C8BA" FromRole="Packages" ToRole="Shipping" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Packages__orderI__5AEE82B9" FromRole="Packages" ToRole="Orders" />
+    <NavigationProperty Name="PackageContents" Relationship="Self.FK__PackageCo__packa__619B8048" FromRole="Packages" ToRole="PackageContents" />
+    <NavigationProperty Name="Shipments" Relationship="Self.FK__Packages__shipme__5BE2A6F2" FromRole="Packages" ToRole="Shipments" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.FK__Packages__suppli__5CD6CB2B" FromRole="Packages" ToRole="Suppliers" />
+    <NavigationProperty Name="Shipping" Relationship="Self.FK__Shipping__packag__66603565" FromRole="Packages" ToRole="Shipping" />
   </EntityType>
   <EntityType Name="Payments">
     <Key>
       <PropertyRef Name="paymentID" />
     </Key>
+    <Property Name="paymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="orderID" Type="Int32" Nullable="false" />
     <Property Name="invoiceID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="paymentType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="amount" Type="Int32" Nullable="false" />
     <Property Name="operationDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="paymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK__Payments__orderI__4BAC3F29" FromRole="Payments" ToRole="Orders" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Payments__orderI__4CA06362" FromRole="Payments" ToRole="Orders" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -72,13 +83,12 @@
     <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="productName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="productDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="productImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="manufacturer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="productWeight" Type="Double" Nullable="false" />
     <Property Name="inStock" Type="Boolean" Nullable="false" />
     <Property Name="totalQuantity" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Inventory" Relationship="Self.FK__Inventory__produ__68487DD7" FromRole="Products" ToRole="Inventory" />
-    <NavigationProperty Name="PackageContents" Relationship="Self.FK__PackageCo__produ__5DCAEF64" FromRole="Products" ToRole="PackageContents" />
+    <NavigationProperty Name="PackageContents" Relationship="Self.FK__PackageCo__produ__60A75C0F" FromRole="Products" ToRole="PackageContents" />
+    <NavigationProperty Name="Inventory" Relationship="Self.FK__Inventory__produ__6B24EA82" FromRole="Products" ToRole="Inventory" />
     <NavigationProperty Name="WarehouseContents" Relationship="Self.FK__Warehouse__produ__33D4B598" FromRole="Products" ToRole="WarehouseContents" />
   </EntityType>
   <EntityType Name="Shipments">
@@ -86,12 +96,12 @@
       <PropertyRef Name="shipmentID" />
     </Key>
     <Property Name="shipmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="staffID" Type="Int32" Nullable="false" />
+    <Property Name="staffID" Type="Int32" />
     <Property Name="warehouseID" Type="Int32" Nullable="false" />
     <Property Name="shipmentDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="shipmentDate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Bills" Relationship="Self.FK__Bills__shipmentI__4F7CD00D" FromRole="Shipments" ToRole="Bills" />
-    <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__shipme__59FA5E80" FromRole="Shipments" ToRole="Packages" />
+    <NavigationProperty Name="Bills" Relationship="Self.FK__Bills__shipmentI__5165187F" FromRole="Shipments" ToRole="Bills" />
+    <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__shipme__5BE2A6F2" FromRole="Shipments" ToRole="Packages" />
     <NavigationProperty Name="Staff" Relationship="Self.FK__Shipments__staff__46E78A0C" FromRole="Shipments" ToRole="Staff" />
     <NavigationProperty Name="Warehouses" Relationship="Self.FK__Shipments__wareh__47DBAE45" FromRole="Shipments" ToRole="Warehouses" />
   </EntityType>
@@ -106,7 +116,7 @@
     <Property Name="currentLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="currentStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="shippingNote" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Packages" Relationship="Self.FK__Shipping__packag__6383C8BA" FromRole="Shipping" ToRole="Packages" />
+    <NavigationProperty Name="Packages" Relationship="Self.FK__Shipping__packag__66603565" FromRole="Shipping" ToRole="Packages" />
   </EntityType>
   <EntityType Name="Staff">
     <Key>
@@ -132,7 +142,7 @@
     <Property Name="supplierAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="phoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__suppli__5AEE82B9" FromRole="Suppliers" ToRole="Packages" />
+    <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__suppli__5CD6CB2B" FromRole="Suppliers" ToRole="Packages" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -143,7 +153,6 @@
     <Property Name="userPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="lastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="userImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="userGender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
     <Property Name="userAge" Type="Int32" Nullable="false" />
     <Property Name="userType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
@@ -181,19 +190,7 @@
     <Property Name="productID" Type="Int32" Nullable="false" />
     <Property Name="totalQuantity" Type="Int32" Nullable="false" />
     <Property Name="updateDate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Products" Relationship="Self.FK__Inventory__produ__68487DD7" FromRole="Inventory" ToRole="Products" />
-  </EntityType>
-  <EntityType Name="PackageContents">
-    <Key>
-      <PropertyRef Name="packageID" />
-      <PropertyRef Name="productID" />
-      <PropertyRef Name="productQuantity" />
-    </Key>
-    <Property Name="packageID" Type="Int32" Nullable="false" />
-    <Property Name="productID" Type="Int32" Nullable="false" />
-    <Property Name="productQuantity" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Packages" Relationship="Self.FK__PackageCo__packa__5EBF139D" FromRole="PackageContents" ToRole="Packages" />
-    <NavigationProperty Name="Products" Relationship="Self.FK__PackageCo__produ__5DCAEF64" FromRole="PackageContents" ToRole="Products" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Inventory__produ__6B24EA82" FromRole="Inventory" ToRole="Products" />
   </EntityType>
   <EntityType Name="WarehouseContents">
     <Key>
@@ -411,7 +408,7 @@
     <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="staffCount" Type="Int32" />
   </EntityType>
-  <Association Name="FK__Bills__shipmentI__4F7CD00D">
+  <Association Name="FK__Bills__shipmentI__5165187F">
     <End Role="Shipments" Type="Self.Shipments" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -426,7 +423,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Orders__staffID__4222D4EF">
-    <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Staff">
@@ -449,7 +446,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Packages__orderI__59063A47">
+  <Association Name="FK__Packages__orderI__5AEE82B9">
     <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
     <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
     <ReferentialConstraint>
@@ -461,7 +458,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Payments__orderI__4BAC3F29">
+  <Association Name="FK__Payments__orderI__4CA06362">
     <End Role="Orders" Type="Self.Orders" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -475,7 +472,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PackageCo__packa__5EBF139D">
+  <Association Name="FK__PackageCo__packa__619B8048">
     <End Role="Packages" Type="Self.Packages" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -489,7 +486,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Packages__shipme__59FA5E80">
+  <Association Name="FK__PackageCo__produ__60A75C0F">
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PackageContents" Type="Self.PackageContents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="PackageContents">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Packages__shipme__5BE2A6F2">
     <End Role="Shipments" Type="Self.Shipments" Multiplicity="0..1" />
     <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
     <ReferentialConstraint>
@@ -501,7 +512,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Packages__suppli__5AEE82B9">
+  <Association Name="FK__Packages__suppli__5CD6CB2B">
     <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -515,7 +526,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Shipping__packag__6383C8BA">
+  <Association Name="FK__Shipping__packag__66603565">
     <End Role="Packages" Type="Self.Packages" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -529,7 +540,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Inventory__produ__68487DD7">
+  <Association Name="FK__Inventory__produ__6B24EA82">
     <End Role="Products" Type="Self.Products" Multiplicity="1" />
     <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
     <ReferentialConstraint>
@@ -537,20 +548,6 @@
         <PropertyRef Name="productID" />
       </Principal>
       <Dependent Role="Inventory">
-        <PropertyRef Name="productID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__PackageCo__produ__5DCAEF64">
-    <End Role="Products" Type="Self.Products" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="PackageContents" Type="Self.PackageContents" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="productID" />
-      </Principal>
-      <Dependent Role="PackageContents">
         <PropertyRef Name="productID" />
       </Dependent>
     </ReferentialConstraint>
@@ -570,7 +567,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Shipments__staff__46E78A0C">
-    <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
     <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Staff">
@@ -636,6 +633,7 @@
   <EntityContainer Name="OWISDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Bills" EntityType="Self.Bills" />
     <EntitySet Name="Orders" EntityType="Self.Orders" />
+    <EntitySet Name="PackageContents" EntityType="Self.PackageContents" />
     <EntitySet Name="Packages" EntityType="Self.Packages" />
     <EntitySet Name="Payments" EntityType="Self.Payments" />
     <EntitySet Name="Products" EntityType="Self.Products" />
@@ -646,7 +644,6 @@
     <EntitySet Name="Users" EntityType="Self.Users" />
     <EntitySet Name="Warehouses" EntityType="Self.Warehouses" />
     <EntitySet Name="Inventory" EntityType="Self.Inventory" />
-    <EntitySet Name="PackageContents" EntityType="Self.PackageContents" />
     <EntitySet Name="WarehouseContents" EntityType="Self.WarehouseContents" />
     <EntitySet Name="detailedPackages" EntityType="Self.detailedPackages" />
     <EntitySet Name="localPackages" EntityType="Self.localPackages" />
@@ -660,7 +657,7 @@
     <EntitySet Name="userTypeStaff" EntityType="Self.userTypeStaff" />
     <EntitySet Name="warehouseStaff" EntityType="Self.warehouseStaff" />
     <EntitySet Name="warehouseStaffCount" EntityType="Self.warehouseStaffCount" />
-    <AssociationSet Name="FK__Bills__shipmentI__4F7CD00D" Association="Self.FK__Bills__shipmentI__4F7CD00D">
+    <AssociationSet Name="FK__Bills__shipmentI__5165187F" Association="Self.FK__Bills__shipmentI__5165187F">
       <End Role="Shipments" EntitySet="Shipments" />
       <End Role="Bills" EntitySet="Bills" />
     </AssociationSet>
@@ -672,37 +669,37 @@
       <End Role="Warehouses" EntitySet="Warehouses" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
-    <AssociationSet Name="FK__Packages__orderI__59063A47" Association="Self.FK__Packages__orderI__59063A47">
+    <AssociationSet Name="FK__Packages__orderI__5AEE82B9" Association="Self.FK__Packages__orderI__5AEE82B9">
       <End Role="Orders" EntitySet="Orders" />
       <End Role="Packages" EntitySet="Packages" />
     </AssociationSet>
-    <AssociationSet Name="FK__Payments__orderI__4BAC3F29" Association="Self.FK__Payments__orderI__4BAC3F29">
+    <AssociationSet Name="FK__Payments__orderI__4CA06362" Association="Self.FK__Payments__orderI__4CA06362">
       <End Role="Orders" EntitySet="Orders" />
       <End Role="Payments" EntitySet="Payments" />
     </AssociationSet>
-    <AssociationSet Name="FK__PackageCo__packa__5EBF139D" Association="Self.FK__PackageCo__packa__5EBF139D">
+    <AssociationSet Name="FK__PackageCo__packa__619B8048" Association="Self.FK__PackageCo__packa__619B8048">
       <End Role="Packages" EntitySet="Packages" />
       <End Role="PackageContents" EntitySet="PackageContents" />
     </AssociationSet>
-    <AssociationSet Name="FK__Packages__shipme__59FA5E80" Association="Self.FK__Packages__shipme__59FA5E80">
+    <AssociationSet Name="FK__PackageCo__produ__60A75C0F" Association="Self.FK__PackageCo__produ__60A75C0F">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="PackageContents" EntitySet="PackageContents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Packages__shipme__5BE2A6F2" Association="Self.FK__Packages__shipme__5BE2A6F2">
       <End Role="Shipments" EntitySet="Shipments" />
       <End Role="Packages" EntitySet="Packages" />
     </AssociationSet>
-    <AssociationSet Name="FK__Packages__suppli__5AEE82B9" Association="Self.FK__Packages__suppli__5AEE82B9">
+    <AssociationSet Name="FK__Packages__suppli__5CD6CB2B" Association="Self.FK__Packages__suppli__5CD6CB2B">
       <End Role="Suppliers" EntitySet="Suppliers" />
       <End Role="Packages" EntitySet="Packages" />
     </AssociationSet>
-    <AssociationSet Name="FK__Shipping__packag__6383C8BA" Association="Self.FK__Shipping__packag__6383C8BA">
+    <AssociationSet Name="FK__Shipping__packag__66603565" Association="Self.FK__Shipping__packag__66603565">
       <End Role="Packages" EntitySet="Packages" />
       <End Role="Shipping" EntitySet="Shipping" />
     </AssociationSet>
-    <AssociationSet Name="FK__Inventory__produ__68487DD7" Association="Self.FK__Inventory__produ__68487DD7">
+    <AssociationSet Name="FK__Inventory__produ__6B24EA82" Association="Self.FK__Inventory__produ__6B24EA82">
       <End Role="Products" EntitySet="Products" />
       <End Role="Inventory" EntitySet="Inventory" />
-    </AssociationSet>
-    <AssociationSet Name="FK__PackageCo__produ__5DCAEF64" Association="Self.FK__PackageCo__produ__5DCAEF64">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="PackageContents" EntitySet="PackageContents" />
     </AssociationSet>
     <AssociationSet Name="FK__Warehouse__produ__33D4B598" Association="Self.FK__Warehouse__produ__33D4B598">
       <End Role="Products" EntitySet="Products" />
@@ -850,7 +847,6 @@
     <Property Type="Int32" Name="productID" Nullable="false" />
     <Property Type="String" Name="productName" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="productDescription" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="productImage" Nullable="true" />
     <Property Type="String" Name="manufacturer" Nullable="true" MaxLength="20" />
     <Property Type="Double" Name="productWeight" Nullable="false" />
     <Property Type="Boolean" Name="inStock" Nullable="false" />
@@ -892,7 +888,6 @@
     <Property Type="Int32" Name="productID" Nullable="false" />
     <Property Type="String" Name="productName" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="productDescription" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="productImage" Nullable="true" />
     <Property Type="String" Name="manufacturer" Nullable="true" MaxLength="20" />
     <Property Type="Double" Name="productWeight" Nullable="false" />
     <Property Type="Boolean" Name="inStock" Nullable="false" />

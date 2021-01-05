@@ -16,7 +16,6 @@ namespace OnlineWarehousingInformationSystem.Models
         public int productID { get; set; }
         public string productName { get; set; }
         public string productDescription { get; set; }
-        public string productImage { get; set; }
         public string manufacturer { get; set; }
         public double productWeight { get; set; }
         public bool inStock { get; set; }

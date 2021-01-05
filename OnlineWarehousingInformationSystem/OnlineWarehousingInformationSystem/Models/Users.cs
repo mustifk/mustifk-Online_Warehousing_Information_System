@@ -25,7 +25,6 @@ namespace OnlineWarehousingInformationSystem.Models
         public string userPassword { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public string userImage { get; set; }
         public string userGender { get; set; }
         public int userAge { get; set; }
         public string userType { get; set; }

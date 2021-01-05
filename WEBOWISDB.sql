@@ -35,7 +35,6 @@ CREATE TABLE owis.Products( /* The information about products*/
 productID INT IDENTITY PRIMARY KEY NOT NULL,
 productName varchar(30) NOT NULL,
 productDescription varchar(30),
-productImage nvarchar(MAX),
 manufacturer varchar(20) DEFAULT 'None',
 productWeight float NOT NULL, 
 inStock bit NOT NULL, 
@@ -57,7 +56,6 @@ userName varchar(20) NOT NULL,
 userPassword varchar(20) NOT NULL,
 firstName varchar(30) NOT NULL,
 lastName varchar(20) NOT NULL,
-userImage varchar(MAX),
 userGender varchar(6),
 userAge INT CHECK(userAge >= 18) NOT NULL,
 userType char(1) NOT NULL DEFAULT 0, /* 0 -> basic user ====== 1 -> staff ======= 2 -> admin */
@@ -77,7 +75,7 @@ FOREIGN KEY(warehouseID) REFERENCES owis.Warehouses(warehouseID)
 
 CREATE TABLE owis.Orders( /* The records of current orders ( incoming )*/
 orderID INT IDENTITY PRIMARY KEY NOT NULL,
-staffID INT NOT NULL,
+staffID INT,
 warehouseID INT NOT NULL, 
 orderDescription nvarchar(100),
 orderDate DATETIME NOT NULL DEFAULT GETDATE(),
@@ -87,7 +85,7 @@ FOREIGN KEY(warehouseID) REFERENCES owis.Warehouses(warehouseID)
 
 CREATE TABLE owis.Shipments( /* The records of current shipments ( outgoing )*/ 
 shipmentID INT IDENTITY PRIMARY KEY NOT NULL,
-staffID INT NOT NULL,
+staffID INT,
 warehouseID INT NOT NULL, 
 shipmentDescription nvarchar(100),
 shipmentDate DATETIME NOT NULL DEFAULT GETDATE(),
@@ -141,6 +139,7 @@ FOREIGN KEY(supplierID) REFERENCES owis.Suppliers(supplierID) ON DELETE CASCADE
 );
 
 CREATE TABLE owis.PackageContents( /* The contents of the packages */
+contentID INT IDENTITY PRIMARY KEY,
 packageID INT NOT NULL,
 productID INT NOT NULL,
 productQuantity INT NOT NULL DEFAULT 0,
@@ -149,7 +148,7 @@ FOREIGN KEY(packageID) REFERENCES owis.Packages(packageID) ON DELETE CASCADE
 );
 
 CREATE TABLE owis.Shipping( /* The shipping detail of the packages */
-packageID INT UNIQUE PRIMARY KEY NOT NULL,
+packageID INT PRIMARY KEY NOT NULL,
 shippingDate DATETIME NOT NULL DEFAULT GETDATE(),
 estimatedDeliveryDate DATE, 
 deliveryDate DATE,  
@@ -1090,7 +1089,7 @@ VALUES('KonyaWarehouse', 'Türkiye', 'Konya', 'Beyþehir', '48654', 'Stable',
 
 
 INSERT INTO owis.Products(productName, manufacturer, productWeight, inStock, totalQuantity)
-VALUES('Elma', 'Torku Bayraktar', 0.2, 1, 200)
+VALUES('Elma', 'Torku Bayraktar', 0.2, 1, 100)
 
 INSERT INTO owis.Products(productName, manufacturer, productWeight, inStock, totalQuantity)
 VALUES('Armut', 'Aytaþ Tarým', 0.4, 1, 100)
@@ -1102,7 +1101,7 @@ INSERT INTO owis.Products(productName, manufacturer, productWeight, inStock, tot
 VALUES('Portakal', 'Doruk Sebze', 0.6, 1, 180)
 
 INSERT INTO owis.Products(productName, manufacturer, productWeight, inStock, totalQuantity)
-VALUES('Ayva', 'Akkurt', 0.7, 1, 30)
+VALUES('Ayva', 'Akkurt', 0.7, 0, 0)
 
 INSERT INTO owis.Products(productName, manufacturer, productWeight, inStock, totalQuantity)
 VALUES('Pirinç', 'Sambak', 0.2, 1, 250)
@@ -1158,35 +1157,37 @@ VALUES(5, 9, 150)
 
 
 INSERT INTO owis.Users(userName, userPassword, firstName, lastName, userAge, 
-userType, phoneNumber, email)
-VALUES('Admin', 'admin', 'Can', 'Yýlmaz', 35, 2, '545-256-9698', 'admin@gmail.com')
+userType, phoneNumber, email,userGender)
+VALUES('Admin', 'admin', 'Can', 'Yýlmaz', 35, 2, '545-256-9698', 'admin@gmail.com','Male')
 
 INSERT INTO owis.Users(userName, userPassword, firstName, lastName, userAge, 
-userType, phoneNumber, email)
-VALUES('Orhangb', 'barut455', 'Orhan', 'Barut', 30, 1, '537-856-5665', 'orhanbarut@gmail.com')
+userType, phoneNumber, email,userGender)
+VALUES('Orhangb', 'barut455', 'Orhan', 'Barut', 30, 1, '537-856-5665', 'orhanbarut@gmail.com','Male')
 
 INSERT INTO owis.Users(userName, userPassword, firstName, lastName, userAge, 
-userType, phoneNumber, email)
-VALUES('Kemalklc', 'kilic4512', 'Kemal', 'Kýlýç', 25, 1, '547-455-1245', 'kemalkilic@gmail.com')
+userType, phoneNumber, email,userGender)
+VALUES('Kemalklc', 'kilic4512', 'Kemal', 'Kýlýç', 25, 1, '547-455-1245', 'kemalkilic@gmail.com','Male')
 
 INSERT INTO owis.Users(userName, userPassword, firstName, lastName, userAge, 
-userType, phoneNumber, email)
-VALUES('Mehmettyld', 'mehmet1yildirim', 'Mehmet', 'Yýldýrým', 42, 1, '555-452-3635', 'mehmetyildirim@gmail.com')
+userType, phoneNumber, email,userGender)
+VALUES('Mehmettyld', 'mehmet1yildirim', 'Mehmet', 'Yýldýrým', 42, 1, '555-452-3635', 'mehmetyildirim@gmail.com','Male')
 
 INSERT INTO owis.Users(userName, userPassword, firstName, lastName, userAge, 
-userType, phoneNumber, email)
-VALUES('Yagmurbc12', 'yagmur454123', 'Yaðmur', 'Bir', 30, 1, '533-456-1254', 'yagmur@gmail.com')
+userType, phoneNumber, email,userGender)
+VALUES('Yagmurbc12', 'yagmur454123', 'Yaðmur', 'Bir', 30, 1, '533-456-1254', 'yagmur@gmail.com','Female')
 
 INSERT INTO owis.Users(userName, userPassword, firstName, lastName, userAge, 
-userType, phoneNumber, email)
-VALUES('Nedime45', 'bakan142', 'Nedime', 'Gökebakan', 40, 1, '542-654-3652', 'nedimebakan@gmail.com')
+userType, phoneNumber, email,userGender)
+VALUES('Nedime45', 'bakan142', 'Nedime', 'Gökebakan', 40, 1, '542-654-3652', 'nedimebakan@gmail.com','Female')
 
 INSERT INTO owis.Users(userName, userPassword, firstName, lastName, userAge, 
-userType, phoneNumber, email)
-VALUES('Aleynakar12', 'kars1245', 'Aleyna', 'Kars', 32, 0, '542-145-9685', 'aleynakars@gmail.com')
+userType, phoneNumber, email,userGender)
+VALUES('Aleynakar12', 'kars1245', 'Aleyna', 'Kars', 32, 0, '542-145-9685', 'aleynakars@gmail.com','Female')
 
 
 /*When add an user with user type 1, default value of staff warehouse ID is 1, and then we can change this column */
+UPDATE owis.Staff SET warehouseID=1 WHERE staffID=1
+
 UPDATE owis.Staff SET warehouseID=2 WHERE staffID=2
 
 UPDATE owis.Staff SET warehouseID=3 WHERE staffID=3
@@ -1232,38 +1233,38 @@ VALUES(5,4, '2020-12-10')
 
 
 INSERT INTO owis.Payments(orderID, invoiceID, paymentType, amount, operationDate)
-VALUES(1, '4561327845', 'credit card', 150, '2020-07-11')
+VALUES(1, '4561327845', 'Credit Card', 150, '2020-07-11')
 
 INSERT INTO owis.Payments(orderID, invoiceID, paymentType, amount, operationDate)
-VALUES(2, '9845654518', 'cash', 400, '2020-08-10')
+VALUES(2, '9845654518', 'Cash', 400, '2020-08-10')
 
 INSERT INTO owis.Payments(orderID, invoiceID, paymentType, amount, operationDate)
-VALUES(3, '4256968545', 'credit card', 300, '2020-10-12')
+VALUES(3, '4256968545', 'Credit Card', 300, '2020-10-12')
 
 INSERT INTO owis.Payments(orderID, invoiceID, paymentType, amount, operationDate)
-VALUES(4, '2132566396', 'credit card', 200, '2020-07-06')
+VALUES(4, '2132566396', 'Credit Card', 200, '2020-07-06')
 
 INSERT INTO owis.Payments(orderID, invoiceID, paymentType, amount, operationDate)
-VALUES(5, '1245785698', 'cash', 50, '2020-12-10')
+VALUES(5, '1245785698', 'Cash', 50, '2020-12-10')
 
 INSERT INTO owis.Payments(orderID, invoiceID, paymentType, amount, operationDate)
-VALUES(6, '5134351213', 'cash', 150, '2020-11-05')
+VALUES(6, '5134351213', 'Cash', 150, '2020-11-05')
 
 
 INSERT INTO owis.Bills(shipmentID, invoiceID, paymentType, amount, operationDate)
-VALUES(1, '1658596587', 'credit card', 300, '2020-11-07')
+VALUES(1, '1658596587', 'Credit Card', 300, '2020-11-07')
 
 INSERT INTO owis.Bills(shipmentID, invoiceID, paymentType, amount, operationDate)
-VALUES(2, '4265986542', 'cash', 200, '2020-10-08')
+VALUES(2, '4265986542', 'Cash', 200, '2020-10-08')
 
 INSERT INTO owis.Bills(shipmentID, invoiceID, paymentType, amount, operationDate)
-VALUES(3, '4512315132', 'credit card', 150, '2020-12-10')
+VALUES(3, '4512315132', 'Credit Card', 150, '2020-12-10')
 
 INSERT INTO owis.Bills(shipmentID, invoiceID, paymentType, amount, operationDate)
-VALUES(4, '4213543122', 'cash', 50, '2020-06-07')
+VALUES(4, '4213543122', 'Cash', 50, '2020-06-07')
 
 INSERT INTO owis.Bills(shipmentID, invoiceID, paymentType, amount, operationDate)
-VALUES(5, '1234354541', 'cash', 200, '2020-12-10')
+VALUES(5, '1234354541', 'Cash', 200, '2020-12-10')
 
 
 INSERT INTO owis.Suppliers(supplierName, country, city, supplierAddress, phoneNumber, email)
@@ -1317,7 +1318,7 @@ INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
 VALUES(3, 2, 30)
 
 INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
-VALUES(5, 3, 80)
+VALUES(5, 3, 40)
 
 INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
 VALUES(3, 6, 50)
@@ -1330,193 +1331,27 @@ VALUES(6, 9, 160)
 
 
 INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
-VALUES(3, '2020-11-10', '2020-11-15', 'Bolu')
+VALUES(1, '2020-11-10', '2020-11-15', 'Adana')
 
 INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
-VALUES(4, '2020-11-10', '2020-11-15', 'Bolu')
+VALUES(2, '2020-11-10', '2020-11-15', 'Bolu')
 
 INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
-VALUES(7, '2020-06-10', '2020-06-12', 'Antalya')
+VALUES(3, '2020-06-10', '2020-06-12', 'Antalya')
 
 INSERT INTO owis.Shipping(packageID, shippingDate, estimatedDeliveryDate, currentLocation)
-VALUES(8, '2020-12-15', '2020-12-18', 'Ankara')
+VALUES(4, '2020-12-15', '2020-12-18', 'Ankara')
 
+INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
+VALUES(5, '2020-11-10', '2020-11-15', 'Hatay')
 
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(1, 150, '2020-01-05')
+INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
+VALUES(6, '2020-11-10', '2020-11-15', 'Þanlýurfa')
 
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(2, 220, '2020-01-12')
+INSERT INTO owis.Shipping(packageID, shippingDate, deliveryDate, currentLocation)
+VALUES(7, '2020-06-10', '2020-06-12', 'Niðde')
 
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(2, 220, '2020-03-15')
-
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(3, 150, '2020-03-12')
-
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(3, 220, '2020-04-10')
-
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(5, 220, '2020-03-11')
-
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(6, 150, '2020-02-10')
-
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(7, 220, '2020-01-25')
-
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(7, 100, '2020-02-15')
-
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(8, 100, '2020-04-15')
-
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(9, 200, '2020-03-25')
+INSERT INTO owis.Shipping(packageID, shippingDate, estimatedDeliveryDate, currentLocation)
+VALUES(8, '2020-12-15', '2020-12-18', 'Kars')
 
 GO
-
-/*============================= TRIGGER TEST =============================*/
-/*We add an user with user type 1*/
-/*Default value of staff informations are warehouseID is 1(Main warehouse) and title is 'Staff'*/
-INSERT INTO owis.Users(userName, userPassword, firstName, lastName, userAge, 
-userType, phoneNumber, email)
-VALUES('Cannk', 'gok', 'Can', 'Gök', 26, 1, '548-325-6542', 'cangok@gmail.com')
-
-SELECT * FROM owis.userTypeStaff
-GO
-
-/*-------------------------------------------------------------*/
-
-/*When add products into package, quantity of product is changing according to order/shipment*/
-/*If this package is in an order, quantity is increasing*/
-/*If this package is in a shipment, quantity is decreasing*/
-
-/*Before inserting*/
-
-SELECT * FROM owis.Products WHERE productID = 2 OR productID = 7
-
-/*Order*/
-INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
-VALUES(5, 7, 60)
-
-/*Shipment*/
-INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
-VALUES(3, 2, 30)
-
-/*After inserting*/
-SELECT * FROM owis.Products WHERE productID = 2 OR productID = 7
-GO
-
-/*-------------------------------------------------------*/
-/*Insert a shipment*/
-/*When create a package, created time of package is must be after shipment/order date*/
-/*If created time is before shipment date, created time is updated as GETDATE()*/
-INSERT INTO owis.Shipments(staffID, warehouseID, shipmentDate)
-VALUES(3,1, '2020-11-07')
-
-INSERT INTO owis.Packages(isProvided, shipmentID, supplierID, createdTime)
-VALUES(1, 6, 1, '2020-10-09')
-
-SELECT * FROM owis.Packages
-
-SELECT * FROM owis.Shipments
-
-GO
-/*------------------------------------------------------------*/
-/*When you delete an order/shipment, package which is in this order/shipment is deleted*/
-
-INSERT INTO owis.Orders(staffID, warehouseID, orderDate)
-VALUES(2,5, '2020-12-05')
-
-INSERT INTO owis.Packages(isProvided, orderID, supplierID, createdTime)
-VALUES(0, 7, 4, '2020-12-06')
-
-/*Before deleting*/
-SELECT * FROM owis.Orders WHERE orderID = 7
-SELECT * FROM owis.Packages WHERE orderID = 7
-
-DELETE owis.Orders WHERE orderID = 7
-
-/*After deleting*/
-SELECT * FROM owis.Orders WHERE orderID = 7
-SELECT * FROM owis.Packages WHERE orderID = 7
-GO
-/*-------------------------------------------------------------*/
-
-/*After insert inventory, product quantity is increasing*/
-
-/*Before inserting*/
-SELECT * FROM owis.Products WHERE productID = 7
-
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(7, 100, '2020-03-15')
-
-/*After inserting*/
-SELECT * FROM owis.Products WHERE productID = 7
-SELECT * FROM owis.Inventory WHERE productID = 7
-GO
-/*--------------------------------------------------------------*/
-/*When you add products into shipment packages, quantity must be enough in inventory*/
-
-INSERT INTO owis.Shipments(staffID, warehouseID, shipmentDate)
-VALUES(5,3, '2020-11-20')
-
-INSERT INTO owis.Packages(isProvided, shipmentID, supplierID, createdTime)
-VALUES(1, 6, 4, '2020-12-20')
-
-/*ENOUGH QUANTITY*/
-INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
-VALUES(9, 4, 100)
-
-SELECT * FROM owis.PackageContents WHERE productID=4
-SELECT * FROM owis.Products WHERE productID=4
-
-/*NOT ENOUGH QUANTITY*/
-INSERT INTO owis.PackageContents(packageID, productID, productQuantity)
-VALUES(9, 4, 100)
-
-SELECT * FROM owis.PackageContents WHERE productID=4
-SELECT * FROM owis.Products WHERE productID=4
-
-GO
-
-/*------------------------------------------------------------*/
-/*When you insert a product(not stock and quantity is 0) into inventory*/
-/*Update product table and insert into inventory table*/
-INSERT INTO owis.Products(productName, manufacturer, productWeight, inStock, totalQuantity)
-VALUES('Þeker', 'Torku Bayraktar', 0.02, 0, 0)
-
-/*Before inserting*/
-SELECT * FROM owis.Products WHERE productID = 10
-
-INSERT INTO owis.Inventory(productID, totalQuantity, updateDate)
-VALUES(10, 100, '2020-02-15')
-
-/*After inserting*/
-SELECT * FROM owis.Products WHERE productID = 10
-SELECT * FROM owis.Inventory WHERE productID = 10
-
-/*First, update quantity and inStock in product table */
-/*And then insert this product into inventory table*/
-
-GO
-
-/*------------------------------------------------------------*/
-/*When delete a product from product*/
-/*This product is deleted from warehousecontents and inventory tables*/
-
-/*Before deleting*/
-SELECT * FROM owis.Products
-SELECT * FROM owis.WarehouseContents WHERE productID = 4
-SELECT * FROM owis.Inventory WHERE productID = 4
-
-DELETE FROM owis.Products WHERE productID = 4
-
-/*After deleting*/
-SELECT * FROM owis.Products
-SELECT * FROM owis.WarehouseContents WHERE productID = 4
-SELECT * FROM owis.Inventory WHERE productID = 4
-GO
-/*-----------------------------------------------------------------*/

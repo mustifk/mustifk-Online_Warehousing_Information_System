@@ -22,7 +22,7 @@ namespace OnlineWarehousingInformationSystem.Models
         }
     
         public int shipmentID { get; set; }
-        public int staffID { get; set; }
+        public Nullable<int> staffID { get; set; }
         public int warehouseID { get; set; }
         public string shipmentDescription { get; set; }
         public System.DateTime shipmentDate { get; set; }

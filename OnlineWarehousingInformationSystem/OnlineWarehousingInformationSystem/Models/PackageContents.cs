@@ -14,6 +14,7 @@ namespace OnlineWarehousingInformationSystem.Models
     
     public partial class PackageContents
     {
+        public int contentID { get; set; }
         public int packageID { get; set; }
         public int productID { get; set; }
         public int productQuantity { get; set; }

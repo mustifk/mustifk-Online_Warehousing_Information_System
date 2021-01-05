@@ -17,24 +17,23 @@ namespace OnlineWarehousingInformationSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Products()
         {
-            this.Inventory = new HashSet<Inventory>();
             this.PackageContents = new HashSet<PackageContents>();
+            this.Inventory = new HashSet<Inventory>();
             this.WarehouseContents = new HashSet<WarehouseContents>();
         }
     
         public int productID { get; set; }
         public string productName { get; set; }
         public string productDescription { get; set; }
-        public string productImage { get; set; }
         public string manufacturer { get; set; }
         public double productWeight { get; set; }
         public bool inStock { get; set; }
         public int totalQuantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventory> Inventory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PackageContents> PackageContents { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inventory> Inventory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseContents> WarehouseContents { get; set; }
     }
