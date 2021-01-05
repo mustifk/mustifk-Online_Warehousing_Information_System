@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "DetailUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -36,39 +35,39 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            @if(HttpContext.Current.Session["UserType"].ToString().Equals("2"))
+                            @if (item.userType == "2")
+                        {
+                            if (item.userGender.Equals("Male"))
                             {
-                                if(Model.userGender.Equals("Male"))
-                                {
-                                    <img src="~/Content/images/adminman.png" alt="Profile Picture" class="rounded-circle" width="150" />
-                                }
-                                if(Model.userGender.Equals("Female"))
-                                {
-                                    <img src="~/Content/images/adminwoman.png" alt="Profile Picture" class="rounded-circle" width="150" />
-                                }
+                                <img src="~/Content/images/adminman.png" alt="Profile Picture" class="rounded-circle" width="150" />
                             }
-                            @if(HttpContext.Current.Session["UserType"].ToString().Equals("1"))
+                            else if (item.userGender.Equals("Female"))
                             {
-                                if(Model.userGender.Equals("Male"))
+                                <img src="~/Content/images/adminwoman.png" alt="Profile Picture" class="rounded-circle" width="150" />
+                            }
+                        }
+                            @if (item.userType == "1")
+                            {
+                                if (item.userGender.Equals("Male"))
                                 {
                                     <img src="~/Content/images/staffman.png" alt="Profile Picture" class="rounded-circle" width="150" />
                                 }
-                                if(Model.userGender.Equals("Female"))
+                                else if (item.userGender.Equals("Female"))
                                 {
                                     <img src="~/Content/images/staffwoman.png" alt="Profile Picture" class="rounded-circle" width="150" />
                                 }
                             }
-                            @if(HttpContext.Current.Session["UserType"].ToString().Equals("0"))
+                            @if (item.userType == "0")
+                        {
+                            if (item.userGender.Equals("Male"))
                             {
-                                if(Model.userGender.Equals("Male"))
-                                {
-                                    <img src="~/Content/images/userman.png" alt="Profile Picture" class="rounded-circle" width="150" />
-                                }
-                                if(Model.userGender.Equals("Female"))
-                                {
-                                    <img src="~/Content/images/userwoman.png" alt="Profile Picture" class="rounded-circle" width="150" />
-                                }
+                                <img src="~/Content/images/userman.png" alt="Profile Picture" class="rounded-circle" width="150" />
                             }
+                            else if (item.userGender.Equals("Female"))
+                            {
+                                <img src="~/Content/images/userwoman.png" alt="Profile Picture" class="rounded-circle" width="150" />
+                            }
+                        }
                             <!--<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Profile Picture" class="rounded-circle" width="150">-->
                             <div class="mt-3">
                                 <h4>@item.firstName @item.lastName </h4>

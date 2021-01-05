@@ -31,7 +31,8 @@ namespace OnlineWarehousingInformationSystem.Controllers
                                 userlist.userName,
                                 userlist.firstName,
                                 userlist.lastName,
-                                userlist.userType
+                                userlist.userType,
+                                userlist.userGender
                             }).ToList();
                 if (user.FirstOrDefault() != null)
                 {
