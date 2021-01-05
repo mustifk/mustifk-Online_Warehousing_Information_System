@@ -113,8 +113,18 @@ namespace OnlineWarehousingInformationSystem.Controllers
         [HttpPost]
         public ActionResult UpdatePackageProduct(PackageContents pc)
         {
-            PackageContents u_pc = db.PackageContents.Where(p => p.packageID == pc.packageID).Where(p => p.productID == pc.productID).FirstOrDefault();
-            u_pc.productQuantity = pc.productQuantity;
+            int u_pc = db.getPackageContents.Where(p => p.packageID == pc.packageID).Where(p => p.productID == pc.productID).First().productQuantity.Value;
+            int u_product = db.Products.Where(p => p.productID == pc.productID).FirstOrDefault().totalQuantity;
+            PackageContents pcontent = new PackageContents();
+            if(pc.productQuantity > u_product)
+            {
+                ModelState.AddModelError("", "Product quantity is not enough!");
+                return View();
+            }
+            pcontent.packageID = pc.packageID;
+            pcontent.productID = pc.productID;
+            pcontent.productQuantity = pc.productQuantity - u_pc;
+            db.PackageContents.Add(pcontent);
             db.SaveChanges();
             return RedirectToAction("DetailPackage", new { id = pc.packageID });
         }
