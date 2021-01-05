@@ -106,7 +106,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
 
         public ActionResult UpdatePackageProduct(int packageID, int productID)
         {
-            var query = db.PackageContents.Where(p => p.packageID == packageID).Where(p => p.productID == productID).Select(p => p);
+            var contents = db.PackageContents.Where(p => p.packageID == packageID).Where(p => p.productID == productID).First();
             return View();
         }
 

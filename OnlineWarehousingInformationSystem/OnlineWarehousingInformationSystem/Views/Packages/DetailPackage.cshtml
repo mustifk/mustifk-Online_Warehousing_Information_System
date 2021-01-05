@@ -40,7 +40,8 @@
                     <td scope="row">@item.productID</td>
                     <td>@item.productName</td>
                     <td>@item.productQuantity</td>
-                    <td>@Html.ActionLink("Update","UpdatePackageProduct", "Packages", new { packageID = item.packageID, productID = item.productID }) |
+                    <td>
+                        @Html.ActionLink("Update","UpdatePackageProduct", "Packages", new { packageID = item.packageID, productID = item.productID }, null) |
                         @Html.ActionLink("Delete", "DeleteProducts", "Packages", new { packageID = item.packageID, productID = item.productID }, new { onclick = "return confirm('Are you sure you wish to delete this product from package?'); " })
                     </td>
                 </tr>
