@@ -393,7 +393,7 @@ FROM
 GROUP BY w.warehouseID,w.warehouseName,w.currentCapacity,w.country,w.city
 GO
 
-CREATE VIEW getPackageContents
+CREATE VIEW owis.getPackageContents
 AS
 SELECT
 	pc.packageID,
