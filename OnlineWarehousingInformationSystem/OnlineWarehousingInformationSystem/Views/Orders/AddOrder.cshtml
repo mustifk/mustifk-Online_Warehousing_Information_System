@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
     function validateForm() {
-        var id = document.getElementById("warehouseID").value;
+        var id = document.getElementById("id").value;
         var description = document.getElementById("description").value;
         var manufacturer = document.getElementById("date").value;
         if (id == "" || manufacturer == "") {
@@ -46,7 +46,7 @@
         <div class="form-group">
             <b class="control-label col-md-2">Warehouse ID</b>
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.warehouseID, new { id = "warehouseID", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                @Html.TextBoxFor(model => model.warehouseID, new { id = "id", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
             </div>
         </div>
 
