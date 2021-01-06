@@ -18,7 +18,7 @@
                         @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
                         {
                             <div class="col-md-2">
-                                <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Users")'" />
+                                <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Request.UrlReferrer'" />
                             </div>
                         }
                         else
@@ -87,8 +87,12 @@
                                     </p>
                                     @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
                                     {
-                                        @Html.ActionLink("Edit", "EditUser", "Users", new { id = @item.userID }, null) <span>|</span>
-                                        @Html.ActionLink("Delete", "DeleteFromUsers", "Users", new { id = @item.userID }, new { onclick = "return confirm('Are you sure you wish to delete this user?'); " })
+                                        @Html.ActionLink("Edit", "EditUser", "Users", new { id = @item.userID }, null) 
+                                        if (!item.userType.Equals("2"))
+                                        {
+                                            <span>|</span>
+                                            @Html.ActionLink("Delete", "DeleteFromUsers", "Users", new { id = @item.userID }, new { onclick = "return confirm('Are you sure you wish to delete this user?'); " })
+                                        }
                                     }
                                 </div>
                             </div>

@@ -56,14 +56,18 @@
                         @if (HttpContext.Current.Session["UserType"].ToString().Equals("2"))
                         {
                             <span>|</span>
-                            @Html.ActionLink("Edit", "EditWarehouse", "Warehouses", new { id = item.warehouseID }, null) <span>|</span>
-                            if (item.warehouseID > 1)
+                            @Html.ActionLink("Edit", "EditWarehouse", "Warehouses", new { id = item.warehouseID }, null)
+                            if (item.currentCapacity == 0)
                             {
-                                @Html.ActionLink("Delete", "DeleteFromWarehouses", "Warehouses", new { id = @item.warehouseID }, new { onclick = "return confirm('Are you sure you wish to delete this warehouse with its contents?'); " })
-                            }
-                            else
-                            {
-                                <label style="color:red">Delete</label>
+                                <span>|</span>
+                                if (item.warehouseID > 1)
+                                {
+                                    @Html.ActionLink("Delete", "DeleteFromWarehouses", "Warehouses", new { id = @item.warehouseID }, new { onclick = "return confirm('Are you sure you wish to delete this warehouse with its contents?'); " })
+                                }
+                                else
+                                {
+                                    <label style="color:red">Delete</label>
+                                }
                             }
                         }
                     </td>

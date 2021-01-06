@@ -39,35 +39,39 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                <tr>
 
-                        <td scope="row">@item.userID</td>
-                        <td>@item.userName</td>
-                        <td>@item.firstName</td>
-                        <td>@item.lastName</td>
+                    <td scope="row">@item.userID</td>
+                    <td>@item.userName</td>
+                    <td>@item.firstName</td>
+                    <td>@item.lastName</td>
 
-                        @if (item.userType.Equals("0"))
+                    @if (item.userType.Equals("0"))
+                    {
+                        <td>User</td>
+                    }
+                    @if (item.userType.Equals("1"))
+                    {
+                        <td>Staff</td>
+                    }
+                    @if (item.userType.Equals("2"))
+                    {
+                        <td>Admin</td>
+                    }
+
+
+                    <td>
+
+                        @Html.ActionLink("Detail", "DetailUser", "Users", new { id = item.userID }, null) |
+                        @Html.ActionLink("Edit", "EditUser", "Users", new { id = item.userID }, null)
+                        @if (!item.userType.Equals("2"))
                         {
-                            <td>User</td>
-                        }
-                        @if (item.userType.Equals("1"))
-                        {
-                            <td>Staff</td>
-                        }
-                        @if (item.userType.Equals("2"))
-                        {
-                            <td>Admin</td>
-                        }
-
-
-                        <td>
-
-                            @Html.ActionLink("Detail", "DetailUser", "Users", new { id = item.userID }, null) |
-                            @Html.ActionLink("Edit", "EditUser", "Users", new { id = item.userID }, null) |
+                            <span>|</span>
                             @Html.ActionLink("Delete", "DeleteFromUsers", "Users", new { id = item.userID }, new { onclick = "return confirm('Are you sure you wish to delete this user?'); " })
-                        </td>
+                        }
+                    </td>
 
-                    </tr>
+                </tr>
                 }
             </tbody>
         </table>

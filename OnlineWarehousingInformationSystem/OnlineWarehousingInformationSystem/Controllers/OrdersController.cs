@@ -24,8 +24,14 @@ namespace OnlineWarehousingInformationSystem.Controllers
         OWISDBEntities db = new OWISDBEntities();
         public ActionResult Index()
         {
-            var orders = db.Orders.Where(o => o.orderID > 0).Select(o => o);
-            return View(orders);
+            MyViewModel query = new MyViewModel();
+            query.Order = db.Orders.Where(o => o.orderID > 0).Select(o => o).ToList();
+            int ordrcnt = query.Order.Count();
+            foreach (var item in query.Order)
+            {
+                query.Packages = db.Packages.Where(o => o.orderID == item.orderID).Select(o => o).ToList();
+            }
+            return View(query);
         }
         public ActionResult AddOrder()
         {

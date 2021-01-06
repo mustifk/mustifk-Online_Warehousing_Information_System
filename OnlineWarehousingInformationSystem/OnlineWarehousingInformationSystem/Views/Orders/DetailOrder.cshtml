@@ -20,10 +20,10 @@
                         <div class="row col-md-9 text-right">
                             <ul>
                                 <li style="text-decoration:none;display:inline-block">
-                                    <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Orders")'" />
+                                    <input type="button" class="btn btn-success" value="Add New Package" onclick="location.href='@Url.Action("AddPackage", "Packages",new { id = item.orderID, type = false })'" />
                                 </li>
                                 <li style="text-decoration:none;display:inline-block">
-                                    <input type="button" class="btn btn-primary" value="Add New Package" onclick="location.href='@Url.Action("AddPackage", "Packages",new { id = item.orderID, type = false })'" />
+                                    <input type="button" class="btn btn-primary" value="Back to List" onclick="location.href='@Url.Action("Index", "Orders")'" />
                                 </li>
                             </ul>
                         </div>

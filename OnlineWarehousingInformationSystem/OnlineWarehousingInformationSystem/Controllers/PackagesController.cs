@@ -9,6 +9,17 @@ namespace OnlineWarehousingInformationSystem.Controllers
 {
     public class PackagesController : Controller
     {
+        public class MyViewModel
+        {
+            public List<getPackageContents> Contents { get; set; }
+            public List<Packages> Package { get; set; }
+
+            public MyViewModel()
+            {
+                this.Package = new List<Packages>();
+                this.Contents = new List<getPackageContents>();
+            }
+        }
         // GET: Packages
         OWISDBEntities db = new OWISDBEntities();
         public ActionResult Index()
@@ -47,8 +58,10 @@ namespace OnlineWarehousingInformationSystem.Controllers
 
         public ActionResult DetailPackage(int id)
         {
-            var query = db.getPackageContents.Where(o => o.packageID == id).ToList();
+            MyViewModel query = new MyViewModel();
+            query.Contents = db.getPackageContents.Where(o => o.packageID == id).ToList();
             ViewBag.id = id;
+            query.Package = db.Packages.Where(p => p.packageID == id).ToList();
             return View(query);
         }
 

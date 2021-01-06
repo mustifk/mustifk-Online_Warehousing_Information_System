@@ -59,7 +59,6 @@ namespace OnlineWarehousingInformationSystem.Controllers
                     ViewData["non"] = false;
                     return View(package);
                 }
-                return View(package);
             }
             else if (search == -1)
             {

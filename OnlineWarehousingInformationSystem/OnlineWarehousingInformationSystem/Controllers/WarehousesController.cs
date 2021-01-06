@@ -24,6 +24,7 @@ namespace OnlineWarehousingInformationSystem.Controllers
         [HttpPost]
         public ActionResult AddWarehouse(Warehouses warehouse)
         {
+            warehouse.currentCapacity = 0;
             db.Warehouses.Add(warehouse);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -45,6 +46,13 @@ namespace OnlineWarehousingInformationSystem.Controllers
         public ActionResult EditWarehouse(Warehouses warehouse)
         {
             Warehouses u_warehouse = db.Warehouses.Where(w => w.warehouseID == warehouse.warehouseID).FirstOrDefault();
+            if (u_warehouse.currentCapacity > warehouse.maxCapacity)
+            {
+                ModelState.AddModelError("", "Current capacity could not be more than max capacity!");
+                var query = db.Warehouses.Find(warehouse.warehouseID);
+                return View(query);
+            }
+            u_warehouse.maxCapacity = warehouse.maxCapacity;
             u_warehouse.warehouseName = warehouse.warehouseName;
             u_warehouse.country = warehouse.country;
             u_warehouse.city = warehouse.city;
@@ -53,7 +61,6 @@ namespace OnlineWarehousingInformationSystem.Controllers
             u_warehouse.warehouseStatus = warehouse.warehouseStatus;
             u_warehouse.phoneNumber = warehouse.phoneNumber;
             u_warehouse.email = warehouse.email;
-            u_warehouse.maxCapacity = warehouse.maxCapacity;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

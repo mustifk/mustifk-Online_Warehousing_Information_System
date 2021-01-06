@@ -46,9 +46,12 @@ namespace OnlineWarehousingInformationSystem.Controllers
         [HttpPost]
         public ActionResult EditShipping(Shipping shipping)
         {
-            Shipping u_shipping = db.Shipping.Where(o => o.packageID == shipping.packageID).FirstOrDefault();
-            u_shipping.shippingDate = shipping.shippingDate;
+            Shipping u_shipping = db.Shipping.Where(o => o.packageID == shipping.packageID).First();
             u_shipping.estimatedDeliveryDate = shipping.estimatedDeliveryDate;
+            if (shipping.shippingDate != DateTime.MinValue)
+            {
+                u_shipping.shippingDate = shipping.shippingDate;
+            }
             u_shipping.deliveryDate = shipping.deliveryDate;
             u_shipping.currentLocation = shipping.currentLocation;
             u_shipping.currentStatus = shipping.currentStatus;

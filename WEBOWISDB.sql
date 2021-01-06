@@ -478,8 +478,26 @@ AS
  END
 
 GO
+
+CREATE TRIGGER updateProductQuantityOrderDeleted
+ON owis.Orders
+AFTER DELETE
+AS
+ BEGIN
+	DECLARE @orderID INT
+	DECLARE @packageID INT
+	DECLARE @productID INT
+
+	SELECT @orderID = orderID FROM deleted
+	SELECT @packageID = packageID FROM owis.Packages WHERE orderID = @orderID
+	
+	DELETE FROM owis.PackageContents WHERE packageID = @packageID
+
+ END
+GO
+
 CREATE TRIGGER updateStockQuantity  /* Update product's stock in product table when a new package content is added */
-ON owis.PackageContents
+ON [owis].[PackageContents]
 AFTER INSERT 
 AS
  BEGIN
@@ -488,32 +506,82 @@ AS
 	DECLARE @productQuantityInPackage INT
 	DECLARE @productID INT
 	DECLARE @total_quantity INT
+	DECLARE @shipmentID INT
+	DECLARE @warehouseID INT
+	DECLARE @counter INT
+	DECLARE @orderID INT
 
 	SELECT @packageID = packageID, @productQuantityInPackage = productQuantity, @productID = productID FROM inserted
 	SELECT @isProvided = isProvided FROM owis.Packages WHERE packageID = @packageID
-	SELECT @total_quantity = totalQuantity FROM owis.Products WHERE productID=@productID
 	
 	IF (@isProvided = 1)
-		IF(@total_quantity >= @productQuantityInPackage)
-			BEGIN
-			UPDATE owis.Products
-			SET totalQuantity = totalQuantity - @productQuantityInPackage
-			WHERE productID = @productID
-			END
-		ELSE
-			BEGIN
-				ALTER TABLE owis.PackageContents DISABLE TRIGGER afterDelete
-				DELETE TOP(1) FROM owis.PackageContents WHERE packageID = @packageID AND productID = @productID AND productQuantity = @productQuantityInPackage
-				ALTER TABLE owis.PackageContents ENABLE TRIGGER afterDelete
-			END
+		BEGIN
+			SELECT @shipmentID = shipmentID FROM owis.Packages WHERE packageID = @packageID
+			SELECT @warehouseID = warehouseID FROM owis.Shipments WHERE shipmentID = @shipmentID
+			SELECT @total_quantity = SUM(quantity) FROM owis.WarehouseContents WHERE warehouseID = @warehouseID AND productID = @productID
+			
+			IF(@total_quantity >= @productQuantityInPackage)
+				BEGIN
+
+				IF((SELECT COUNT(*) FROM owis.WarehouseContents WHERE warehouseID = @warehouseID 
+				AND productID = @productID AND @total_quantity >= @productQuantityInPackage) > 0)
+					BEGIN
+					
+					UPDATE owis.Products
+					SET totalQuantity = totalQuantity - @productQuantityInPackage
+					WHERE productID = @productID
+					
+					UPDATE owis.WarehouseContents
+					SET quantity = quantity - @productQuantityInPackage
+					WHERE warehouseID = @warehouseID AND productID = @productID 
+
+					SELECT @counter = @@ROWCOUNT
+					SET @productQuantityInPackage = @productQuantityInPackage - (@productQuantityInPackage / @counter)
+
+					UPDATE owis.WarehouseContents
+					SET quantity = quantity + @productQuantityInPackage
+					WHERE warehouseID = @warehouseID AND productID = @productID
+					END
+				ELSE
+					BEGIN
+						ALTER TABLE owis.PackageContents DISABLE TRIGGER afterDelete
+						DELETE TOP(1) FROM owis.PackageContents WHERE packageID = @packageID AND productID = @productID AND productQuantity = @productQuantityInPackage
+						ALTER TABLE owis.PackageContents ENABLE TRIGGER afterDelete
+					END
+				END
+			ELSE
+				BEGIN
+					ALTER TABLE owis.PackageContents DISABLE TRIGGER afterDelete
+					DELETE TOP(1) FROM owis.PackageContents WHERE packageID = @packageID AND productID = @productID AND productQuantity = @productQuantityInPackage
+					ALTER TABLE owis.PackageContents ENABLE TRIGGER afterDelete
+				END
+		END
 	ELSE IF(@isProvided = 0)
 		BEGIN
+		
+		SELECT @orderID = orderID FROM owis.Packages WHERE packageID = @packageID
+		SELECT @warehouseID = warehouseID FROM owis.Orders WHERE orderID = @orderID
+			
 		UPDATE owis.Products
 		SET totalQuantity = totalQuantity + @productQuantityInPackage
 		WHERE productID = @productID
-		END
+		
+		UPDATE owis.WarehouseContents
+		SET quantity = quantity + @productQuantityInPackage
+		WHERE warehouseID = @warehouseID AND productID = @productID 
 
- END
+		SELECT @counter = @@ROWCOUNT
+		IF(@counter > 0)
+			BEGIN
+			SET @productQuantityInPackage = @productQuantityInPackage - (@productQuantityInPackage / @counter)
+
+			UPDATE owis.WarehouseContents
+			SET quantity = quantity - @productQuantityInPackage
+			WHERE warehouseID = @warehouseID AND productID = @productID
+			END
+
+		END
+	END
  GO
 
 CREATE TRIGGER afterDelete
@@ -1109,7 +1177,7 @@ VALUES('KonyaWarehouse', 'Türkiye', 'Konya', 'Beyþehir', '48654', 'Stable',
 
 
 INSERT INTO owis.Products(productName, manufacturer, productWeight, inStock, totalQuantity)
-VALUES('Elma', 'Torku Bayraktar', 0.2, 1, 100)
+VALUES('Elma', 'Torku Bayraktar', 0.2, 1, 200)
 
 INSERT INTO owis.Products(productName, manufacturer, productWeight, inStock, totalQuantity)
 VALUES('Armut', 'Aytaþ Tarým', 0.4, 1, 100)

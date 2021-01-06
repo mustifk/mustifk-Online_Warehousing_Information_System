@@ -148,6 +148,7 @@
             <b class="control-label col-md-2">Max Capacity</b>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.maxCapacity, new { id = "maxCapacity", style = "border:groove 1px gray;border-radius:5px;height:30px;width:600px;" })
+                <b style="color:red;font-weight:300">@Html.ValidationMessageFor(model => model.maxCapacity, "", new { @class = "text-danger" })</b>
             </div>
         </div>
 

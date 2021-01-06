@@ -11,19 +11,13 @@ namespace OnlineWarehousingInformationSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Bills
     {
         public int billID { get; set; }
         public int shipmentID { get; set; }
-
-        [StringLength(10)]
-        [Required(ErrorMessage = "Max limit is 10")]
         public string invoiceID { get; set; }
         public string paymentType { get; set; }
-
-        [Required(ErrorMessage = "This field is required")]
         public int amount { get; set; }
         public System.DateTime operationDate { get; set; }
     
